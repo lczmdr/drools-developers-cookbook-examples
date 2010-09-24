@@ -72,7 +72,6 @@ public class CustomDateFormatTest {
 
         for(int i=0; i < 60; i+=3) {
             calendar.set(Calendar.MINUTE, i);
-//            System.out.println(calendar.getTime());
             HistoricalCpuUsage historicalValue = new HistoricalCpuUsage(SERVER_NAME, calendar.getTime(), generateRandomCpuUsage());
             ksession.insert(historicalValue);
         }

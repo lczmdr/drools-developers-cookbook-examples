@@ -12,6 +12,7 @@
     <module>AddingLoggingToViewRulesExecutionBehaviour</module>
     <module>AccessingWorkingMemoryInsideRules</module>
     <module>CustomDateFormatInsideRules</module>
+    <module>TimeBasedExecutionRules</module>
   </modules>
 
   <dependencyManagement>
