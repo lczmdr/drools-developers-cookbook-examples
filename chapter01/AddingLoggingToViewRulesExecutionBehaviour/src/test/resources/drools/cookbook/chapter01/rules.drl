@@ -1,0 +1,28 @@
+package drools.cookbook.chapter01
+
+import java.util.Date
+
+global java.util.List list;
+
+declare Address
+   number : int
+   streetName : String
+   city : Integer
+end
+
+// The fact declaration order is important
+
+declare Person
+    name : String
+    dateOfBirth : Date
+    address : Address
+end
+
+rule "birthdate"
+when
+    $p : Person(name=="lucaz")
+then
+    System.out.println("This guy is too old");
+    $p.setName("lucaz amador");
+    update($p);
+end

@@ -1,0 +1,55 @@
+package drools.cookbook.chapter01
+
+import java.util.Date
+import java.util.List
+
+global java.util.List currentServersStatus;
+
+declare Server
+   name : String
+   processors : int
+   memory : int // megabytes
+   diskSpace : int // gigabytes
+   virtualizations : List
+   cpuUsage : int // percentage
+end
+
+declare ServerStatus
+	name : String
+	freeMemory : int
+	percentageFreeMemory : int
+	freeDiskSpace : int
+	percentageFreeDiskSpace : int
+	currentCpuUsage : int
+end
+
+declare Virtualization
+    name : String
+    diskSpace : int
+    memory : int
+end
+
+rule "check server status for a new virtualization"
+dialect "mvel"
+when
+	$virtualization : Virtualization();
+	$server : Server($memory : memory, $diskSpace : diskSpace, virtualizations !=null);
+	$freeMemory : Number(intValue > 0) from accumulate (Virtualization($vmemory : memory) from $server.virtualizations,
+											init(int total = $memory - $virtualization.memory),
+											action(total -= $vmemory;),
+                              				reverse(total += $vmemory;),
+                              				result(total))
+	$freeDiskSpace : Number(intValue > 0) from accumulate (Virtualization($vdiskSpace : diskSpace) from $server.virtualizations,
+											init(int total = $diskSpace - $virtualization.diskSpace),
+											action(total -= $vdiskSpace;),
+                              				reverse(total += $vdiskSpace;),
+                              				result(total))
+then
+	ServerStatus serverStatus = new ServerStatus();
+	serverStatus.name = $server.name;
+	serverStatus.freeMemory = $freeMemory;
+	serverStatus.percentageFreeMemory = $freeMemory * 100 / $memory;
+	serverStatus.freeDiskSpace = $freeDiskSpace;
+	serverStatus.percentageFreeDiskSpace = $freeDiskSpace * 100 / $memory;
+	currentServersStatus.add(serverStatus);
+end
