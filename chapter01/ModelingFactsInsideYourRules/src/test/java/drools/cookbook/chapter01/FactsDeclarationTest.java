@@ -14,13 +14,16 @@ import org.drools.builder.ResourceType;
 import org.drools.definition.type.FactType;
 import org.drools.io.impl.ClassPathResource;
 import org.drools.runtime.StatefulKnowledgeSession;
+import org.junit.Before;
 import org.junit.Test;
 
 public class FactsDeclarationTest {
 
-    @Test
-    public void availableServers() {
+    private StatefulKnowledgeSession ksession;
+    private KnowledgeBase kbase;
 
+    @Test
+    public void checkServerConfiguration() {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
         kbuilder.add(new ClassPathResource("rules.drl", getClass()), ResourceType.DRL);
 
@@ -36,6 +39,35 @@ public class FactsDeclarationTest {
         StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
 
         FactType serverType = kbase.getFactType("drools.cookbook.chapter01", "Server");
+
+        assertNotNull(serverType);
+
+        Object debianServer = null;
+        try {
+            debianServer = serverType.newInstance();
+        } catch (InstantiationException e) {
+            System.err.println("the class Server on drools.cookbook.chapter01 package hasn't a constructor");
+        } catch (IllegalAccessException e) {
+            System.err.println("unable to access the class Server on drools.cookbook.chapter01 package");
+        }
+        serverType.set(debianServer, "name", "server001");
+        serverType.set(debianServer, "processors", 1);
+        serverType.set(debianServer, "memory", 2048); // 2 gigabytes
+        serverType.set(debianServer, "diskSpace", 2048); // 2 terabytes
+        serverType.set(debianServer, "cpuUsage", 3);
+
+        ksession.insert(debianServer);
+
+        ksession.fireAllRules();
+
+        assertEquals(ksession.getObjects().size(), 0);
+
+    }
+
+    @Test
+    public void availableServers() {
+
+        FactType serverType = kbase.getFactType("drools.cookbook.chapter01", "Server");
         FactType serverStatusType = kbase.getFactType("drools.cookbook.chapter01", "ServerStatus");
         FactType virtualizationType = kbase.getFactType("drools.cookbook.chapter01", "Virtualization");
 
@@ -49,7 +81,7 @@ public class FactsDeclarationTest {
         } catch (IllegalAccessException e) {
             System.err.println("unable to access the class Server on drools.cookbook.chapter01 package");
         }
-        serverType.set(debianServer, "name", "server001");
+        serverType.set(debianServer, "name", "server002");
         serverType.set(debianServer, "processors", 4);
         serverType.set(debianServer, "memory", 8192); // 8 gigabytes
         serverType.set(debianServer, "diskSpace", 2048); // 2 terabytes
@@ -63,7 +95,7 @@ public class FactsDeclarationTest {
         } catch (IllegalAccessException e) {
             System.err.println("unable to access the class Server on drools.cookbook.chapter01 package");
         }
-        serverType.set(fedoraServer, "name", "server002");
+        serverType.set(fedoraServer, "name", "server003");
         serverType.set(fedoraServer, "processors", 2);
         serverType.set(fedoraServer, "memory", 2048); // 2 gigabytes
         serverType.set(fedoraServer, "diskSpace", 1048); // 1 terabytes
@@ -128,6 +160,23 @@ public class FactsDeclarationTest {
             System.out.println("Server \"" + name + "\" has " + freeDiskSpace + " MB of free disk space");
         }
 
+    }
+
+    @Before
+    public void createKnowledgeSession() {
+        KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
+        kbuilder.add(new ClassPathResource("rules.drl", getClass()), ResourceType.DRL);
+
+        if (kbuilder.hasErrors()) {
+            if (kbuilder.getErrors().size() > 0) {
+                for (KnowledgeBuilderError kerror : kbuilder.getErrors()) {
+                    System.err.println(kerror);
+                }
+            }
+        }
+
+        kbase = kbuilder.newKnowledgeBase();
+        ksession = kbase.newStatefulKnowledgeSession();
     }
 
 }
