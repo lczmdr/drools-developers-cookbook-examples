@@ -12,13 +12,14 @@ import org.junit.Test;
 
 public class TimeBasedRulesTest {
 
-    private StatefulKnowledgeSession ksession;
     private FactHandle debianServerFactHandle;
 
     @Test
     public void historicalCpuUsageTest() throws InterruptedException {
 
-        ksession = createKnowledgeSession();
+        final StatefulKnowledgeSession ksession = createKnowledgeSession();
+
+        ksession.setGlobal("alerts", new ServerAlert());
 
         final Server debianServer = new Server("debianServer", 4, 2048, 2048, 4);
         debianServer.setOnline(true);
@@ -31,7 +32,7 @@ public class TimeBasedRulesTest {
 
         debianServerFactHandle = ksession.insert(debianServer);
 
-        Thread t = new Thread(new Runnable() {
+        Thread simulationThread = new Thread(new Runnable() {
             public void run() {
                 try {
                     Thread.sleep(7000);
@@ -41,16 +42,16 @@ public class TimeBasedRulesTest {
                     debianServer.setOnline(true);
                     ksession.update(debianServerFactHandle, debianServer);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    System.err.println("An error ocurrs in the simulation thread");
                 }
             }
         });
 
-        t.start();
+        simulationThread.start();
 
         // sleep 30 seconds
         Thread.sleep(30000);
-        t.interrupt();
+        simulationThread.interrupt();
         ksession.halt();
 
     }
