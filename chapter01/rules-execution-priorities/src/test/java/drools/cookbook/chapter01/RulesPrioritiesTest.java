@@ -23,7 +23,7 @@ public class RulesPrioritiesTest {
 
 
     @Test
-    public void virtualizationRequestFailedTest() throws InterruptedException {
+    public void virtualizationRequestFailedTest() {
 
         StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
 
@@ -48,7 +48,7 @@ public class RulesPrioritiesTest {
     }
 
     @Test
-    public void virtualizationRequestSuccessfulTest() throws InterruptedException {
+    public void virtualizationRequestSuccessfulTest() {
 
         StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
 

@@ -7,10 +7,27 @@
   <packaging>pom</packaging>
   <version>1.0.0-SNAPSHOT</version>
 
+  <repositories>
+  	<repository>
+      <id>jboss-public-repository-group</id> 
+      <name>JBoss Public Maven Repository Group</name> 
+  	  <url>https://repository.jboss.org/nexus/content/groups/public/</url> 
+  	  <layout>default</layout> 
+  	  <releases>
+  	    <enabled>true</enabled> 
+  	    <updatePolicy>never</updatePolicy> 
+  	  </releases>
+  	  <snapshots>
+  	    <enabled>false</enabled> 
+  	    <updatePolicy>never</updatePolicy> 
+  	  </snapshots>
+  	</repository>
+ </repositories>
+
   <modules>
     <module>modeling-facts-inside-your-rules</module>
     <module>adding-logging-to-view-rules-execution-behaviour</module>
-    <module>accessing-working-memory-inside-rules</module>
+    <!--module>accessing-working-memory-inside-rules</module-->
     <module>custom-date-format-inside-rules</module>
     <module>timer-based-rules</module>
     <module>calendar-based-rules</module>
