@@ -1,5 +1,9 @@
 package drools.cookbook.chapter01;
 
+import java.util.Calendar;
+
+import junit.framework.Assert;
+
 import org.drools.KnowledgeBase;
 import org.drools.builder.KnowledgeBuilder;
 import org.drools.builder.KnowledgeBuilderError;
@@ -8,55 +12,46 @@ import org.drools.builder.ResourceType;
 import org.drools.io.impl.ClassPathResource;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.help.QuartzHelper;
-import org.drools.runtime.rule.FactHandle;
 import org.junit.Test;
+import org.quartz.impl.calendar.WeeklyCalendar;
 
 public class CalendarBasedRulesTest {
 
-    private FactHandle debianServerFactHandle;
-    
     @Test
-    public void historicalCpuUsageTest() throws InterruptedException {
+    public void virtualizationRequestTest() throws InterruptedException {
 
-        final StatefulKnowledgeSession ksession = createKnowledgeSession();
-        
-        QuartzHelper.quartzCalendarAdapter(null);
+        StatefulKnowledgeSession ksession = createKnowledgeSession();
 
-        ksession.setGlobal("alerts", new ServerAlert());
+        WeeklyCalendar calendar = new WeeklyCalendar();
+        org.drools.time.Calendar onlyWeekDays = QuartzHelper.quartzCalendarAdapter(calendar);
 
-        final Server debianServer = new Server("debianServer", 4, 2048, 2048, 4);
-        debianServer.setOnline(true);
+        ksession.getCalendars().set("only-weekdays", onlyWeekDays);
 
-        new Thread(new Runnable() {
-            public void run() {
-                ksession.fireUntilHalt();
-            }
-        }).start();
+        Server debianServer = new Server("debianServer", 4, 4096, 1024, 0);
+        ksession.insert(debianServer);
 
-        debianServerFactHandle = ksession.insert(debianServer);
+        Virtualization rhel = new Virtualization("rhel", "debianServer", 2048, 160);
+        VirtualizationRequest virtualizationRequest = new VirtualizationRequest(rhel);
 
-        Thread simulationThread = new Thread(new Runnable() {
-            public void run() {
-                try {
-                    Thread.sleep(7000);
-                    debianServer.setOnline(false);
-                    ksession.update(debianServerFactHandle, debianServer);
-                    Thread.sleep(16000);
-                    debianServer.setOnline(true);
-                    ksession.update(debianServerFactHandle, debianServer);
-                } catch (InterruptedException e) {
-                    System.err.println("An error ocurrs in the simulation thread");
-                }
-            }
-        });
+        ksession.insert(virtualizationRequest);
 
-        simulationThread.start();
+        ksession.fireAllRules();
 
-        // sleep 30 seconds
-        Thread.sleep(30000);
-        simulationThread.interrupt();
-        ksession.halt();
+        if (isWeekday()) {
+            Assert.assertEquals(true, virtualizationRequest.isSuccessful());
+            System.out.println("The virtualization request was accepted on server: " + rhel.getServerName());
+        }
+        else {
+            Assert.assertEquals(false, virtualizationRequest.isSuccessful());
+            System.out.println("The virtualization request was rejected because is weekend.");
+        }
 
+    }
+
+    private boolean isWeekday() {
+        Calendar calendar = Calendar.getInstance();
+        int currentDay = calendar.get(Calendar.DAY_OF_WEEK);
+        return !(currentDay==Calendar.SATURDAY || currentDay==Calendar.SUNDAY);
     }
 
     private StatefulKnowledgeSession createKnowledgeSession() {
