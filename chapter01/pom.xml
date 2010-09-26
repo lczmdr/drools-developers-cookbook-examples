@@ -14,11 +14,12 @@
     <module>CustomDateFormatInsideRules</module>
     <module>TimerBasedRules</module>
     <module>CalendarBasedRules</module>
+    <module>RulesExecutionPriorities</module>
   </modules>
 
   <dependencyManagement>
     <dependencies>
-      <!-- drools dependencies -->
+      <!-- drools minimal dependencies -->
       <dependency>
         <groupId>org.drools</groupId>
         <artifactId>drools-api</artifactId>
@@ -34,6 +35,7 @@
         <artifactId>drools-compiler</artifactId>
         <version>${drools.version}</version>
       </dependency>
+      <!-- junit dependency -->
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
