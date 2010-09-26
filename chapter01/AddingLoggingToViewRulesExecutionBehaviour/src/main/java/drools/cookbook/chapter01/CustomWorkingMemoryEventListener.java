@@ -7,6 +7,11 @@ import org.drools.event.rule.WorkingMemoryEventListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * 
+ * @author Lucas Amador
+ *
+ */
 public class CustomWorkingMemoryEventListener implements WorkingMemoryEventListener {
 
     private static final Logger logger = LoggerFactory.getLogger(CustomWorkingMemoryEventListener.class);

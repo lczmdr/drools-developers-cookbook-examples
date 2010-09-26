@@ -10,6 +10,11 @@ import org.drools.event.rule.BeforeActivationFiredEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * 
+ * @author Lucas Amador
+ *
+ */
 public class CustomAgendaEventListener implements AgendaEventListener {
 
     private static final Logger logger = LoggerFactory.getLogger(CustomAgendaEventListener.class);

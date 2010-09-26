@@ -1,12 +1,17 @@
 package drools.cookbook.chapter01;
 
+/**
+ * 
+ * @author Lucas Amador
+ *
+ */
 public class Virtualization {
 
     private String name;
     private String serverName;
     private int memory;
     private int diskSpace;
-    
+
     public Virtualization(String name, String serverName, int memory, int diskSpace) {
         this.name = name;
         this.serverName = serverName;

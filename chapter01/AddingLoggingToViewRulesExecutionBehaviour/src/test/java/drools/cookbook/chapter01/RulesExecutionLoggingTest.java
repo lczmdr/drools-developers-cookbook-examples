@@ -17,6 +17,11 @@ import org.junit.Test;
 import drools.cookbook.chapter01.CustomAgendaEventListener;
 import drools.cookbook.chapter01.CustomWorkingMemoryEventListener;
 
+/**
+ * 
+ * @author Lucas Amador
+ *
+ */
 public class RulesExecutionLoggingTest {
 
     @Test
@@ -41,9 +46,9 @@ public class RulesExecutionLoggingTest {
         ksession.addEventListener( new CustomWorkingMemoryEventListener() );
 
         KnowledgeRuntimeLogger newConsoleLogger = KnowledgeRuntimeLoggerFactory.newConsoleLogger(ksession);
-        
+
         newConsoleLogger.close();
-        
+
         FactType personType = kbase.getFactType("drools.cookbook.chapter01", "Person");
 
         assertNotNull(personType);

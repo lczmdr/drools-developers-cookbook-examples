@@ -3,6 +3,11 @@ package drools.cookbook.chapter01;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author Lucas Amador
+ *
+ */
 public class ServerAlert {
 
     private List<ServerEvent> events;

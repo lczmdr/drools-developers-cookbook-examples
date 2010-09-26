@@ -10,6 +10,11 @@ import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.rule.FactHandle;
 import org.junit.Test;
 
+/**
+ * 
+ * @author Lucas Amador
+ *
+ */
 public class TimeBasedRulesTest {
 
     private FactHandle debianServerFactHandle;

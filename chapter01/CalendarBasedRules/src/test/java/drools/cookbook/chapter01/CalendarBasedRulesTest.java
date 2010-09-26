@@ -16,6 +16,11 @@ import org.drools.runtime.help.QuartzHelper;
 import org.junit.Test;
 import org.quartz.impl.calendar.WeeklyCalendar;
 
+/**
+ * 
+ * @author Lucas Amador
+ *
+ */
 public class CalendarBasedRulesTest {
 
     @Test

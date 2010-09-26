@@ -17,6 +17,11 @@ import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * 
+ * @author Lucas Amador
+ *
+ */
 public class FactsDeclarationTest {
 
     private StatefulKnowledgeSession ksession;

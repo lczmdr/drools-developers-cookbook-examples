@@ -2,6 +2,11 @@ package drools.cookbook.chapter01;
 
 import java.util.Date;
 
+/**
+ * 
+ * @author Lucas Amador
+ *
+ */
 public class ServerEvent {
 
     private Server server;
