@@ -10,6 +10,7 @@ import org.drools.builder.KnowledgeBuilderError;
 import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.builder.ResourceType;
 import org.drools.io.impl.ClassPathResource;
+import org.drools.logger.KnowledgeRuntimeLoggerFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.help.QuartzHelper;
 import org.junit.Test;
@@ -26,6 +27,8 @@ public class CalendarBasedRulesTest {
         org.drools.time.Calendar onlyWeekDays = QuartzHelper.quartzCalendarAdapter(calendar);
 
         ksession.getCalendars().set("only-weekdays", onlyWeekDays);
+
+        KnowledgeRuntimeLoggerFactory.newConsoleLogger(ksession);
 
         Server debianServer = new Server("debianServer", 4, 4096, 1024, 0);
         ksession.insert(debianServer);
