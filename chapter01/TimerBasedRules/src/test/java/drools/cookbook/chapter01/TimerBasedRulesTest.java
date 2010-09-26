@@ -15,7 +15,7 @@ import org.junit.Test;
  * @author Lucas Amador
  *
  */
-public class TimeBasedRulesTest {
+public class TimerBasedRulesTest {
 
     private FactHandle debianServerFactHandle;
 
