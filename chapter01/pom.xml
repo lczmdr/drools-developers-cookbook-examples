@@ -13,6 +13,7 @@
     <module>AccessingWorkingMemoryInsideRules</module>
     <module>CustomDateFormatInsideRules</module>
     <module>TimeBasedExecutionRules</module>
+    <module>CalendarBasedRules</module>
   </modules>
 
   <dependencyManagement>
