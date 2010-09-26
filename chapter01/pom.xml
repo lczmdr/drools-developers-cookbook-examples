@@ -8,13 +8,13 @@
   <version>1.0.0-SNAPSHOT</version>
 
   <modules>
-    <module>ModelingFactsInsideYourRules</module>
-    <module>AddingLoggingToViewRulesExecutionBehaviour</module>
-    <module>AccessingWorkingMemoryInsideRules</module>
-    <module>CustomDateFormatInsideRules</module>
-    <module>TimerBasedRules</module>
-    <module>CalendarBasedRules</module>
-    <module>RulesExecutionPriorities</module>
+    <module>modeling-facts-inside-your-rules</module>
+    <module>adding-logging-to-view-rules-execution-behaviour</module>
+    <module>accessing-working-memory-inside-rules</module>
+    <module>custom-date-format-inside-rules</module>
+    <module>timer-based-rules</module>
+    <module>calendar-based-rules</module>
+    <module>rules-execution-priorities</module>
   </modules>
 
   <dependencyManagement>
