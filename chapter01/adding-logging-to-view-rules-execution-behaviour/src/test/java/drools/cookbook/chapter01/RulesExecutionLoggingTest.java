@@ -1,6 +1,7 @@
 package drools.cookbook.chapter01;
 
 import static org.junit.Assert.assertNotNull;
+import junit.framework.Assert;
 
 import org.drools.KnowledgeBase;
 import org.drools.builder.KnowledgeBuilder;
@@ -45,26 +46,33 @@ public class RulesExecutionLoggingTest {
 
         ksession.addEventListener( new CustomWorkingMemoryEventListener() );
 
-        KnowledgeRuntimeLogger newConsoleLogger = KnowledgeRuntimeLoggerFactory.newConsoleLogger(ksession);
+//        KnowledgeRuntimeLogger newConsoleLogger = KnowledgeRuntimeLoggerFactory.newConsoleLogger(ksession);
 
-        newConsoleLogger.close();
+//        newConsoleLogger.close();
 
-        FactType personType = kbase.getFactType("drools.cookbook.chapter01", "Person");
+        FactType serverType = kbase.getFactType("drools.cookbook.chapter01", "Server");
 
-        assertNotNull(personType);
+        assertNotNull(serverType);
 
-        Object lucaz = null;
+        Object debianServer = null;
         try {
-            lucaz = personType.newInstance();
+            debianServer = serverType.newInstance();
         } catch (InstantiationException e) {
-            System.err.println("the class Person on com.lucazamador.drools.facts package hasn't a constructor");
+            System.err.println("the class Server on drools.cookbook.chapter01 package hasn't a constructor");
         } catch (IllegalAccessException e) {
-            System.err.println("unable to access the class Person on com.lucazamador.drools.facts package");
+            System.err.println("unable to access the class Server on drools.cookbook.chapter01 package");
         }
-        personType.set(lucaz, "name", "lucaz");
+        serverType.set(debianServer, "name", "server001");
+        serverType.set(debianServer, "processors", 1);
+        serverType.set(debianServer, "memory", 2048); // 2 gigabytes
+        serverType.set(debianServer, "diskSpace", 2048); // 2 terabytes
+        serverType.set(debianServer, "cpuUsage", 3);
 
-        ksession.insert(lucaz);
+        ksession.insert(debianServer);
+
         ksession.fireAllRules();
+
+        Assert.assertEquals(0, ksession.getObjects().size());
 
     }
 

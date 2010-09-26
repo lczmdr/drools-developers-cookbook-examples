@@ -24,23 +24,11 @@ import org.junit.Test;
  */
 public class FactsDeclarationTest {
 
-    private StatefulKnowledgeSession ksession;
     private KnowledgeBase kbase;
 
     @Test
     public void checkServerConfiguration() {
-        KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-        kbuilder.add(new ClassPathResource("rules.drl", getClass()), ResourceType.DRL);
 
-        if (kbuilder.hasErrors()) {
-            if (kbuilder.getErrors().size() > 0) {
-                for (KnowledgeBuilderError kerror : kbuilder.getErrors()) {
-                    System.err.println(kerror);
-                }
-            }
-        }
-
-        KnowledgeBase kbase = kbuilder.newKnowledgeBase();
         StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
 
         FactType serverType = kbase.getFactType("drools.cookbook.chapter01", "Server");
@@ -71,6 +59,8 @@ public class FactsDeclarationTest {
 
     @Test
     public void availableServers() {
+
+        StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
 
         FactType serverType = kbase.getFactType("drools.cookbook.chapter01", "Server");
         FactType serverStatusType = kbase.getFactType("drools.cookbook.chapter01", "ServerStatus");
@@ -181,7 +171,7 @@ public class FactsDeclarationTest {
         }
 
         kbase = kbuilder.newKnowledgeBase();
-        ksession = kbase.newStatefulKnowledgeSession();
+
     }
 
 }
