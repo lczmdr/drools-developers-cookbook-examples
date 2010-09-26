@@ -3,7 +3,7 @@ package drools.cookbook.chapter01
 import java.util.Date
 import java.util.List
 
-global java.util.List currentServersStatus;
+global java.util.List serversAvailability;
 
 declare Server
    name : String
@@ -39,7 +39,7 @@ then
 	retract($server);
 end
 
-rule "check server status for a new virtualization"
+rule "check available server for a new virtualization"
 dialect "mvel"
 when
 	$virtualization : Virtualization()
@@ -61,5 +61,5 @@ then
 	serverStatus.percentageFreeMemory = $freeMemory * 100 / $memory;
 	serverStatus.freeDiskSpace = $freeDiskSpace;
 	serverStatus.percentageFreeDiskSpace = $freeDiskSpace * 100 / $memory;
-	currentServersStatus.add(serverStatus);
+	serversAvailability.add(serverStatus);
 end

@@ -143,7 +143,7 @@ public class FactsDeclarationTest {
 
         serverType.set(fedoraServer, "virtualizations", virtualizations);
 
-        ksession.setGlobal("currentServersStatus", new ArrayList<Object>());
+        ksession.setGlobal("serversAvailability", new ArrayList<Object>());
 
         ksession.insert(debianServer);
         ksession.insert(fedoraServer);
@@ -152,7 +152,7 @@ public class FactsDeclarationTest {
         ksession.fireAllRules();
 
         @SuppressWarnings("unchecked")
-        List<Object> servers = (List<Object>) ksession.getGlobal("currentServersStatus");
+        List<Object> servers = (List<Object>) ksession.getGlobal("serversAvailability");
         assertEquals(1, servers.size());
         for (Object server : servers) {
             String name = (String) serverStatusType.get(server, "name");
