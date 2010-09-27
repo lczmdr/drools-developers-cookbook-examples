@@ -65,7 +65,7 @@ public class XSDFactsDeclarationTest {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
 
         Options xjcOpts = new Options();
-        xjcOpts.setSchemaLanguage( Language.XMLSCHEMA );
+        xjcOpts.setSchemaLanguage(Language.XMLSCHEMA);
 
         JaxbConfiguration jaxbConfiguration = KnowledgeBuilderFactory.newJaxbConfiguration(xjcOpts, "xsd");
 
