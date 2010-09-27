@@ -6,8 +6,8 @@
     <artifactId>chapter01</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
-  <artifactId>accessing-working-memory-inside-rules</artifactId>
-  <name>Adding Logging to View Rules Execution Behaviour</name>
+  <artifactId>rules-with-activation-group</artifactId>
+  <name>Rules with Activation Group</name>
 
   <dependencies>
     <dependency>
