@@ -26,6 +26,7 @@
 
   <modules>
     <module>modeling-facts-inside-your-rules</module>
+    <module>modeling-facts-with-xml</module>
     <module>adding-logging-to-view-rules-execution-behaviour</module>
     <!--module>accessing-working-memory-inside-rules</module-->
     <module>custom-date-format-inside-rules</module>
