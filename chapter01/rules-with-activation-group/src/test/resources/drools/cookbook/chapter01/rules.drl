@@ -14,7 +14,7 @@ when
 	$server : Server(name == $serverName)
 then
 	kcontext.getKnowledgeRuntime().getAgenda().getAgendaGroup("check-server-configuration").setFocus();
-	System.out.println("The server is on the WorkingMemory. Next step is check the configuration");
+	System.out.println("The server is on the WorkingMemory. The next step is check the configuration");
 end
 
 rule "Load server configuration from file"
@@ -24,7 +24,7 @@ when
 then
 	kcontext.getKnowledgeRuntime().getAgenda().getAgendaGroup("check-server-configuration").setFocus();
 	Server server = loadServerConfiguration($serverName);
-	System.out.println("The server is loaded into the WorkingMemory. Next step is check the configuration");
+	System.out.println("The server is loaded into the WorkingMemory. The next step is check the configuration");
 	insert(server);
 end
 
