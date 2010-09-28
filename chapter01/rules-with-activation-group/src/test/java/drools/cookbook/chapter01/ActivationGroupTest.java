@@ -1,9 +1,9 @@
 package drools.cookbook.chapter01;
 
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import junit.framework.Assert;
 
 import org.drools.KnowledgeBase;
 import org.drools.builder.KnowledgeBuilder;
@@ -40,8 +40,8 @@ public class ActivationGroupTest {
 
         ksession.fireAllRules();
 
-        Assert.assertEquals("Load server configuration from file", firedRules.get(0));
-        Assert.assertEquals("Check the required server configuration", firedRules.get(1));
+        assertTrue(firedRules.remove("Load server configuration from file"));
+        assertTrue(firedRules.remove("Check the required server configuration"));
 
     }
 
