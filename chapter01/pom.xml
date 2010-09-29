@@ -34,6 +34,7 @@
     <module>calendar-based-rules</module>
     <module>rules-execution-priorities</module>
     <module>rules-with-activation-group</module>
+    <module>live-querries</module>
   </modules>
 
   <dependencyManagement>
