@@ -10,13 +10,8 @@ import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.builder.ResourceType;
 import org.drools.definition.type.FactType;
 import org.drools.io.impl.ClassPathResource;
-import org.drools.logger.KnowledgeRuntimeLogger;
-import org.drools.logger.KnowledgeRuntimeLoggerFactory;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Test;
-
-import drools.cookbook.chapter01.CustomAgendaEventListener;
-import drools.cookbook.chapter01.CustomWorkingMemoryEventListener;
 
 /**
  * 
