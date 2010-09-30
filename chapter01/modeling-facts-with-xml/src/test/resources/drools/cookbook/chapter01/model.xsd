@@ -1,4 +1,4 @@
-<xsd:schema xmlns:server="http://cookbook.drools/chapter01"
+<xsd:schema xmlns:cookbook="http://cookbook.drools/chapter01"
   xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://cookbook.drools/chapter01"
   elementFormDefault="qualified">
 
