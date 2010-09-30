@@ -8,6 +8,11 @@ import org.drools.runtime.rule.ViewChangedEventListener;
 
 import drools.cookbook.chapter01.Server;
 
+/**
+ * 
+ * @author Lucas Amador
+ *
+ */
 public class CustomViewChangedEventListener implements ViewChangedEventListener {
 
     private List<Server> updatedServers = new ArrayList<Server>();

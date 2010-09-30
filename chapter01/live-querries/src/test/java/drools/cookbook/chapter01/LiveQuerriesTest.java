@@ -15,6 +15,11 @@ import org.junit.Test;
 
 import drools.cookbook.chapter01.listener.CustomViewChangedEventListener;
 
+/**
+ * 
+ * @author Lucas Amador
+ *
+ */
 public class LiveQuerriesTest {
 
     @Test
