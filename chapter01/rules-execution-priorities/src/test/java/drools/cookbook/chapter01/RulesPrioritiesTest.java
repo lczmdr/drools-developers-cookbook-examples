@@ -21,11 +21,11 @@ public class RulesPrioritiesTest {
 
     private static KnowledgeBase kbase;
 
-
     @Test
     public void virtualizationRequestFailedTest() {
 
         StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
+        System.out.println("##### Virtualization request fail ####");
 
         Server debianServer = new Server("debianServer", 8, 8192, 2048, 0);
         ksession.insert(debianServer);
@@ -49,6 +49,8 @@ public class RulesPrioritiesTest {
 
     @Test
     public void virtualizationRequestSuccessfulTest() {
+
+        System.out.println("\n##### Virtualization request successful ####");
 
         StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
 
