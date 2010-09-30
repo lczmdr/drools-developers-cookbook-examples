@@ -3,6 +3,11 @@ package drools.cookbook.chapter01;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * 
+ * @author Lucas Amador
+ *
+ */
 public class HistoricalCpuUsageQuery {
 
     private static final String DATE_PATTERN = "dd-MMM-yyyy HH:mm:ss";

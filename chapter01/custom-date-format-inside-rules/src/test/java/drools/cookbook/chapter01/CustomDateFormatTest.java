@@ -15,6 +15,11 @@ import org.drools.io.impl.ClassPathResource;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Test;
 
+/**
+ * 
+ * @author Lucas Amador
+ *
+ */
 public class CustomDateFormatTest {
 
     private static final String SERVER_NAME = "debianServer";

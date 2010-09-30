@@ -1,5 +1,10 @@
 package drools.cookbook.chapter01;
 
+/**
+ * 
+ * @author Lucas Amador
+ *
+ */
 public class Virtualization {
 
     private String name;
