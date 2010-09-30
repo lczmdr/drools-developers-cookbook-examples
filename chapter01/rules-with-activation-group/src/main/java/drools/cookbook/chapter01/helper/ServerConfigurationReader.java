@@ -7,6 +7,11 @@ import com.thoughtworks.xstream.XStream;
 
 import drools.cookbook.chapter01.Server;
 
+/**
+ * 
+ * @author Lucas Amador
+ *
+ */
 public class ServerConfigurationReader {
 
     private static List<Server> servers;

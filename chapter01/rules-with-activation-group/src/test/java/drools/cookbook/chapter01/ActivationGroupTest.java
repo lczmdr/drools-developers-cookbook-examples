@@ -16,6 +16,11 @@ import org.drools.io.impl.ClassPathResource;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Test;
 
+/**
+ * 
+ * @author Lucas Amador
+ *
+ */
 public class ActivationGroupTest {
 
     @Test
