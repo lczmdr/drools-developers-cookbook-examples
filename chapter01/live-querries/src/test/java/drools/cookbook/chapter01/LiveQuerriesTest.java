@@ -87,7 +87,7 @@ public class LiveQuerriesTest {
 
         SortedList<Row> serverSortedList = new SortedList<Row>(listener, new Comparator<Row>() {
             public int compare(Row r1, Row r2) {
-                Server server1 = (Server) r1.get("$serve");
+                Server server1 = (Server) r1.get("$server");
                 Server server2 = (Server) r2.get("$server");
                 return (server1.getCpuUsage() - server2.getCpuUsage());
             }
