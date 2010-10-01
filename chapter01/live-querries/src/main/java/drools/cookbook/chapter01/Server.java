@@ -80,7 +80,8 @@ public class Server {
     public String toString() {
         return "name=" + name + " processors=" + processors +
                 " memory=" + memory + " diskSpace=" + diskSpace +
-                " virtualizations=" + virtualizations.size();
+                " virtualizations=" + virtualizations.size() + 
+                " cpuUsage=" + cpuUsage;
     }
 
 }

@@ -5,7 +5,7 @@ import drools.cookbook.chapter01.Virtualization
 import drools.cookbook.chapter01.VirtualizationRequest
 
 query serverCpuUsage(int maxValue)
-	$server : Server(cpuUsage <= maxValue)
+	$server : Server($serverName : name, cpuUsage <= maxValue)
 end
 
 rule "Check the minimum server configuration"
