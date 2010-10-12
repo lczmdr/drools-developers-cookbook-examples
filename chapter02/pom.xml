@@ -26,6 +26,7 @@
 
   <modules>
     <module>monitoring-knowledge-metrics</module>
+    <module>marshalling-knowledge-sessions</module>
   </modules>
 
   <dependencyManagement>

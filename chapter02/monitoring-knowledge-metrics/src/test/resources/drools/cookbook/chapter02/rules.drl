@@ -1,0 +1,28 @@
+package drools.cookbook.chapter01
+
+
+import drools.cookbook.chapter02.*
+import java.util.Date
+import java.util.List
+
+rule "check minimum server configuration"
+dialect "mvel"
+salience 100
+when
+	$server : Server(processors < 2 || memory<=1024 || diskSpace<=250)
+then
+	System.out.println("Server \"" + $server.name + "\" was rejected by don't apply the minimum configuration.");
+	retract($server);
+end
+
+rule "service request"
+dialect "mvel"
+when
+	$sr : ServiceRequest(serverName!=null, serviceName!=null, serviceType!=null)
+	$server : Server(name==$sr.serverName)
+//	$vir : List(size > 0) from collect(Virtualization () from $server.virtualizations)
+//	List(size > 0) from collect(Service() from $vir.services)
+then
+	System.out.println("service request " + $sr);
+	retract($sr);
+end
