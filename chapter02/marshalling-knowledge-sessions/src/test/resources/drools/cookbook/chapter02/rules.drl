@@ -3,8 +3,8 @@ package drools.cookbook.chapter01
 import java.util.Date
 import java.util.List
 import drools.cookbook.chapter02.Server
-import drools.cookbook.chapter02.Virtualization
-import drools.cookbook.chapter02.VirtualizationRequest
+import drools.cookbook.chapter02.virtualization.Virtualization
+import drools.cookbook.chapter02.virtualization.VirtualizationRequest
 
 rule "New virtualization request"
 when

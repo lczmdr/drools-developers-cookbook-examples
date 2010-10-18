@@ -1,15 +1,13 @@
-package drools.cookbook.chapter02;
+package drools.cookbook.chapter02.virtualization;
 
-import java.io.Serializable;
+
 
 /**
  * 
  * @author Lucas Amador
  *
  */
-public class VirtualizationRequest implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class VirtualizationRequest {
 
     private String serverName;
     private Virtualization virtualization;

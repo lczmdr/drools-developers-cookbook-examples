@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import drools.cookbook.chapter02.virtualization.Virtualization;
+
 /**
  * 
  * @author Lucas Amador
