@@ -1,0 +1,18 @@
+package drools.cookbook.chapter01
+
+import java.util.Date
+import java.util.List
+import drools.cookbook.chapter02.Server
+import drools.cookbook.chapter02.Virtualization
+import drools.cookbook.chapter02.VirtualizationRequest
+
+rule "New virtualization request"
+when
+	$request : VirtualizationRequest($serverName : serverName)
+	$server : Server(name==$serverName)
+then
+	System.out.println("New virtualization added on server " + $serverName);
+	$server.getVirtualizations().add($request.getVirtualization());
+	$request.setSuccessful(true);
+	retract($request);
+end
