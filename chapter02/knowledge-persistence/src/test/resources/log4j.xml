@@ -11,7 +11,7 @@
 		<level value="INFO"/>
 	</logger>
     <logger name="org.hibernate.SQL">
-      <level value="DEBUG"/>
+      <level value="INFO"/>
     </logger>
 	<root>
 		<priority value="ERROR"/>

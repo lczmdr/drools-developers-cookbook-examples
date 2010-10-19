@@ -25,8 +25,7 @@ public class Server implements Serializable {
         this(name, processors, memory, diskSpace, new ArrayList<Virtualization>(), cpuUsage);
     }
 
-    public Server(String name, int processors, int memory, int diskSpace, List<Virtualization> virtualizations,
-            int cpuUsage) {
+    public Server(String name, int processors, int memory, int diskSpace, List<Virtualization> virtualizations, int cpuUsage) {
         this.name = name;
         this.processors = processors;
         this.memory = memory;

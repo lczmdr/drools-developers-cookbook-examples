@@ -1,5 +1,7 @@
 package drools.cookbook.chapter02;
 
+import static org.junit.Assert.assertEquals;
+
 import javax.naming.InitialContext;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -35,6 +37,8 @@ public class JPAKnowledgeSessionPersistenceTest {
     private StatefulKnowledgeSession ksession;
     private PoolingDataSource dataSource;
     private EntityManagerFactory emf;
+    private Environment env;
+    private KnowledgeBase kbase;
 
     @Test
     public void persistenceTest() throws Exception {
@@ -44,13 +48,11 @@ public class JPAKnowledgeSessionPersistenceTest {
         UserTransaction ut = (UserTransaction) new InitialContext().lookup("java:comp/UserTransaction");
         ut.begin();
 
-        SimplePojo pojo = new SimplePojo();
-        pojo.setName("lucaz");
-
-        ksession.insert(pojo);
-
         Server debianServer = new Server("debianServer", 4, 4096, 1024, 0);
         ksession.insert(debianServer);
+
+        Server ubuntuServer = new Server("ubuntuServer", 2, 4096, 2048, 0);
+        ksession.insert(ubuntuServer);
 
         Virtualization rhel = new Virtualization("rhel", "debianServer", 2048, 160);
         VirtualizationRequest virtualizationRequest = new VirtualizationRequest(rhel);
@@ -61,31 +63,33 @@ public class JPAKnowledgeSessionPersistenceTest {
 
         ut.commit();
 
+        assertEquals(2, ksession.getObjects().size());
+
+        ksession.dispose();
+
+        ksession = JPAKnowledgeService.loadStatefulKnowledgeSession(1, kbase, null, env);
+
+        assertEquals(2, ksession.getObjects().size());
+
     }
 
     @Before
     public void setUp() {
 
         dataSource = new PoolingDataSource();
-        dataSource.setUniqueName("jdbc/testDS1");
+        dataSource.setUniqueName("jdbc/testDatasource");
         dataSource.setMaxPoolSize(5);
         dataSource.setAllowLocalTransactions(true);
 
-        // ds1.setClassName( "org.h2.jdbcx.JdbcDataSource" );
-        // ds1.setMaxPoolSize( 3 );
-        // ds1.getDriverProperties().put( "user", "sa" );
-        // ds1.getDriverProperties().put( "password", "sasa" );
-        // ds1.getDriverProperties().put( "URL", "jdbc:h2:mem:" );
-
-        dataSource.setClassName("com.mysql.jdbc.jdbc2.optional.MysqlXADataSource");
-        dataSource.getDriverProperties().put("user", "root");
-        dataSource.getDriverProperties().put("password", "");
-        dataSource.getDriverProperties().put("databaseName", "signalstress");
-        dataSource.getDriverProperties().put("serverName", "localhost");
+        dataSource.setClassName("org.h2.jdbcx.JdbcDataSource");
+        dataSource.setMaxPoolSize(3);
+        dataSource.getDriverProperties().put("user", "sa");
+        dataSource.getDriverProperties().put("password", "sasa");
+        dataSource.getDriverProperties().put("URL", "jdbc:h2:mem:");
 
         dataSource.init();
 
-        Environment env = KnowledgeBaseFactory.newEnvironment();
+        env = KnowledgeBaseFactory.newEnvironment();
         emf = Persistence.createEntityManagerFactory("drools.cookbook.persistence.jpa");
         env.set(EnvironmentName.ENTITY_MANAGER_FACTORY, emf);
         env.set(EnvironmentName.TRANSACTION_MANAGER, TransactionManagerServices.getTransactionManager());
@@ -102,7 +106,7 @@ public class JPAKnowledgeSessionPersistenceTest {
             }
         }
 
-        KnowledgeBase kbase = kbuilder.newKnowledgeBase();
+        kbase = kbuilder.newKnowledgeBase();
         ksession = JPAKnowledgeService.newStatefulKnowledgeSession(kbase, null, env);
 
     }
