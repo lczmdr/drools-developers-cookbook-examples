@@ -29,6 +29,8 @@
     <module>marshalling-knowledge-sessions</module>
     <module>knowledge-persistence</module>
     <module>verifying-rules</module>
+    <module>knowledge-agent-classloader</module>
+    <module>discarding-duplicated-inserted-facts</module>
   </modules>
 
   <dependencyManagement>

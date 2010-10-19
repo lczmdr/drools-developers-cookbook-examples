@@ -1,0 +1,40 @@
+package drools.cookbook.chapter02
+
+import java.util.Date
+import java.util.List
+import drools.cookbook.chapter02.Server
+import drools.cookbook.chapter02.Virtualization
+import drools.cookbook.chapter02.VirtualizationRequest
+
+rule "Check server alternatives with more availabe resources"
+salience 100
+dialect "mvel"
+when
+	$request : VirtualizationRequest($serverName : serverName)
+	$server : Server(name == $serverName)
+	$anotherServer : Server(name != $serverName)
+	$servers : List(size > 0) from collect(Server(name != $serverName,
+	                                              processors > $server.processors,
+	                                              memory > $server.memory,
+	                                              diskSpace > $server.diskSpace))
+then
+	System.out.println("Warning, the next servers have more available resources.");
+	for (Object object : $servers) {
+		Server server = (Server)object;
+		System.out.println("Server: " + server);
+	}
+	$request.successful = false;
+	retract($request);
+end
+
+rule "New virtualization request"
+dialect "mvel"
+when
+	$request : VirtualizationRequest($serverName : serverName)
+	$server : Server(name==$serverName)
+then
+	System.out.println("New virtualization added on server " + $serverName);
+	$server.virtualizations.add($request.virtualization);
+	$request.successful = true;
+	retract($request);
+end
