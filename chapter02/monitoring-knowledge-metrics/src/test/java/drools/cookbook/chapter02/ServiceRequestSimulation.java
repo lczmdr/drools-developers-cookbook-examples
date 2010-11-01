@@ -15,7 +15,7 @@ import org.drools.runtime.StatefulKnowledgeSession;
 /**
  * 
  * @author Lucas Amador
- *
+ * 
  */
 public class ServiceRequestSimulation {
 
@@ -38,10 +38,10 @@ public class ServiceRequestSimulation {
         DroolsManagementAgent kmanagement = DroolsManagementAgent.getInstance();
 
         // registering a Knowledge Base
-        kmanagement.registerKnowledgeBase((ReteooRuleBase) ((KnowledgeBaseImpl)kbase).getRuleBase());
+        kmanagement.registerKnowledgeBase((ReteooRuleBase) ((KnowledgeBaseImpl) kbase).getRuleBase());
 
         // registering a Stateful Knowledge Session
-        kmanagement.registerKnowledgeSession(((StatefulKnowledgeSessionImpl)ksession).getInternalWorkingMemory());
+        kmanagement.registerKnowledgeSession(((StatefulKnowledgeSessionImpl) ksession).getInternalWorkingMemory());
 
         Server debianServer = new Server("debianServer", 8, 8192, 2048, 0);
         Virtualization server01 = new Virtualization("server01", debianServer.getName(), 2048, 1024);
@@ -62,13 +62,12 @@ public class ServiceRequestSimulation {
 
         Thread requestSimulationThread = new Thread(new Runnable() {
             public void run() {
-                for (int i=0; i < 10000; i++) {
+                for (int i = 0; i < 10000; i++) {
                     ksession.insert(ServiceRequestFactory.create());
                     ksession.fireAllRules();
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
                 }

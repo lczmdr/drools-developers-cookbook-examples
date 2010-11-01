@@ -25,17 +25,17 @@
  </repositories>
 
   <modules>
-    <module>monitoring-knowledge-metrics</module>
     <module>marshalling-knowledge-sessions</module>
     <module>knowledge-persistence</module>
-    <module>verifying-rules</module>
     <module>knowledge-agent-classloader</module>
-    <module>discarding-duplicated-inserted-facts</module>
+    <module>duplicated-facts</module>
+    <module>verifying-rules</module>
+    <module>monitoring-knowledge-metrics</module>
   </modules>
 
   <dependencyManagement>
     <dependencies>
-      <!-- drools minimal dependencies -->
+      <!-- drools dependencies -->
       <dependency>
         <groupId>org.drools</groupId>
         <artifactId>drools-api</artifactId>

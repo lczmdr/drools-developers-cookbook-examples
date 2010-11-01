@@ -1,6 +1,5 @@
 package drools.cookbook.chapter02;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.ByteArrayInputStream;
@@ -22,7 +21,7 @@ import org.drools.marshalling.MarshallerFactory;
 import org.drools.marshalling.ObjectMarshallingStrategy;
 import org.drools.marshalling.ObjectMarshallingStrategyAcceptor;
 import org.drools.runtime.StatefulKnowledgeSession;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 import drools.cookbook.chapter02.virtualization.Virtualization;
@@ -31,13 +30,13 @@ import drools.cookbook.chapter02.virtualization.VirtualizationRequest;
 /**
  * 
  * @author Lucas Amador
- *
+ * 
  */
 public class MarshallingKnowledgeSessionTest {
 
-    private static KnowledgeBase kbase;
-    private static StatefulKnowledgeSession ksession;
-    private static Marshaller marshaller;
+    private KnowledgeBase kbase;
+    private StatefulKnowledgeSession ksession;
+    private Marshaller marshaller;
 
     @Test
     public void marshallingKnowledgeSessionTest() throws InterruptedException, ClassNotFoundException {
@@ -66,38 +65,20 @@ public class MarshallingKnowledgeSessionTest {
             baos.writeTo(foStream);
             baos.close();
             ByteArrayInputStream inputStream = new ByteArrayInputStream(baos.toByteArray());
-            System.out.println(inputStream.hashCode());
             StatefulKnowledgeSession ksession = marshaller.unmarshall(inputStream);
-            System.out.println(ksession);
-            System.out.println(baos);
             FileInputStream fis = new FileInputStream("ksession.info");
             ksession = marshaller.unmarshall(fis);
-            System.out.println(ksession);
+            assertNotNull(ksession);
         } catch (IOException e) {
             System.err.println("Error marshalling ksession. " + e.getMessage());
-            e.printStackTrace();
         }
 
     }
 
-    @Test
-    public void readKnowledgeSessionFromFileTest() throws Exception {
-        File file = new File("ksession.info");
-        FileInputStream fis = new FileInputStream(file);
-        byte fileContent[] = new byte[(int)file.length()];
-        fis.read(fileContent);
-        ByteArrayInputStream bais = new ByteArrayInputStream(fileContent);
-//        System.out.println("file content: " + new String(fileContent) + "\n" + bais.hashCode());
-        StatefulKnowledgeSession ksession = marshaller.unmarshall(bais);
-        assertNotNull(ksession);
-        assertEquals(1, ksession.getObjects().size());
-    }
-    
-
-    @BeforeClass
-    public static void createKnowledgeBase() {
+    @Before
+    public void createKnowledgeBase() {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-        kbuilder.add(new ClassPathResource("rules.drl", MarshallingKnowledgeSessionTest.class), ResourceType.DRL); 
+        kbuilder.add(new ClassPathResource("rules.drl", MarshallingKnowledgeSessionTest.class), ResourceType.DRL);
 
         if (kbuilder.hasErrors()) {
             if (kbuilder.getErrors().size() > 0) {
@@ -108,13 +89,13 @@ public class MarshallingKnowledgeSessionTest {
         }
 
         kbase = kbuilder.newKnowledgeBase();
-        
-        String[] patterns = new String[] {"drools.cookbook.chapter02.virtualization.*"};
+
+        String[] patterns = new String[] { "drools.cookbook.chapter02.virtualization.*" };
         ObjectMarshallingStrategyAcceptor identityAcceptor = MarshallerFactory.newClassFilterAcceptor(patterns);
         ObjectMarshallingStrategy identityStrategy = MarshallerFactory.newIdentityMarshallingStrategy(identityAcceptor);
         ObjectMarshallingStrategy serializeStrategy = MarshallerFactory.newSerializeMarshallingStrategy();
 
-        marshaller = MarshallerFactory.newMarshaller(kbase, new ObjectMarshallingStrategy[]{identityStrategy, serializeStrategy});
+        marshaller = MarshallerFactory.newMarshaller(kbase, new ObjectMarshallingStrategy[] { identityStrategy, serializeStrategy });
     }
 
 }

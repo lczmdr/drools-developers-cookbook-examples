@@ -9,13 +9,11 @@ import javax.transaction.UserTransaction;
 
 import org.drools.KnowledgeBase;
 import org.drools.KnowledgeBaseFactory;
-import org.drools.base.MapGlobalResolver;
 import org.drools.builder.KnowledgeBuilder;
 import org.drools.builder.KnowledgeBuilderError;
 import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.builder.ResourceType;
 import org.drools.io.impl.ClassPathResource;
-import org.drools.logger.KnowledgeRuntimeLoggerFactory;
 import org.drools.persistence.jpa.JPAKnowledgeService;
 import org.drools.runtime.Environment;
 import org.drools.runtime.EnvironmentName;
@@ -42,8 +40,6 @@ public class JPAKnowledgeSessionPersistenceTest {
 
     @Test
     public void persistenceTest() throws Exception {
-
-        KnowledgeRuntimeLoggerFactory.newConsoleLogger(ksession);
 
         UserTransaction ut = (UserTransaction) new InitialContext().lookup("java:comp/UserTransaction");
         ut.begin();
@@ -93,7 +89,6 @@ public class JPAKnowledgeSessionPersistenceTest {
         emf = Persistence.createEntityManagerFactory("drools.cookbook.persistence.jpa");
         env.set(EnvironmentName.ENTITY_MANAGER_FACTORY, emf);
         env.set(EnvironmentName.TRANSACTION_MANAGER, TransactionManagerServices.getTransactionManager());
-        env.set(EnvironmentName.GLOBALS, new MapGlobalResolver());
 
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
         kbuilder.add(new ClassPathResource("rules.drl", JPAKnowledgeSessionPersistenceTest.class), ResourceType.DRL);
@@ -113,6 +108,7 @@ public class JPAKnowledgeSessionPersistenceTest {
 
     @After
     public void tearDown() {
+        ksession.dispose();
         emf.close();
         dataSource.close();
     }

@@ -29,7 +29,6 @@ public class KnowledgeAgentClassloaderTest {
 
         KnowledgeBase kbase = createKnowledgeBase();
 
-        System.out.println("knowledge packages size: " + kbase.getKnowledgePackages().size());
         assertTrue(kbase.getKnowledgePackages().size() == 1);
 
         StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
