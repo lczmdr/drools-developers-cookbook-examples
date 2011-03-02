@@ -1,0 +1,21 @@
+package drools.cookbook;
+
+import drools.cookbook.model.FlightStatus
+import drools.cookbook.model.FlightControl
+
+global drools.cookbook.model.FlightControl control;
+
+declare FlightStatus
+    @role(event)
+    @timestamp(timestamp)
+end
+
+rule "First contact"
+salience 100
+when
+    $currentFlight : FlightStatus()
+    not (exists (FlightStatus(this != $currentFlight, flight == $currentFlight.flight)))
+then
+    control.addFlight($currentFlight);
+    System.out.println("First contact with Flight " + $currentFlight.getFlight());
+end
