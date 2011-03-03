@@ -26,6 +26,7 @@
 
   <modules>
     <module>event-declaration</module>
+    <module>entry-points</module>
   </modules>
 
   <dependencyManagement>

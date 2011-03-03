@@ -1,0 +1,30 @@
+package drools.cookbook;
+
+import drools.cookbook.model.FlightStatus
+import drools.cookbook.model.FlightControl
+
+global drools.cookbook.model.FlightControl control;
+
+declare FlightStatus
+    @role(event)
+end
+
+rule "First contact"
+salience 100
+when
+    $currentFlight : FlightStatus() from entry-point "flight-control"
+    not (exists (FlightStatus(this != $currentFlight, flight == $currentFlight.flight) from entry-point "flight-control"))
+then
+    control.addFlight($currentFlight);
+    System.out.println("First contact with Flight " + $currentFlight.getFlight());
+end
+
+
+rule "flight arrival"
+when
+    $flight : FlightStatus() from entry-point "flight-arrival"
+    // Obtain resources to prepare the flight landing
+then
+    System.out.println("Flight " + $flight.getFlight() + " arriving to " + control.getAirport() + ". Sending instructions");
+    // Send instructions to arriving flight
+end
