@@ -28,6 +28,7 @@
     <module>event-declaration</module>
     <module>entry-points</module>
     <module>pseudo-clock</module>
+    <module>sliding-windows</module>
   </modules>
 
   <dependencyManagement>
