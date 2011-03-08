@@ -1,0 +1,17 @@
+package drools.cookbook;
+
+import drools.cookbook.model.FlightStatus
+
+global drools.cookbook.helper.EmergencySystem emergencySystem;
+
+declare FlightStatus
+    @role(event)
+end
+
+rule "landing system"
+when
+    $flight : FlightStatus() from entry-point "flight-landing"
+    FlightStatus(this!=$flight, this before[0m, 3m] $flight) from entry-point "flight-landing";
+then
+    emergencySystem.redirect($flight);
+end

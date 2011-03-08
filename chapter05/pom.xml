@@ -29,6 +29,7 @@
     <module>entry-points</module>
     <module>pseudo-clock</module>
     <module>sliding-windows</module>
+    <module>temporal-operators</module>
   </modules>
 
   <dependencyManagement>
