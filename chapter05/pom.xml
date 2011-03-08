@@ -49,16 +49,6 @@
         <artifactId>drools-compiler</artifactId>
         <version>${drools.version}</version>
       </dependency>
-      <dependency>
-        <groupId>org.drools</groupId>
-        <artifactId>drools-persistence-jpa</artifactId>
-        <version>${drools.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.drools</groupId>
-        <artifactId>drools-verifier</artifactId>
-        <version>${drools.version}</version>
-      </dependency>
       <!-- junit dependency -->
       <dependency>
         <groupId>junit</groupId>
