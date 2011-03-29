@@ -80,7 +80,7 @@
   </build>
 
   <properties>
-    <drools.version>5.1.1</drools.version>
+    <drools.version>5.2.0-M1</drools.version>
   </properties>
 
 </project>
