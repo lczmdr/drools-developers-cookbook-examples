@@ -23,7 +23,6 @@ import org.junit.Test;
 
 import drools.cookbook.helper.EmergencySystem;
 import drools.cookbook.helper.FlighSimulation;
-import drools.cookbook.model.FlightControl;
 
 public class FlightControlTest {
 
@@ -56,9 +55,6 @@ public class FlightControlTest {
 
     @Test
     public void emergencySimulation() throws InterruptedException {
-
-        FlightControl control = new FlightControl();
-        control.setAirport("LAX");
 
         SessionPseudoClock clock = ksession.getSessionClock();
 
