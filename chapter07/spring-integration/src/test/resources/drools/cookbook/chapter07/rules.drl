@@ -1,0 +1,35 @@
+package drools.cookbook.chapter07
+
+import java.util.Date
+import java.util.List
+
+global java.util.List serversAvailability;
+
+rule "check minimum server configuration"
+dialect "mvel"
+salience 100
+when
+    $server : Server(processors < 2 || memory<=1024 || diskSpace<=250)
+then
+    System.out.println("Server \"" + $server.getName() + "\" was rejected by don't apply the minimum configuration.");
+    retract($server);
+end
+
+rule "check available server for a new virtualization"
+when
+    $virtualization : Virtualization()
+    $server : Server($memory : memory, $diskSpace : diskSpace, virtualizations !=null)
+    $freeMemory : Number(intValue > 0) from accumulate (Virtualization($vmemory : memory) from $server.virtualizations,
+                                            init(int total = $memory - $virtualization.getMemory()),
+                                            action(total -= $vmemory;),
+                                            reverse(total += $vmemory;),
+                                            result(total))
+    $freeDiskSpace : Number(intValue > 0) from accumulate (Virtualization($vdiskSpace : diskSpace) from $server.virtualizations,
+                                            init(int total = $diskSpace - $virtualization.getDiskSpace()),
+                                            action(total -= $vdiskSpace;),
+                                            reverse(total += $vdiskSpace;),
+                                            result(total))
+then
+   $server.addVirtualization($virtualization);
+   retract($virtualization);
+end
