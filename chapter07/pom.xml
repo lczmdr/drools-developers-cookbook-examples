@@ -26,6 +26,7 @@
 
   <modules>
     <module>spring-integration</module>
+    <module>apache-camel-integration</module>
   </modules>
 
   <dependencyManagement>
@@ -49,6 +50,11 @@
       <dependency>
         <groupId>org.drools</groupId>
         <artifactId>drools-spring</artifactId>
+        <version>${drools.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.drools</groupId>
+        <artifactId>drools-camel</artifactId>
         <version>${drools.version}</version>
       </dependency>
       <!-- junit dependency -->
