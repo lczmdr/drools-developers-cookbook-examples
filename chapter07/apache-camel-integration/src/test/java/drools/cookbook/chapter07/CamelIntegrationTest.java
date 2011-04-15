@@ -30,7 +30,7 @@ import org.drools.runtime.ExecutionResults;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Assert;
 import org.junit.Test;
-
+import static org.apache.camel.builder.PredicateBuilder.or;
 /**
  * 
  * @author Lucas Amador
@@ -39,7 +39,7 @@ import org.junit.Test;
 public class CamelIntegrationTest {
 
     @Test
-    public void integration() throws Exception {
+    public void programaticallyIntegration() throws Exception {
 
         CamelContext camelContext = createCamelContext();
         camelContext.start();
@@ -72,8 +72,8 @@ public class CamelIntegrationTest {
         BatchExecutionCommand batchExecutionCommand = CommandFactory.newBatchExecution(commands, "ksession1");
 
         ProducerTemplate template = camelContext.createProducerTemplate();
-        ExecutionResults response = (ExecutionResults) template.requestBody("direct:test-with-session",
-                batchExecutionCommand);
+        ExecutionResults response = (ExecutionResults) template.requestBodyAndHeader("direct:test-with-session",
+                batchExecutionCommand, "priority", "low");
         Assert.assertNotNull(response);
 
         Assert.assertNotNull(response.getFactHandle("debian-server"));
@@ -105,7 +105,7 @@ public class CamelIntegrationTest {
         CamelContext camelContext = new DefaultCamelContext(context);
         RouteBuilder rb = new RouteBuilder() {
             public void configure() throws Exception {
-                from("direct:test-with-session").to("drools://node/ksession1");
+                from("direct:test-with-session").filter(or(header("priority").isEqualTo("low"), header("priority").isEqualTo("medium"))).to("drools://node/ksession1");
             }
         };
         camelContext.addRoutes(rb);
