@@ -1,0 +1,61 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:amq="http://activemq.apache.org/schema/core" xmlns:jms="http://www.springframework.org/schema/jms" xmlns:cxf="http://camel.apache.org/schema/cxf"
+  xmlns:drools="http://drools.org/schema/drools-spring"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                      http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-2.5.xsd
+                      http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd
+                      http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+                      http://drools.org/schema/drools-spring org/drools/container/spring/drools-spring-1.2.0.xsd">
+
+  <amq:broker brokerName="test-broker" start="true">
+    <amq:transportConnectors>
+      <amq:transportConnector uri="tcp://localhost:7171" />
+    </amq:transportConnectors>
+  </amq:broker>
+
+  <amq:connectionFactory id="amqConnectionFactory" brokerURL="vm://test-broker" />
+
+  <bean class="org.springframework.jms.connection.CachingConnectionFactory" id="connectionFactory">
+    <constructor-arg ref="amqConnectionFactory" />
+    <property name="sessionCacheSize" value="100" />
+  </bean>
+
+  <amq:queue physicalName="commandsQueue" />
+
+  <bean class="org.springframework.jms.core.JmsTemplate" id="jmsTemplate">
+    <constructor-arg ref="connectionFactory" />
+  </bean>
+
+  <bean class="drools.cookbook.chapter07.jms.JMSQueueProducer" id="queueProducer">
+    <property name="jmsTemplate" ref="jmsTemplate" />
+    <property name="queueName" value="commandsQueue" />
+  </bean>
+
+  <jms:listener-container concurrency="10" connection-factory="connectionFactory" />
+
+  <bean id="droolsPolicy" class="org.drools.camel.component.DroolsPolicy" />
+
+  <drools:grid-node id="node1" />
+
+  <drools:resource id="resource1" type="DRL" source="classpath:drools/cookbook/chapter07/rules.drl" />
+
+  <drools:kbase id="kbase1" node="node1">
+    <drools:resources>
+      <drools:resource ref="resource1" />
+    </drools:resources>
+  </drools:kbase>
+
+  <drools:ksession id="ksession1" type="stateful" kbase="kbase1" node="node1" />
+
+  <camelContext id="camelContext" xmlns="http://camel.apache.org/schema/spring">
+    <route>
+      <from uri="activemq:queue:commandsQueue" />
+      <policy ref="droolsPolicy">
+        <unmarshal ref="xstream" />
+        <to uri="drools:node1/ksession1" />
+        <marshal ref="xstream" />
+      </policy>
+    </route>
+  </camelContext>
+
+</beans>

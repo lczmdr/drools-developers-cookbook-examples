@@ -9,24 +9,25 @@
 
   <repositories>
     <repository>
-      <id>jboss-public-repository-group</id> 
-      <name>JBoss Public Maven Repository Group</name> 
-  	  <url>https://repository.jboss.org/nexus/content/groups/public/</url> 
-  	  <layout>default</layout> 
-  	  <releases>
-  	    <enabled>true</enabled> 
-  	    <updatePolicy>never</updatePolicy> 
-  	  </releases>
-  	  <snapshots>
-  	    <enabled>false</enabled> 
-  	    <updatePolicy>never</updatePolicy> 
-  	  </snapshots>
+      <id>jboss-public-repository-group</id>
+      <name>JBoss Public Maven Repository Group</name>
+      <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+      <layout>default</layout>
+      <releases>
+        <enabled>true</enabled>
+        <updatePolicy>never</updatePolicy>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+        <updatePolicy>never</updatePolicy>
+      </snapshots>
     </repository>
   </repositories>
 
   <modules>
     <module>spring-integration</module>
     <module>apache-camel-integration</module>
+    <module>apache-camel-jms</module>
   </modules>
 
   <dependencyManagement>
@@ -57,6 +58,26 @@
         <artifactId>drools-camel</artifactId>
         <version>${drools.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-jms</artifactId>
+        <version>${camel.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.xbean</groupId>
+        <artifactId>xbean-spring</artifactId>
+        <version>3.7</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.activemq</groupId>
+        <artifactId>activemq-core</artifactId>
+        <version>${amq.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.activemq</groupId>
+        <artifactId>activemq-camel</artifactId>
+        <version>${amq.version}</version>
+      </dependency>
       <!-- junit dependency -->
       <dependency>
         <groupId>junit</groupId>
@@ -84,6 +105,8 @@
 
   <properties>
     <drools.version>5.2.0.M1</drools.version>
+    <camel.version>2.4.0</camel.version>
+    <amq.version>5.5.0</amq.version>
   </properties>
 
 </project>

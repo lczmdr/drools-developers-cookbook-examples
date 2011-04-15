@@ -1,5 +1,7 @@
 package drools.cookbook.chapter07;
 
+import static org.apache.camel.builder.PredicateBuilder.or;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +32,6 @@ import org.drools.runtime.ExecutionResults;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Assert;
 import org.junit.Test;
-import static org.apache.camel.builder.PredicateBuilder.or;
 /**
  * 
  * @author Lucas Amador
@@ -51,14 +52,17 @@ public class CamelIntegrationTest {
 
         InsertObjectCommand insertServerCommand = new InsertObjectCommand();
         insertServerCommand.setObject(debianServer);
+        insertServerCommand.setEntryPoint("DEFAULT");
         insertServerCommand.setOutIdentifier("debian-server");
 
         InsertObjectCommand insertBadServerCommand = new InsertObjectCommand();
         insertBadServerCommand.setObject(winServer);
+        insertBadServerCommand.setEntryPoint("DEFAULT");
         insertBadServerCommand.setOutIdentifier("win-server");
 
         InsertObjectCommand insertVirtualizationCommand = new InsertObjectCommand();
         insertVirtualizationCommand.setObject(virtualization);
+        insertVirtualizationCommand.setEntryPoint("DEFAULT");
         insertVirtualizationCommand.setOutIdentifier("dev-virtualization");
 
         FireAllRulesCommand fireAllRulesCommand = new FireAllRulesCommand();
@@ -70,7 +74,7 @@ public class CamelIntegrationTest {
         commands.add(insertVirtualizationCommand);
         commands.add(fireAllRulesCommand);
         BatchExecutionCommand batchExecutionCommand = CommandFactory.newBatchExecution(commands, "ksession1");
-
+        
         ProducerTemplate template = camelContext.createProducerTemplate();
         ExecutionResults response = (ExecutionResults) template.requestBodyAndHeader("direct:test-with-session",
                 batchExecutionCommand, "priority", "low");
@@ -105,7 +109,9 @@ public class CamelIntegrationTest {
         CamelContext camelContext = new DefaultCamelContext(context);
         RouteBuilder rb = new RouteBuilder() {
             public void configure() throws Exception {
-                from("direct:test-with-session").filter(or(header("priority").isEqualTo("low"), header("priority").isEqualTo("medium"))).to("drools://node/ksession1");
+                from("direct:test-with-session")
+                .filter(or(header("priority").isEqualTo("low"), header("priority").isEqualTo("medium")))
+                .to("drools://node/ksession1");
             }
         };
         camelContext.addRoutes(rb);
