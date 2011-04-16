@@ -1,9 +1,20 @@
 package org.plugtree.drools.camel;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.drools.command.BatchExecutionCommand;
+import org.drools.command.CommandFactory;
+import org.drools.command.impl.GenericCommand;
+import org.drools.command.runtime.rule.FireAllRulesCommand;
+import org.drools.command.runtime.rule.InsertObjectCommand;
+import org.drools.runtime.help.BatchExecutionHelper;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import drools.cookbook.chapter07.jms.JMSQueueProducer;
+import drools.cookbook.chapter07.model.Server;
+import drools.cookbook.chapter07.model.Virtualization;
 
 public class CamelEmbeddedActiveMQTest {
 
@@ -13,39 +24,37 @@ public class CamelEmbeddedActiveMQTest {
                 "/camel-embedded-amq.xml");
         applicationContext.start();
 
-        String xmlCommand = "<batch-execution lookup=\"ksession1\">\n";
-        xmlCommand += "  <insert out-identifier=\"debian-server\" return-object=\"true\" entry-point=\"DEFAULT\">\n";
-        xmlCommand += "    <drools.cookbook.chapter07.model.Server>\n";
-        xmlCommand += "      <name>debian</name>\n";
-        xmlCommand += "      <processors>2</processors>\n";
-        xmlCommand += "      <memory>2048</memory>\n";
-        xmlCommand += "      <diskSpace>2048</diskSpace>\n";
-        xmlCommand += "      <virtualizations/>\n";
-        xmlCommand += "      <cpuUsage>0</cpuUsage>\n";
-        xmlCommand += "      <online>false</online>\n";
-        xmlCommand += "    </drools.cookbook.chapter07.model.Server>\n";
-        xmlCommand += "  </insert>\n";
-        xmlCommand += "  <insert out-identifier=\"win-server\" return-object=\"true\" entry-point=\"DEFAULT\">\n";
-        xmlCommand += "    <drools.cookbook.chapter07.model.Server>\n";
-        xmlCommand += "      <name>win</name>\n";
-        xmlCommand += "      <processors>2</processors>\n";
-        xmlCommand += "      <memory>1024</memory>\n";
-        xmlCommand += "      <diskSpace>250</diskSpace>\n";
-        xmlCommand += "      <virtualizations/>\n";
-        xmlCommand += "      <cpuUsage>0</cpuUsage>\n";
-        xmlCommand += "      <online>false</online>\n";
-        xmlCommand += "    </drools.cookbook.chapter07.model.Server>\n";
-        xmlCommand += "  </insert>\n";
-        xmlCommand += "  <insert out-identifier=\"dev-virtualization\" return-object=\"true\" entry-point=\"DEFAULT\">\n";
-        xmlCommand += "    <drools.cookbook.chapter07.model.Virtualization>\n";
-        xmlCommand += "      <name>dev</name>\n";
-        xmlCommand += "      <serverName>debian</serverName>\n";
-        xmlCommand += "      <memory>512</memory>\n";
-        xmlCommand += "      <diskSpace>30</diskSpace>\n";
-        xmlCommand += "    </drools.cookbook.chapter07.model.Virtualization>\n";
-        xmlCommand += "  </insert>\n";
-        xmlCommand += "  <fire-all-rules out-identifier=\"executed-rules\"/>\n";
-        xmlCommand += "</batch-execution>\n";
+        Server debianServer = new Server("debian", 2, 2048, 2048, 0);
+        Server winServer = new Server("win", 2, 1024, 250, 0);
+
+        Virtualization virtualization = new Virtualization("dev", "debian", 512, 30);
+
+        InsertObjectCommand insertServerCommand = new InsertObjectCommand();
+        insertServerCommand.setObject(debianServer);
+        insertServerCommand.setEntryPoint("DEFAULT");
+        insertServerCommand.setOutIdentifier("debian-server");
+
+        InsertObjectCommand insertBadServerCommand = new InsertObjectCommand();
+        insertBadServerCommand.setObject(winServer);
+        insertBadServerCommand.setEntryPoint("DEFAULT");
+        insertBadServerCommand.setOutIdentifier("win-server");
+
+        InsertObjectCommand insertVirtualizationCommand = new InsertObjectCommand();
+        insertVirtualizationCommand.setObject(virtualization);
+        insertVirtualizationCommand.setEntryPoint("DEFAULT");
+        insertVirtualizationCommand.setOutIdentifier("dev-virtualization");
+
+        FireAllRulesCommand fireAllRulesCommand = new FireAllRulesCommand();
+        fireAllRulesCommand.setOutIdentifier("executed-rules");
+
+        List<GenericCommand<?>> commands = new ArrayList<GenericCommand<?>>();
+        commands.add(insertServerCommand);
+        commands.add(insertBadServerCommand);
+        commands.add(insertVirtualizationCommand);
+        commands.add(fireAllRulesCommand);
+        BatchExecutionCommand batchExecutionCommand = CommandFactory.newBatchExecution(commands, "ksession1");
+
+        String xmlCommand = BatchExecutionHelper.newXStreamMarshaller().toXML(batchExecutionCommand);
 
         JMSQueueProducer queueProducer = (JMSQueueProducer) applicationContext.getBean("queueProducer");
         queueProducer.send(xmlCommand);

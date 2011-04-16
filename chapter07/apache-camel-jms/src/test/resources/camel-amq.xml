@@ -46,10 +46,6 @@
         <marshal ref="xstream" />
       </policy>
     </route>
-    <route>
-      <from uri="drools:node1/ksession1" />
-      <to uri="activemq:queue:executionsQueue" />
-    </route>
   </camelContext>
 
 </beans>
