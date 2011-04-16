@@ -106,7 +106,7 @@
   <properties>
     <drools.version>5.2.0.M1</drools.version>
     <camel.version>2.4.0</camel.version>
-    <amq.version>5.5.0</amq.version>
+    <amq.version>5.4.2</amq.version>
   </properties>
 
 </project>
