@@ -7,7 +7,13 @@
                       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
                       http://drools.org/schema/drools-spring org/drools/container/spring/drools-spring-1.2.0.xsd">
 
-  <amq:connectionFactory id="amqConnectionFactory" brokerURL="tcp://localhost:61616" />
+  <amq:broker brokerName="test-broker" start="true">
+    <amq:transportConnectors>
+      <amq:transportConnector uri="tcp://localhost:7171" />
+    </amq:transportConnectors>
+  </amq:broker>
+
+  <amq:connectionFactory id="amqConnectionFactory" brokerURL="vm://test-broker" />
 
   <bean class="org.springframework.jms.connection.CachingConnectionFactory" id="connectionFactory">
     <constructor-arg ref="amqConnectionFactory" />
@@ -45,10 +51,6 @@
         <to uri="drools:node1/ksession1" />
         <marshal ref="xstream" />
       </policy>
-    </route>
-    <route>
-      <from uri="drools:node1/ksession1" />
-      <to uri="activemq:queue:executionsQueue" />
     </route>
   </camelContext>
 

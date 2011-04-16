@@ -5,11 +5,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import drools.cookbook.chapter07.jms.JMSQueueProducer;
 
-public class CamelActiveMQTest {
+public class CamelEmbeddedActiveMQTest {
 
     @Test
-    public void test() throws InterruptedException {
-        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("/camel-amq.xml");
+    public void embeddedActiveMQ() throws InterruptedException {
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
+                "/camel-embedded-amq.xml");
         applicationContext.start();
 
         String xmlCommand = "<batch-execution lookup=\"ksession1\">\n";
