@@ -8,7 +8,6 @@ public class JMSQueueProducer {
     private JmsTemplate jmsTemplate;
 
     public void send(String message) {
-        System.out.println("sending message: " + message);
         jmsTemplate.convertAndSend(queueName, message);
     }
 

@@ -48,7 +48,7 @@ public class CamelActiveMQTest {
 
         JMSQueueProducer queueProducer = (JMSQueueProducer) applicationContext.getBean("queueProducer");
         queueProducer.send(xmlCommand);
-        Thread.sleep(2000);
+        Thread.sleep(8000);
         applicationContext.stop();
     }
 

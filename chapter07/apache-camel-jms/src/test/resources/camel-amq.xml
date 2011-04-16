@@ -22,6 +22,8 @@
 
   <amq:queue physicalName="commandsQueue" />
 
+  <amq:queue physicalName="executionsQueue" />
+
   <bean class="org.springframework.jms.core.JmsTemplate" id="jmsTemplate">
     <constructor-arg ref="connectionFactory" />
   </bean>
@@ -31,7 +33,11 @@
     <property name="queueName" value="commandsQueue" />
   </bean>
 
-  <jms:listener-container concurrency="10" connection-factory="connectionFactory" />
+  <bean class="drools.cookbook.chapter07.jms.JMSQueueListener" id="queueListener" />
+
+  <jms:listener-container concurrency="10" connection-factory="connectionFactory">
+    <jms:listener destination="executionsQueue" ref="queueListener" />
+  </jms:listener-container>
 
   <bean id="droolsPolicy" class="org.drools.camel.component.DroolsPolicy" />
 
@@ -55,6 +61,10 @@
         <to uri="drools:node1/ksession1" />
         <marshal ref="xstream" />
       </policy>
+    </route>
+    <route>
+      <from uri="drools:node1/ksession1" />
+      <to uri="activemq:queue:executionsQueue" />
     </route>
   </camelContext>
 
