@@ -6,6 +6,8 @@ import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import drools.cookbook.chapter07.model.Server;
+
 /**
  * 
  * @author Lucas Amador

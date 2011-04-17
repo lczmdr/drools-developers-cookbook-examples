@@ -32,7 +32,7 @@ public class CamelSpringIntegrationTest {
     }
 
     @Test
-    public void embeddedActiveMQ() throws InterruptedException {
+    public void camelSpringIntegration() throws InterruptedException {
 
         Server debianServer = new Server("debian", 2, 2048, 2048, 0);
         Server winServer = new Server("win", 2, 1024, 250, 0);

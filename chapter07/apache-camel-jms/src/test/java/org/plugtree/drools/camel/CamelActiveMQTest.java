@@ -9,17 +9,19 @@ import org.drools.command.impl.GenericCommand;
 import org.drools.command.runtime.rule.FireAllRulesCommand;
 import org.drools.command.runtime.rule.InsertObjectCommand;
 import org.drools.runtime.help.BatchExecutionHelper;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import drools.cookbook.chapter07.jms.JMSQueueProducer;
 import drools.cookbook.chapter07.model.Server;
 import drools.cookbook.chapter07.model.Virtualization;
-import drools.cookbook.chapter07.jms.JMSQueueProducer;
 
 public class CamelActiveMQTest {
 
+    @Ignore
     @Test
-    public void test() throws InterruptedException {
+    public void standaloneActiveMQ() throws InterruptedException {
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("/camel-amq.xml");
         applicationContext.start();
 

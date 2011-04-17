@@ -1,7 +1,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:drools="http://drools.org/schema/drools-spring"
+  xmlns:drools="http://drools.org/schema/drools-spring" xmlns:camel="http://camel.apache.org/schema/spring"
   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-                      http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd
                       http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
                       http://drools.org/schema/drools-spring org/drools/container/spring/drools-spring-1.2.0.xsd">
 
@@ -19,15 +18,15 @@
 
   <drools:ksession id="ksession1" type="stateful" kbase="kbase1" node="node1" />
 
-  <camelContext id="camelContext" xmlns="http://camel.apache.org/schema/spring">
-    <route>
-      <from uri="direct:test-with-session" />
-      <policy ref="droolsPolicy">
-        <unmarshal ref="xstream" />
-        <to uri="drools:node1/ksession1" />
-        <marshal ref="xstream" />
-      </policy>
-    </route>
-  </camelContext>
+  <camel:camelContext id="camelContext">
+    <camel:route>
+      <camel:from uri="direct:test-with-session" />
+      <camel:policy ref="droolsPolicy">
+        <camel:unmarshal ref="xstream" />
+        <camel:to uri="drools:node1/ksession1" />
+        <camel:marshal ref="xstream" />
+      </camel:policy>
+    </camel:route>
+  </camel:camelContext>
 
 </beans>

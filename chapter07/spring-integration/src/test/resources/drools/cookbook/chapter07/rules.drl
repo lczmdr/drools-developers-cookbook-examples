@@ -1,9 +1,8 @@
 package drools.cookbook.chapter07
 
-import java.util.Date
-import java.util.List
 
-global java.util.List serversAvailability;
+import drools.cookbook.chapter07.model.Server
+import drools.cookbook.chapter07.model.Virtualization
 
 rule "check minimum server configuration"
 dialect "mvel"

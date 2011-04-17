@@ -1,4 +1,4 @@
-package drools.cookbook.chapter07;
+package drools.cookbook.chapter07.model;
 
 import java.util.ArrayList;
 import java.util.List;
