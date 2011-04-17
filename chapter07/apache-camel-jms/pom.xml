@@ -7,7 +7,7 @@
     <version>1.0.0-SNAPSHOT</version>
   </parent>
   <artifactId>apache-camel-jms</artifactId>
-  <name>Apache Camel + Drools + JMS</name>
+  <name>Apache Camel + Drools + ActiveMQ JMS</name>
 
   <dependencies>
     <dependency>
