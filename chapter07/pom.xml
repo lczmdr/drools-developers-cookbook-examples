@@ -27,6 +27,7 @@
   <modules>
     <module>spring-integration</module>
     <module>apache-camel-integration</module>
+    <module>apache-camel-spring-integration</module>
     <module>apache-camel-jms</module>
   </modules>
 
