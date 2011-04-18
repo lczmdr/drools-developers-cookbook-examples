@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:drools="http://drools.org/schema/drools-spring"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+                           http://drools.org/schema/drools-spring org/drools/container/spring/drools-spring-1.2.0.xsd
+                           http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+  <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <property name="driverClassName" value="org.h2.Driver" />
+    <property name="url" value="jdbc:h2:tcp://localhost/Drools" />
+    <property name="username" value="sa" />
+    <property name="password" value="" />
+  </bean>
+
+  <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    <property name="dataSource" ref="dataSource" />
+    <property name="persistenceUnitName" value="org.drools.persistence.jpa.local" />
+  </bean>
+
+  <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+    <property name="entityManagerFactory" ref="entityManagerFactory" />
+  </bean>
+
+  <drools:grid-node id="node1" />
+
+  <drools:kstore id="kstore1" />
+
+  <drools:resource id="resource1" type="DRL" source="classpath:drools/cookbook/chapter07/rules.drl" />
+
+  <drools:kbase id="kbase1" node="node1">
+    <drools:resources>
+      <drools:resource ref="resource1" />
+    </drools:resources>
+  </drools:kbase>
+
+  <drools:ksession id="ksession1" type="stateful" kbase="kbase1" node="node1">
+    <drools:configuration>
+      <drools:jpa-persistence>
+        <drools:transaction-manager ref="txManager" />
+        <drools:entity-manager-factory ref="entityManagerFactory" />
+      </drools:jpa-persistence>
+    </drools:configuration>
+  </drools:ksession>
+
+
+</beans>

@@ -26,6 +26,7 @@
 
   <modules>
     <module>spring-integration</module>
+    <module>spring-jpa-integration</module>
     <module>apache-camel-integration</module>
     <module>apache-camel-spring-integration</module>
     <module>apache-camel-jms</module>
@@ -56,6 +57,21 @@
       </dependency>
       <dependency>
         <groupId>org.drools</groupId>
+        <artifactId>drools-persistence-jpa</artifactId>
+        <version>${drools.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-orm</artifactId>
+        <version>${springframework.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>${springframework.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.drools</groupId>
         <artifactId>drools-camel</artifactId>
         <version>${drools.version}</version>
       </dependency>
@@ -79,11 +95,16 @@
         <artifactId>activemq-camel</artifactId>
         <version>${amq.version}</version>
       </dependency>
-      <!-- junit dependency -->
+      <!-- test dependencies -->
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>4.4</version>
+      </dependency>
+      <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>1.2.128</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -106,6 +127,7 @@
 
   <properties>
     <drools.version>5.2.0.M1</drools.version>
+    <springframework.version>2.5.6</springframework.version>
     <camel.version>2.4.0</camel.version>
     <amq.version>5.4.2</amq.version>
   </properties>
