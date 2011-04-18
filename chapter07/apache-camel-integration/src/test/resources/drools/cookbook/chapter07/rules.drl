@@ -1,5 +1,8 @@
 package drools.cookbook.chapter07
 
+import drools.cookbook.chapter07.model.Server
+import drools.cookbook.chapter07.model.Virtualization
+
 rule "check minimum server configuration"
 salience 100
 when

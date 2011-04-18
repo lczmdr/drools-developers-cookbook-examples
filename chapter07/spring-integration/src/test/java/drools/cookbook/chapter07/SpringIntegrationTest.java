@@ -18,8 +18,7 @@ public class SpringIntegrationTest {
     @Test
     public void integration() {
 
-        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-                "drools/cookbook/chapter07/applicationContext.xml");
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         applicationContext.start();
 
         StatefulKnowledgeSession ksession1 = (StatefulKnowledgeSession) applicationContext.getBean("ksession1");

@@ -35,8 +35,7 @@ public class SpringJpaIntegrationTest {
     @Test
     public void springJpaIntegration() {
 
-        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext(
-                "drools/cookbook/chapter07/applicationContext.xml");
+        ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         applicationContext.start();
 
         StatefulKnowledgeSession ksession1 = (StatefulKnowledgeSession) applicationContext.getBean("ksession1");
@@ -47,6 +46,7 @@ public class SpringJpaIntegrationTest {
         Server debianServer = new Server("debianServer", 4, 2048, 1222, 0);
 
         ksession1.insert(debianServer);
+        ksession1.fireAllRules();
 
         Assert.assertEquals(1, ksession1.getObjects().size());
 

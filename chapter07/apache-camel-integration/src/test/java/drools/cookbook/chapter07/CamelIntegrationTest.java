@@ -32,6 +32,9 @@ import org.drools.runtime.ExecutionResults;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.Assert;
 import org.junit.Test;
+
+import drools.cookbook.chapter07.model.Server;
+import drools.cookbook.chapter07.model.Virtualization;
 /**
  * 
  * @author Lucas Amador
