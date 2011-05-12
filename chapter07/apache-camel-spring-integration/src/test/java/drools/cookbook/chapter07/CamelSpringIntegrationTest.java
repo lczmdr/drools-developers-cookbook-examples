@@ -1,4 +1,4 @@
-package org.plugtree.drools.camel;
+package drools.cookbook.chapter07;
 
 import java.util.ArrayList;
 import java.util.List;
