@@ -13,14 +13,6 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import org.apache.commons.codec.binary.Base64;
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpHost;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPut;
-import org.apache.http.entity.ByteArrayEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.drools.KnowledgeBase;
 import org.drools.builder.KnowledgeBuilder;
 import org.drools.builder.KnowledgeBuilderFactory;
@@ -31,7 +23,9 @@ import org.drools.guvnor.api.GuvnorRestApi;
 import org.drools.guvnor.jaxb.Asset;
 import org.drools.io.impl.InputStreamResource;
 import org.drools.runtime.StatefulKnowledgeSession;
+import org.drools.util.codec.Base64;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -42,9 +36,9 @@ import org.junit.Test;
 public class GuvnorRestApiTest {
 
     @Test
+    @Ignore
     public void getAssetFromPackage() throws Exception {
-        URL url = new URL(
-                "http://localhost:8080/guvnor-webapp-5.2.0-SNAPSHOT/rest/packages/drools.cookbook/assets/testing");
+        URL url = new URL("http://localhost:8080/guvnor-webapp/rest/packages/drools.cookbook/assets/LastTemperatures");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Accept", MediaType.APPLICATION_XML);
@@ -59,8 +53,9 @@ public class GuvnorRestApiTest {
     }
 
     @Test
+    @Ignore
     public void getPackageSource() throws Exception {
-        URL url = new URL("http://localhost:8080/guvnor-webapp-5.2.0-SNAPSHOT/rest/packages/drools.cookbook/source");
+        URL url = new URL("http://localhost:8080/guvnor-webapp/rest/packages/drools.cookbook/source");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Accept", MediaType.TEXT_PLAIN);
@@ -73,9 +68,10 @@ public class GuvnorRestApiTest {
     }
 
     @Test
+    @Ignore
     public void getPackageBinary() throws Exception {
 
-        GuvnorRestApi guvnorRestApi = new GuvnorRestApi("http://localhost:8080/guvnor-webapp-5.2.0-SNAPSHOT");
+        GuvnorRestApi guvnorRestApi = new GuvnorRestApi("http://localhost:8080/guvnor-webapp");
         InputStream binaryPackage = guvnorRestApi.getBinaryPackage("defaultPackage");
 
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
@@ -92,10 +88,9 @@ public class GuvnorRestApiTest {
     }
 
     @Test
-    // @Ignore
+    @Ignore
     public void updateAssetFromPackage() throws Exception {
-        URL url = new URL(
-                "http://localhost:8080/guvnor-webapp-5.2.0-SNAPSHOT/rest/packages/drools.cookbook/assets/testing");
+        URL url = new URL("http://localhost:8080/guvnor-webapp/rest/packages/drools.cookbook/assets/testing");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Accept", MediaType.APPLICATION_XML);
@@ -108,9 +103,9 @@ public class GuvnorRestApiTest {
         Asset asset = (Asset) unmarshaller.unmarshal(reader);
         Assert.assertNotNull(asset);
         String ruleContent = asset.getMetadata().getNote();
-        ruleContent = ruleContent.replaceAll("100", "200");
-        System.out.println(ruleContent);
+        ruleContent = ruleContent.replaceAll("200", "100");
         connection.disconnect();
+        asset.getMetadata().setNote(ruleContent);
 
         connection = (HttpURLConnection) url.openConnection();
         Marshaller ma = context.createMarshaller();
@@ -120,52 +115,10 @@ public class GuvnorRestApiTest {
         String userpassword = "user" + ":" + "password";
         byte[] authEncBytes = Base64.encodeBase64(userpassword.getBytes());
         connection.setRequestProperty("Authorization", "Basic " + new String(authEncBytes));
-
-        connection.setUseCaches(false);
-        connection.setDoInput(true);
         connection.setDoOutput(true);
         ma.marshal(asset, connection.getOutputStream());
-        Assert.assertEquals(200, connection.getResponseCode());
+        Assert.assertEquals(204, connection.getResponseCode());
         connection.disconnect();
-    }
-
-    @Test
-    public void topologyDefinition() throws Exception {
-        DefaultHttpClient httpclient = new DefaultHttpClient();
-        HttpHost targetHost = new HttpHost("127.0.0.1", 8080, "http");
-        HttpGet httpget = new HttpGet("/guvnor-webapp-5.2.0-SNAPSHOT/rest/packages/drools.cookbook/assets/testing");
-
-        String userPassword = "guest" + ":" + "guest";
-        byte[] encodeBase64 = Base64.encodeBase64(userPassword.getBytes());
-        httpget.addHeader("Authorization", "BASIC " + new String(encodeBase64));
-        httpget.addHeader("Accept", MediaType.APPLICATION_XML);
-
-        HttpResponse response = httpclient.execute(targetHost, httpget);
-        HttpEntity entity = response.getEntity();
-
-        System.out.println(entity.getContentType().getValue());
-
-        Reader reader = new BufferedReader(new InputStreamReader(entity.getContent()));
-        JAXBContext context = JAXBContext.newInstance(Asset.class);
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-        Asset asset = (Asset) unmarshaller.unmarshal(reader);
-        Assert.assertNotNull(asset);
-        String ruleContent = asset.getMetadata().getNote();
-        ruleContent = ruleContent.replaceAll("100", "300");
-        System.out.println(ruleContent);
-
-        HttpPut httpput = new HttpPut("/guvnor-webapp-5.2.0-SNAPSHOT/rest/packages/drools.cookbook/assets/testing");
-        httpput.setEntity(new ByteArrayEntity(ruleContent.getBytes()));
-        System.out.println(httpput.getEntity());
-        response = httpclient.execute(targetHost, httpput);
-
-        // Marshaller ma = context.createMarshaller();
-        // ma.marshal(asset, httpPut.getEntity().ge)
-
-        System.out.println("--> " + response.getStatusLine().getStatusCode());
-
-        httpclient.getConnectionManager().shutdown();
-
     }
 
     private String readAsString(InputStream is) throws IOException {

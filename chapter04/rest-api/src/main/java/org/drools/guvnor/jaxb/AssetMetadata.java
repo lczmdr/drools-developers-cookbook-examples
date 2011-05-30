@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-
 package org.drools.guvnor.jaxb;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Date;
 
-@XmlRootElement(name="metadata")
+@XmlRootElement(name = "metadata")
 public class AssetMetadata {
 
     private String Uuid;
@@ -41,9 +40,9 @@ public class AssetMetadata {
     private String format;
 
     private boolean disabled;
-    
+
     private String state;
-    
+
     @XmlElement
     public String getUuid() {
         return Uuid;
@@ -123,14 +122,14 @@ public class AssetMetadata {
 
     public void setDisabled(boolean disabled) {
         this.disabled = disabled;
-    }    
-    
-    @XmlElement
-	public String getState() {
-		return state;
-	}
+    }
 
-	public void setState(String state) {
-		this.state = state;
-	}  
+    @XmlElement
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
 }
