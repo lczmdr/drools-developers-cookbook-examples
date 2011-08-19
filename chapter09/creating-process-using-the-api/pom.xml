@@ -6,22 +6,10 @@
     <artifactId>chapter09</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
-  <artifactId>creating-process-api</artifactId>
+  <artifactId>creating-process-using-the-api</artifactId>
   <name>Creating process using the API</name>
 
   <dependencies>
-    <dependency>
-      <groupId>org.drools</groupId>
-      <artifactId>drools-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.drools</groupId>
-      <artifactId>drools-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.drools</groupId>
-      <artifactId>drools-compiler</artifactId>
-    </dependency>
     <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-flow</artifactId>
