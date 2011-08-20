@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:g="http://www.jboss.org/drools/flow/gpd" xmlns:tns="http://www.jboss.org/drools" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" id="Definition" xs:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" expressionLanguage="http://www.mvel.org/2.0" targetNamespace="http://www.jboss.org/drools" typeLanguage="http://www.java.com/javaTypes">
+  <process id="document-publication" tns:packageName="drools.cookbook.human.task" name="document-publication" isExecutable="true" processType="Private">
+    <startEvent id="_1" name="Start">
+      <outgoing>__nwEEMr6EeCwE5q4ah6UoA</outgoing>
+    </startEvent>
+    <userTask id="_2" name="Write Document">
+      <incoming>__nwEEMr6EeCwE5q4ah6UoA</incoming>
+      <outgoing>_ABMe0cr7EeCwE5q4ah6UoA</outgoing>
+      <ioSpecification id="_B9AEMMr7EeCwE5q4ah6UoA">
+        <dataInput id="_2_CommentInput" name="Comment"/>
+        <dataInput id="_2_SkippableInput" name="Skippable"/>
+        <dataInput id="_2_ContentInput" name="Content"/>
+        <dataInput id="_2_TaskNameInput" name="TaskName"/>
+        <dataInput id="_2_PriorityInput" name="Priority"/>
+        <inputSet id="_B9AEMcr7EeCwE5q4ah6UoA">
+          <dataInputRefs>_2_CommentInput</dataInputRefs>
+          <dataInputRefs>_2_SkippableInput</dataInputRefs>
+          <dataInputRefs>_2_ContentInput</dataInputRefs>
+          <dataInputRefs>_2_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_2_PriorityInput</dataInputRefs>
+        </inputSet>
+        <outputSet id="_B9AEMsr7EeCwE5q4ah6UoA"/>
+      </ioSpecification>
+      <dataInputAssociation id="_B9AEM8r7EeCwE5q4ah6UoA">
+        <targetRef>_2_CommentInput</targetRef>
+        <assignment id="_B9AENMr7EeCwE5q4ah6UoA">
+          <from xsi:type="tExpression" id="_B9AENcr7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+          <to xsi:type="tExpression" id="_B9AENsr7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation id="_B9AEN8r7EeCwE5q4ah6UoA">
+        <targetRef>_2_SkippableInput</targetRef>
+        <assignment id="_B9AEOMr7EeCwE5q4ah6UoA">
+          <from xsi:type="tExpression" id="_B9AEOcr7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+          <to xsi:type="tExpression" id="_B9AEOsr7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation id="_B9AEO8r7EeCwE5q4ah6UoA">
+        <targetRef>_2_ContentInput</targetRef>
+        <assignment id="_B9ArQMr7EeCwE5q4ah6UoA">
+          <from xsi:type="tExpression" id="_B9ArQcr7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+          <to xsi:type="tExpression" id="_B9ArQsr7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation id="_B9ArQ8r7EeCwE5q4ah6UoA">
+        <targetRef>_2_TaskNameInput</targetRef>
+        <assignment id="_B9ArRMr7EeCwE5q4ah6UoA">
+          <from xsi:type="tExpression" id="_B9ArRcr7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+          <to xsi:type="tExpression" id="_B9ArRsr7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation id="_B9ArR8r7EeCwE5q4ah6UoA">
+        <targetRef>_2_PriorityInput</targetRef>
+        <assignment id="_B9ArSMr7EeCwE5q4ah6UoA">
+          <from xsi:type="tExpression" id="_B9ArScr7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+          <to xsi:type="tExpression" id="_B9ArSsr7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+        </assignment>
+      </dataInputAssociation>
+      <potentialOwner id="_B9ArS8r7EeCwE5q4ah6UoA">
+        <resourceAssignmentExpression>
+          <formalExpression id="_B9ArTMr7EeCwE5q4ah6UoA">writer</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <parallelGateway id="_3" name="Gateway" gatewayDirection="Diverging">
+      <incoming>_ABMe0cr7EeCwE5q4ah6UoA</incoming>
+      <outgoing>_AbSZ0Mr7EeCwE5q4ah6UoA</outgoing>
+      <outgoing>_BAweYcr7EeCwE5q4ah6UoA</outgoing>
+    </parallelGateway>
+    <userTask id="_4" name="Translate Document">
+      <incoming>_AbSZ0Mr7EeCwE5q4ah6UoA</incoming>
+      <outgoing>_AtrxYcr7EeCwE5q4ah6UoA</outgoing>
+      <ioSpecification id="_B9ArTcr7EeCwE5q4ah6UoA">
+        <dataInput id="_4_CommentInput" name="Comment"/>
+        <dataInput id="_4_SkippableInput" name="Skippable"/>
+        <dataInput id="_4_ContentInput" name="Content"/>
+        <dataInput id="_4_TaskNameInput" name="TaskName"/>
+        <dataInput id="_4_PriorityInput" name="Priority"/>
+        <inputSet id="_B9ArTsr7EeCwE5q4ah6UoA">
+          <dataInputRefs>_4_CommentInput</dataInputRefs>
+          <dataInputRefs>_4_SkippableInput</dataInputRefs>
+          <dataInputRefs>_4_ContentInput</dataInputRefs>
+          <dataInputRefs>_4_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_4_PriorityInput</dataInputRefs>
+        </inputSet>
+        <outputSet id="_B9ArT8r7EeCwE5q4ah6UoA"/>
+      </ioSpecification>
+      <dataInputAssociation id="_B9ArUMr7EeCwE5q4ah6UoA">
+        <targetRef>_4_CommentInput</targetRef>
+        <assignment id="_B9ArUcr7EeCwE5q4ah6UoA">
+          <from xsi:type="tExpression" id="_B9ArUsr7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+          <to xsi:type="tExpression" id="_B9ArU8r7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation id="_B9ArVMr7EeCwE5q4ah6UoA">
+        <targetRef>_4_SkippableInput</targetRef>
+        <assignment id="_B9ArVcr7EeCwE5q4ah6UoA">
+          <from xsi:type="tExpression" id="_B9ArVsr7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+          <to xsi:type="tExpression" id="_B9ArV8r7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation id="_B9ArWMr7EeCwE5q4ah6UoA">
+        <targetRef>_4_ContentInput</targetRef>
+        <assignment id="_B9ArWcr7EeCwE5q4ah6UoA">
+          <from xsi:type="tExpression" id="_B9ArWsr7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+          <to xsi:type="tExpression" id="_B9ArW8r7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation id="_B9ArXMr7EeCwE5q4ah6UoA">
+        <targetRef>_4_TaskNameInput</targetRef>
+        <assignment id="_B9ArXcr7EeCwE5q4ah6UoA">
+          <from xsi:type="tExpression" id="_B9ArXsr7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+          <to xsi:type="tExpression" id="_B9ArX8r7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation id="_B9ArYMr7EeCwE5q4ah6UoA">
+        <targetRef>_4_PriorityInput</targetRef>
+        <assignment id="_B9BSUMr7EeCwE5q4ah6UoA">
+          <from xsi:type="tExpression" id="_B9BSUcr7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+          <to xsi:type="tExpression" id="_B9BSUsr7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+        </assignment>
+      </dataInputAssociation>
+      <potentialOwner id="_B9BSU8r7EeCwE5q4ah6UoA">
+        <resourceAssignmentExpression>
+          <formalExpression id="_B9BSVMr7EeCwE5q4ah6UoA">translator</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <userTask id="_5" name="Review Document">
+      <incoming>_BAweYcr7EeCwE5q4ah6UoA</incoming>
+      <outgoing>_BTsogcr7EeCwE5q4ah6UoA</outgoing>
+      <ioSpecification id="_B9BSVcr7EeCwE5q4ah6UoA">
+        <dataInput id="_5_CommentInput" name="Comment"/>
+        <dataInput id="_5_SkippableInput" name="Skippable"/>
+        <dataInput id="_5_TaskNameInput" name="TaskName"/>
+        <dataInput id="_5_ContentInput" name="Content"/>
+        <dataInput id="_5_PriorityInput" name="Priority"/>
+        <inputSet id="_B9BSVsr7EeCwE5q4ah6UoA">
+          <dataInputRefs>_5_CommentInput</dataInputRefs>
+          <dataInputRefs>_5_SkippableInput</dataInputRefs>
+          <dataInputRefs>_5_TaskNameInput</dataInputRefs>
+          <dataInputRefs>_5_ContentInput</dataInputRefs>
+          <dataInputRefs>_5_PriorityInput</dataInputRefs>
+        </inputSet>
+        <outputSet id="_B9BSV8r7EeCwE5q4ah6UoA"/>
+      </ioSpecification>
+      <dataInputAssociation id="_B9BSWMr7EeCwE5q4ah6UoA">
+        <targetRef>_5_CommentInput</targetRef>
+        <assignment id="_B9BSWcr7EeCwE5q4ah6UoA">
+          <from xsi:type="tExpression" id="_B9BSWsr7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+          <to xsi:type="tExpression" id="_B9BSW8r7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation id="_B9BSXMr7EeCwE5q4ah6UoA">
+        <targetRef>_5_SkippableInput</targetRef>
+        <assignment id="_B9BSXcr7EeCwE5q4ah6UoA">
+          <from xsi:type="tExpression" id="_B9BSXsr7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+          <to xsi:type="tExpression" id="_B9BSX8r7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation id="_B9BSYMr7EeCwE5q4ah6UoA">
+        <targetRef>_5_TaskNameInput</targetRef>
+        <assignment id="_B9BSYcr7EeCwE5q4ah6UoA">
+          <from xsi:type="tExpression" id="_B9BSYsr7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+          <to xsi:type="tExpression" id="_B9BSY8r7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation id="_B9BSZMr7EeCwE5q4ah6UoA">
+        <targetRef>_5_ContentInput</targetRef>
+        <assignment id="_B9BSZcr7EeCwE5q4ah6UoA">
+          <from xsi:type="tExpression" id="_B9BSZsr7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+          <to xsi:type="tExpression" id="_B9BSZ8r7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation id="_B9BSaMr7EeCwE5q4ah6UoA">
+        <targetRef>_5_PriorityInput</targetRef>
+        <assignment id="_B9BSacr7EeCwE5q4ah6UoA">
+          <from xsi:type="tExpression" id="_B9BSasr7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+          <to xsi:type="tExpression" id="_B9BSa8r7EeCwE5q4ah6UoA" xs:type="tFormalExpression"/>
+        </assignment>
+      </dataInputAssociation>
+      <potentialOwner id="_B9BSbMr7EeCwE5q4ah6UoA">
+        <resourceAssignmentExpression>
+          <formalExpression id="_B9BSbcr7EeCwE5q4ah6UoA">reviewer</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <parallelGateway id="_6" name="Gateway" gatewayDirection="Converging">
+      <incoming>_AtrxYcr7EeCwE5q4ah6UoA</incoming>
+      <incoming>_BTsogcr7EeCwE5q4ah6UoA</incoming>
+      <outgoing>_BnUIEMr7EeCwE5q4ah6UoA</outgoing>
+    </parallelGateway>
+    <endEvent id="_7" name="End">
+      <incoming>_BnUIEMr7EeCwE5q4ah6UoA</incoming>
+      <terminateEventDefinition id="_B9BSbsr7EeCwE5q4ah6UoA"/>
+    </endEvent>
+    <sequenceFlow id="_1-_2"/>
+    <sequenceFlow id="_2-_3"/>
+    <sequenceFlow id="_3-_4"/>
+    <sequenceFlow id="_3-_5"/>
+    <sequenceFlow id="_4-_6"/>
+    <sequenceFlow id="_5-_6"/>
+    <sequenceFlow id="_6-_7"/>
+    <sequenceFlow id="__nwEEMr6EeCwE5q4ah6UoA" name="Sequence Flow" sourceRef="_1" targetRef="_2"/>
+    <sequenceFlow id="_ABMe0cr7EeCwE5q4ah6UoA" name="Sequence Flow" sourceRef="_2" targetRef="_3"/>
+    <sequenceFlow id="_AbSZ0Mr7EeCwE5q4ah6UoA" name="Sequence Flow" sourceRef="_3" targetRef="_4"/>
+    <sequenceFlow id="_AtrxYcr7EeCwE5q4ah6UoA" name="Sequence Flow" sourceRef="_4" targetRef="_6"/>
+    <sequenceFlow id="_BAweYcr7EeCwE5q4ah6UoA" name="Sequence Flow" sourceRef="_3" targetRef="_5"/>
+    <sequenceFlow id="_BTsogcr7EeCwE5q4ah6UoA" name="Sequence Flow" sourceRef="_5" targetRef="_6"/>
+    <sequenceFlow id="_BnUIEMr7EeCwE5q4ah6UoA" name="Sequence Flow" sourceRef="_6" targetRef="_7"/>
+  </process>
+  <bpmndi:BPMNDiagram id="_B9BSb8r7EeCwE5q4ah6UoA">
+    <bpmndi:BPMNPlane id="_B9B5YMr7EeCwE5q4ah6UoA" bpmnElement="tns:document-publication">
+      <bpmndi:BPMNShape id="_B9B5Ycr7EeCwE5q4ah6UoA" bpmnElement="tns:_1">
+        <dc:Bounds height="48.0" width="48.0" x="41.0" y="98.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_B9B5Ysr7EeCwE5q4ah6UoA" bpmnElement="tns:_2">
+        <dc:Bounds height="48.0" width="121.0" x="127.0" y="98.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_B9B5Y8r7EeCwE5q4ah6UoA" bpmnElement="tns:_3">
+        <dc:Bounds height="48.0" width="48.0" x="279.0" y="97.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_B9B5ZMr7EeCwE5q4ah6UoA" bpmnElement="tns:_4">
+        <dc:Bounds height="48.0" width="150.0" x="364.0" y="52.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_B9B5Zcr7EeCwE5q4ah6UoA" bpmnElement="tns:_5">
+        <dc:Bounds height="48.0" width="146.0" x="367.0" y="147.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_B9B5Zsr7EeCwE5q4ah6UoA" bpmnElement="tns:_6">
+        <dc:Bounds height="48.0" width="48.0" x="567.0" y="100.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_B9B5Z8r7EeCwE5q4ah6UoA" bpmnElement="tns:_7">
+        <dc:Bounds height="48.0" width="48.0" x="659.0" y="101.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="_B9B5aMr7EeCwE5q4ah6UoA" bpmnElement="tns:_1-_2">
+        <di:waypoint xsi:type="dc:Point" x="65.0" y="122.0"/>
+        <di:waypoint xsi:type="dc:Point" x="187.0" y="122.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_B9B5acr7EeCwE5q4ah6UoA" bpmnElement="tns:_2-_3">
+        <di:waypoint xsi:type="dc:Point" x="187.0" y="122.0"/>
+        <di:waypoint xsi:type="dc:Point" x="303.0" y="121.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_B9B5asr7EeCwE5q4ah6UoA" bpmnElement="tns:_3-_4">
+        <di:waypoint xsi:type="dc:Point" x="303.0" y="121.0"/>
+        <di:waypoint xsi:type="dc:Point" x="439.0" y="76.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_B9B5a8r7EeCwE5q4ah6UoA" bpmnElement="tns:_3-_5">
+        <di:waypoint xsi:type="dc:Point" x="303.0" y="121.0"/>
+        <di:waypoint xsi:type="dc:Point" x="440.0" y="171.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_B9B5bMr7EeCwE5q4ah6UoA" bpmnElement="tns:_4-_6">
+        <di:waypoint xsi:type="dc:Point" x="439.0" y="76.0"/>
+        <di:waypoint xsi:type="dc:Point" x="591.0" y="124.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_B9B5bcr7EeCwE5q4ah6UoA" bpmnElement="tns:_5-_6">
+        <di:waypoint xsi:type="dc:Point" x="440.0" y="171.0"/>
+        <di:waypoint xsi:type="dc:Point" x="591.0" y="124.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_B9B5bsr7EeCwE5q4ah6UoA" bpmnElement="tns:_6-_7">
+        <di:waypoint xsi:type="dc:Point" x="591.0" y="124.0"/>
+        <di:waypoint xsi:type="dc:Point" x="683.0" y="125.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="__nx5QMr6EeCwE5q4ah6UoA" bpmnElement="tns:__nwEEMr6EeCwE5q4ah6UoA" sourceElement="tns:_B9B5Ycr7EeCwE5q4ah6UoA" targetElement="tns:_B9B5Ysr7EeCwE5q4ah6UoA">
+        <di:waypoint xsi:type="dc:Point" x="77.0" y="116.0"/>
+        <di:waypoint xsi:type="dc:Point" x="127.0" y="122.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_ABNF4Mr7EeCwE5q4ah6UoA" bpmnElement="tns:_ABMe0cr7EeCwE5q4ah6UoA" sourceElement="tns:_B9B5Ysr7EeCwE5q4ah6UoA" targetElement="tns:_B9B5Y8r7EeCwE5q4ah6UoA">
+        <di:waypoint xsi:type="dc:Point" x="248.0" y="122.0"/>
+        <di:waypoint xsi:type="dc:Point" x="279.0" y="122.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_AbTA4Mr7EeCwE5q4ah6UoA" bpmnElement="tns:_AbSZ0Mr7EeCwE5q4ah6UoA" sourceElement="tns:_B9B5Y8r7EeCwE5q4ah6UoA" targetElement="tns:_B9B5ZMr7EeCwE5q4ah6UoA">
+        <di:waypoint xsi:type="dc:Point" x="330.0" y="122.0"/>
+        <di:waypoint xsi:type="dc:Point" x="364.0" y="76.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_AtsYcMr7EeCwE5q4ah6UoA" bpmnElement="tns:_AtrxYcr7EeCwE5q4ah6UoA" sourceElement="tns:_B9B5ZMr7EeCwE5q4ah6UoA" targetElement="tns:_B9B5Zsr7EeCwE5q4ah6UoA">
+        <di:waypoint xsi:type="dc:Point" x="514.0" y="76.0"/>
+        <di:waypoint xsi:type="dc:Point" x="567.0" y="125.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_BAxFcMr7EeCwE5q4ah6UoA" bpmnElement="tns:_BAweYcr7EeCwE5q4ah6UoA" sourceElement="tns:_B9B5Y8r7EeCwE5q4ah6UoA" targetElement="tns:_B9B5Zcr7EeCwE5q4ah6UoA">
+        <di:waypoint xsi:type="dc:Point" x="330.0" y="122.0"/>
+        <di:waypoint xsi:type="dc:Point" x="367.0" y="171.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_BTtPkMr7EeCwE5q4ah6UoA" bpmnElement="tns:_BTsogcr7EeCwE5q4ah6UoA" sourceElement="tns:_B9B5Zcr7EeCwE5q4ah6UoA" targetElement="tns:_B9B5Zsr7EeCwE5q4ah6UoA">
+        <di:waypoint xsi:type="dc:Point" x="513.0" y="171.0"/>
+        <di:waypoint xsi:type="dc:Point" x="567.0" y="125.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_BnUIEcr7EeCwE5q4ah6UoA" bpmnElement="tns:_BnUIEMr7EeCwE5q4ah6UoA" sourceElement="tns:_B9B5Zsr7EeCwE5q4ah6UoA" targetElement="tns:_B9B5Z8r7EeCwE5q4ah6UoA">
+        <di:waypoint xsi:type="dc:Point" x="618.0" y="125.0"/>
+        <di:waypoint xsi:type="dc:Point" x="659.0" y="119.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
