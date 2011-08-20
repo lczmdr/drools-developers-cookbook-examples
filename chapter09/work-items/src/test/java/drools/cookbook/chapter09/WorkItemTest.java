@@ -144,23 +144,23 @@ public class WorkItemTest {
         Thread.sleep(DEFAULT_WAIT_TIME);
 
         // what about the translator and the reviewer? let's check them
-//        tasks = getUserTasks("translator", "en-UK");
-//        Assert.assertEquals(1, tasks.size());
-//
-//        TaskSummary translatorTask = tasks.get(0);
-//
-//        startTask(translatorTask.getId(), "translator");
-//        completeTask(translatorTask.getId(), "translator");
-//
-//        tasks = getUserTasks("reviewer", "en-UK");
-//        Assert.assertEquals(1, tasks.size());
-//
-//        TaskSummary reviewerTask = tasks.get(0);
-//
-//        startTask(reviewerTask.getId(), "reviewer");
-//        completeTask(reviewerTask.getId(), "reviewer");
-//
-//        Thread.sleep(DEFAULT_WAIT_TIME);
+        tasks = getUserTasks("translator", "en-UK");
+        Assert.assertEquals(1, tasks.size());
+
+        TaskSummary translatorTask = tasks.get(0);
+
+        startTask(translatorTask.getId(), "translator");
+        completeTask(translatorTask.getId(), "translator");
+
+        tasks = getUserTasks("reviewer", "en-UK");
+        Assert.assertEquals(1, tasks.size());
+
+        TaskSummary reviewerTask = tasks.get(0);
+
+        startTask(reviewerTask.getId(), "reviewer");
+        completeTask(reviewerTask.getId(), "reviewer");
+
+        Thread.sleep(DEFAULT_WAIT_TIME);
 
         Assert.assertTrue(processInstance.getState() == ProcessInstance.STATE_COMPLETED);
     }
