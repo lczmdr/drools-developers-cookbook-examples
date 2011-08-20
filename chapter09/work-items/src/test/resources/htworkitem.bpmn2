@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:g="http://www.jboss.org/drools/flow/gpd" xmlns:tns="http://www.jboss.org/drools" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.omg.org/spec/DD/20100524/DC http://www.omg.org/spec/DD/20100524/DC-XMI http://www.omg.org/spec/DD/20100524/DI http://www.omg.org/spec/DD/20100524/DI-XMI http://www.omg.org/spec/BPMN/20100524/DI http://www.omg.org/spec/BPMN/20100524/DI-XMI" id="Definition" expressionLanguage="http://www.mvel.org/2.0" targetNamespace="http://www.jboss.org/drools" typeLanguage="http://www.java.com/javaTypes">
+  <process id="document-publication" name="document-publication" isExecutable="true" processType="Private">
+    <startEvent id="_1" name="Start">
+      <outgoing>_-D34QcuDEeCwE5q4ah6UoA</outgoing>
+    </startEvent>
+    <endEvent id="_5" name="End">
+      <incoming>_4</incoming>
+    </endEvent>
+    <task id="_3" tns:taskName="email_notification" name="Notification">
+      <incoming>_5xTP0cuDEeCwE5q4ah6UoA</incoming>
+      <outgoing>_4</outgoing>
+      <ioSpecification id="">
+        <dataInput id="" name="emails"/>
+        <inputSet id="_QhajsMtaEeCwE5q4ah6UoA"/>
+        <outputSet id="_Q6FiYMtaEeCwE5q4ah6UoA"/>
+      </ioSpecification>
+      <dataInputAssociation id="">
+        <sourceRef>emails</sourceRef>
+        <targetRef></targetRef>
+      </dataInputAssociation>
+    </task>
+    <sequenceFlow id="_4" name="Sequence Flow" sourceRef="_3" targetRef="_5"/>
+    <sequenceFlow id="_-D34QcuDEeCwE5q4ah6UoA" name="Sequence Flow" sourceRef="_1" targetRef="_3suwAMuDEeCwE5q4ah6UoA"/>
+    <userTask id="_3suwAMuDEeCwE5q4ah6UoA" name="Write Document">
+      <incoming>_-D34QcuDEeCwE5q4ah6UoA</incoming>
+      <outgoing>_5xTP0cuDEeCwE5q4ah6UoA</outgoing>
+      <potentialOwner id="_Ch7X8MuEEeCwE5q4ah6UoA">
+        <resourceAssignmentExpression>
+          <formalExpression id="_DynjwMuEEeCwE5q4ah6UoA">writer</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <sequenceFlow id="_5xTP0cuDEeCwE5q4ah6UoA" name="Sequence Flow" sourceRef="_3suwAMuDEeCwE5q4ah6UoA" targetRef="_3"/>
+    <property id="emails" name=""/>
+  </process>
+  <collaboration id="_icRjkMtWEeCwE5q4ah6UoA">
+    <participant id="_icSKoMtWEeCwE5q4ah6UoA" name="Internal" processRef="tns:document-publication"/>
+  </collaboration>
+  <bpmndi:BPMNDiagram id="_oJ8RBMtWEeCwE5q4ah6UoA">
+    <bpmndi:BPMNPlane id="_oJ8RBctWEeCwE5q4ah6UoA" bpmnElement="tns:null">
+      <bpmndi:BPMNShape id="_oJ8RB8tWEeCwE5q4ah6UoA" bpmnElement="tns:_1">
+        <dc:Bounds height="48.0" width="48.0" x="100.0" y="100.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_tjAAYMtWEeCwE5q4ah6UoA" bpmnElement="tns:_5">
+        <dc:Bounds height="51.0" width="36.0" x="520.0" y="100.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_T-4bAMtYEeCwE5q4ah6UoA" bpmnElement="tns:_3">
+        <dc:Bounds height="50.0" width="110.0" x="380.0" y="93.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_3svXEMuDEeCwE5q4ah6UoA" bpmnElement="tns:_3suwAMuDEeCwE5q4ah6UoA">
+        <dc:Bounds height="50.0" width="110.0" x="190.0" y="93.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="_UwLVEstYEeCwE5q4ah6UoA" bpmnElement="tns:_4" sourceElement="tns:_T-4bAMtYEeCwE5q4ah6UoA" targetElement="tns:_tjAAYMtWEeCwE5q4ah6UoA">
+        <di:waypoint xsi:type="dc:Point" x="490.0" y="118.0"/>
+        <di:waypoint xsi:type="dc:Point" x="520.0" y="118.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_5xT24MuDEeCwE5q4ah6UoA" bpmnElement="tns:_5xTP0cuDEeCwE5q4ah6UoA" sourceElement="tns:_3svXEMuDEeCwE5q4ah6UoA" targetElement="tns:_T-4bAMtYEeCwE5q4ah6UoA">
+        <di:waypoint xsi:type="dc:Point" x="300.0" y="118.0"/>
+        <di:waypoint xsi:type="dc:Point" x="380.0" y="118.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_-D34QsuDEeCwE5q4ah6UoA" bpmnElement="tns:_-D34QcuDEeCwE5q4ah6UoA" sourceElement="tns:_oJ8RB8tWEeCwE5q4ah6UoA" targetElement="tns:_3svXEMuDEeCwE5q4ah6UoA">
+        <di:waypoint xsi:type="dc:Point" x="136.0" y="118.0"/>
+        <di:waypoint xsi:type="dc:Point" x="190.0" y="118.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

@@ -28,6 +28,7 @@
   <modules>
     <module>creating-process-using-the-api</module>
     <module>human-task</module>
+    <module>work-items</module>
   </modules>
 
   <dependencyManagement>
