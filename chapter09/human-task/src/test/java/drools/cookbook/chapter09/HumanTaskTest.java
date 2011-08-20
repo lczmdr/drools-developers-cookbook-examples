@@ -90,7 +90,7 @@ public class HumanTaskTest {
     public void simpleHumanTask() throws InterruptedException {
 
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-        kbuilder.add(new ClassPathResource("editorial.bpmn2"), ResourceType.BPMN2);
+        kbuilder.add(new ClassPathResource("document.bpmn2"), ResourceType.BPMN2);
 
         if (kbuilder.hasErrors()) {
             if (kbuilder.getErrors().size() > 0) {
