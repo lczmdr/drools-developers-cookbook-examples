@@ -18,14 +18,14 @@
     <task id="_5" tns:taskName="email_notification" name="Notification">
       <incoming>_4</incoming>
       <outgoing>_6</outgoing>
-      <ioSpecification id="">
-        <dataInput id="" name="emails"/>
+      <ioSpecification id="ioSpecification">
+        <dataInput id="notificationDataInput" name="emails"/>
         <inputSet id="_QhajsMtaEeCwE5q4ah6UoA"/>
         <outputSet id="_Q6FiYMtaEeCwE5q4ah6UoA"/>
       </ioSpecification>
-      <dataInputAssociation id="">
+      <dataInputAssociation id="notificationDataInputAssociation">
         <sourceRef>emails</sourceRef>
-        <targetRef></targetRef>
+        <targetRef>notificationDataInput</targetRef>
       </dataInputAssociation>
     </task>
     <sequenceFlow id="_6" name="Sequence Flow" sourceRef="_5" targetRef="_7"/>
