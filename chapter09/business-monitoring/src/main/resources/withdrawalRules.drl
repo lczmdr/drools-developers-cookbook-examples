@@ -1,3 +1,5 @@
+package drools.cookbook.chapter09;
+
 import org.drools.event.process.ProcessStartedEvent;
 
 import org.drools.runtime.process.ProcessInstance;
@@ -12,7 +14,7 @@ rule "More than 10 withdrawals in less than one hour "
 dialect "java"
 when
     Number(nbProcesses : intValue > 10) from accumulate(
-        e : ProcessStartedEvent(processInstance.processId == "shoppingProcess") over window:size(1h),
+        e : ProcessStartedEvent(processInstance.processId == "withdrawalProcess") over window:size(1h),
         count(e))
 then
     System.err.println("WARNING: more than 10 withdrawals in the last hour: " + nbProcesses);

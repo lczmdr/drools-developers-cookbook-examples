@@ -3,7 +3,7 @@
   <bpmn2:collaboration id="_uDIZQcwXEeCwE5q4ah6UoA">
     <bpmn2:participant id="_uDIZQswXEeCwE5q4ah6UoA" name="Internal" processRef="shoppingProcess"/>
   </bpmn2:collaboration>
-  <bpmn2:process id="shoppingProcess" name="shoppingProcess">
+  <bpmn2:process id="withdrawalProcess" name="withdrawalProcess">
     <bpmn2:scriptTask id="_2" name="Shopping">
       <bpmn2:incoming>_6</bpmn2:incoming>
       <bpmn2:outgoing>_7</bpmn2:outgoing>
@@ -25,7 +25,7 @@
     <bpmn2:sequenceFlow id="_7" name="Sequence Flow" sourceRef="_2" targetRef="_4"/>
   </bpmn2:process>
   <bpmndi:BPMNDiagram id="_0e90QMwXEeCwE5q4ah6UoA">
-    <bpmndi:BPMNPlane id="_0e90QcwXEeCwE5q4ah6UoA" bpmnElement="shoppingProcess">
+    <bpmndi:BPMNPlane id="_0e90QcwXEeCwE5q4ah6UoA" bpmnElement="withdrawalProcess">
       <bpmndi:BPMNShape id="_vrlk0MwXEeCwE5q4ah6UoA" bpmnElement="_1">
         <dc:Bounds height="51.0" width="36.0" x="146.0" y="60.0"/>
       </bpmndi:BPMNShape>

@@ -1,4 +1,4 @@
-package com.plugtree.jbpm5.edbpm.demo;
+package drools.cookbook.chapter09;
 
 import org.drools.event.process.ProcessCompletedEvent;
 import org.drools.event.process.ProcessEventListener;
