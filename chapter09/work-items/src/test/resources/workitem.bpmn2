@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:g="http://www.jboss.org/drools/flow/gpd" xmlns:tns="http://www.jboss.org/drools" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.omg.org/spec/DD/20100524/DC http://www.omg.org/spec/DD/20100524/DC-XMI http://www.omg.org/spec/DD/20100524/DI http://www.omg.org/spec/DD/20100524/DI-XMI http://www.omg.org/spec/BPMN/20100524/DI http://www.omg.org/spec/BPMN/20100524/DI-XMI" id="Definition" expressionLanguage="http://www.mvel.org/2.0" targetNamespace="http://www.jboss.org/drools" typeLanguage="http://www.java.com/javaTypes">
+  <process id="sampleWorkitemProcess" name="sampleWorkitemProcess" isExecutable="true" processType="Private">
+    <startEvent id="_1" name="Start">
+      <outgoing>_2</outgoing>
+    </startEvent>
+    <endEvent id="_5" name="End">
+      <incoming>_4</incoming>
+    </endEvent>
+    <sequenceFlow id="_2" name="Sequence Flow" sourceRef="_1" targetRef="_3"/>
+    <task id="_3" tns:taskName="time_consuming_work" name="Task Name">
+      <incoming>_2</incoming>
+      <outgoing>_4</outgoing>
+      <ioSpecification id="">
+        <dataInput id="" name="description"/>
+        <inputSet id="_QhajsMtaEeCwE5q4ah6UoA"/>
+        <outputSet id="_Q6FiYMtaEeCwE5q4ah6UoA"/>
+      </ioSpecification>
+      <dataInputAssociation id="">
+        <sourceRef>description</sourceRef>
+        <targetRef></targetRef>
+      </dataInputAssociation>
+    </task>
+    <sequenceFlow id="_4" name="Sequence Flow" sourceRef="_3" targetRef="_5"/>
+    <property id="description" name=""/>
+  </process>
+  <collaboration id="_icRjkMtWEeCwE5q4ah6UoA">
+    <participant id="_icSKoMtWEeCwE5q4ah6UoA" name="Internal" processRef="tns:sampleWorkitemProcess"/>
+  </collaboration>
+  <bpmndi:BPMNDiagram id="_oJ8RBMtWEeCwE5q4ah6UoA">
+    <bpmndi:BPMNPlane id="_oJ8RBctWEeCwE5q4ah6UoA" bpmnElement="tns:null">
+      <bpmndi:BPMNShape id="_oJ8RB8tWEeCwE5q4ah6UoA" bpmnElement="tns:_1">
+        <dc:Bounds height="48.0" width="48.0" x="100.0" y="100.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_tjAAYMtWEeCwE5q4ah6UoA" bpmnElement="tns:_5">
+        <dc:Bounds height="51.0" width="36.0" x="330.0" y="100.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_T-4bAMtYEeCwE5q4ah6UoA" bpmnElement="tns:_3">
+        <dc:Bounds height="50.0" width="110.0" x="170.0" y="93.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="_UjeV0MtYEeCwE5q4ah6UoA" bpmnElement="tns:_2" sourceElement="tns:_oJ8RB8tWEeCwE5q4ah6UoA" targetElement="tns:_T-4bAMtYEeCwE5q4ah6UoA">
+        <di:waypoint xsi:type="dc:Point" x="136.0" y="118.0"/>
+        <di:waypoint xsi:type="dc:Point" x="170.0" y="118.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="_UwLVEstYEeCwE5q4ah6UoA" bpmnElement="tns:_4" sourceElement="tns:_T-4bAMtYEeCwE5q4ah6UoA" targetElement="tns:_tjAAYMtWEeCwE5q4ah6UoA">
+        <di:waypoint xsi:type="dc:Point" x="280.0" y="118.0"/>
+        <di:waypoint xsi:type="dc:Point" x="330.0" y="118.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

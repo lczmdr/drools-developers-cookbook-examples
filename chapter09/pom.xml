@@ -27,8 +27,11 @@
 
   <modules>
     <module>creating-process-using-the-api</module>
+    <module>unit-testing</module>
     <module>human-task</module>
     <module>work-items</module>
+    <module>business-monitoring</module>
+    <module>reports</module>
   </modules>
 
   <dependencyManagement>
@@ -36,7 +39,7 @@
       <!-- drools dependencies -->
       <dependency>
         <groupId>org.drools</groupId>
-        <artifactId>drools-api</artifactId>
+        <artifactId>knowledge-api</artifactId>
         <version>${drools.version}</version>
       </dependency>
       <dependency>
@@ -83,6 +86,16 @@
         <groupId>org.drools</groupId>
         <artifactId>drools-persistence-jpa</artifactId>
         <version>${drools.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jbpm</groupId>
+        <artifactId>jbpm-workitems</artifactId>
+        <version>${jbpm.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jbpm</groupId>
+        <artifactId>jbpm-bam</artifactId>
+        <version>${jbpm.version}</version>
       </dependency>
       <!-- test dependencies -->
       <dependency>
