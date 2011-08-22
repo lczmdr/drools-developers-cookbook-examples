@@ -5,26 +5,26 @@
 
 <hibernate-mapping>
 
-	<class name="org.jbpm.process.audit.ProcessInstanceLog" >
-        <id name="id">
-            <generator class="native"/>
-        </id>
-        <property name="processInstanceId"/>
-        <property name="processId"/>
-        <property name="start" type="timestamp" column="START_DATE"/>
-        <property name="end" type="timestamp" column="END_DATE"/>
-    </class>
+  <class name="org.jbpm.process.audit.ProcessInstanceLog">
+    <id name="id">
+      <generator class="native" />
+    </id>
+    <property name="processInstanceId" />
+    <property name="processId" />
+    <property name="start" type="timestamp" column="START_DATE" />
+    <property name="end" type="timestamp" column="END_DATE" />
+  </class>
 
-	<class name="org.jbpm.process.audit.NodeInstanceLog" >
-        <id name="id">
-            <generator class="native"/>
-        </id>
-        <property name="type"/>
-        <property name="nodeInstanceId"/>
-        <property name="nodeId"/>
-        <property name="processInstanceId"/>
-        <property name="processId"/>
-        <property name="date" type="timestamp" column="LOG_DATE"/>
-    </class>
+  <class name="org.jbpm.process.audit.NodeInstanceLog">
+    <id name="id">
+      <generator class="native" />
+    </id>
+    <property name="type" />
+    <property name="nodeInstanceId" />
+    <property name="nodeId" />
+    <property name="processInstanceId" />
+    <property name="processId" />
+    <property name="date" type="timestamp" column="LOG_DATE" />
+  </class>
 
 </hibernate-mapping>
