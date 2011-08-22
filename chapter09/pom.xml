@@ -31,7 +31,7 @@
     <module>human-task</module>
     <module>work-items</module>
     <module>business-monitoring</module>
-    <module>reports</module>
+    <module>business-activity-monitoring-reports</module>
   </modules>
 
   <dependencyManagement>
