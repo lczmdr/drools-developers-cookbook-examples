@@ -28,10 +28,9 @@
   <modules>
     <module>creating-process-using-the-api</module>
     <module>unit-testing</module>
-    <module>human-task</module>
-    <module>work-items</module>
-    <module>business-monitoring</module>
+    <module>human-tasks</module>
     <module>business-activity-monitoring-reports</module>
+    <module>business-monitoring-with-drools-fusion</module>
   </modules>
 
   <dependencyManagement>
