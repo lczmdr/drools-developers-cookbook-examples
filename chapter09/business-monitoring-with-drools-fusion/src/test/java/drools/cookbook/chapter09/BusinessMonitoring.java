@@ -3,24 +3,27 @@ package drools.cookbook.chapter09;
 import java.util.concurrent.TimeUnit;
 
 import org.drools.KnowledgeBase;
+import org.drools.KnowledgeBaseConfiguration;
 import org.drools.KnowledgeBaseFactory;
 import org.drools.builder.KnowledgeBuilder;
 import org.drools.builder.KnowledgeBuilderError;
 import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.builder.ResourceType;
+import org.drools.conf.EventProcessingOption;
 import org.drools.io.ResourceFactory;
 import org.drools.runtime.KnowledgeSessionConfiguration;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.drools.runtime.conf.ClockTypeOption;
 import org.drools.time.SessionPseudoClock;
-import org.junit.Test;
 
-import drools.cookbook.chapter09.CustomProcessEventListener;
+/**
+ * 
+ * @author Lucas Amador
+ * 
+ */
+public class BusinessMonitoring {
 
-public class BusinessMonitoringTest {
-
-    @Test
-    public void withdrawalProcess() throws Exception {
+    public static void main(String[] args) throws Exception {
 
         KnowledgeBase kbase = createKnowledgeBase();
         KnowledgeSessionConfiguration conf = KnowledgeBaseFactory.newKnowledgeSessionConfiguration();
@@ -35,10 +38,10 @@ public class BusinessMonitoringTest {
             ksession.startProcess("withdrawalProcess");
         }
         for (int i = 0; i < 20; i++) {
-            clock.advanceTime(2, TimeUnit.MINUTES);
+            clock.advanceTime(30, TimeUnit.MINUTES);
             ksession.startProcess("withdrawalProcess");
         }
-
+        ksession.dispose();
     }
 
     private static KnowledgeBase createKnowledgeBase() throws Exception {
@@ -51,7 +54,12 @@ public class BusinessMonitoringTest {
             }
             throw new IllegalArgumentException("Unable to parse knowledge.");
         }
-        return kbuilder.newKnowledgeBase();
+        KnowledgeBaseConfiguration config = KnowledgeBaseFactory.newKnowledgeBaseConfiguration();
+        config.setOption(EventProcessingOption.STREAM);
+
+        KnowledgeBase kbase = KnowledgeBaseFactory.newKnowledgeBase(config);
+        kbase.addKnowledgePackages(kbuilder.getKnowledgePackages());
+        return kbase;
     }
 
 }

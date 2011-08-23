@@ -8,6 +8,11 @@ import org.drools.event.process.ProcessStartedEvent;
 import org.drools.event.process.ProcessVariableChangedEvent;
 import org.drools.runtime.StatefulKnowledgeSession;
 
+/**
+ * 
+ * @author Lucas Amador
+ * 
+ */
 public class CustomProcessEventListener implements ProcessEventListener {
 
     private StatefulKnowledgeSession eventKsession;

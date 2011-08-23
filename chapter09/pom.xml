@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>drools.cookbook</groupId>
   <artifactId>chapter09</artifactId>
-  <name>jBPM5</name>
+  <name>jBPM5 examples</name>
   <description>jBPM5: managing business process</description>
   <packaging>pom</packaging>
   <version>1.0.0-SNAPSHOT</version>
@@ -52,6 +52,17 @@
         <version>${drools.version}</version>
       </dependency>
       <dependency>
+        <groupId>org.drools</groupId>
+        <artifactId>drools-spring</artifactId>
+        <version>${drools.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.drools</groupId>
+        <artifactId>drools-persistence-jpa</artifactId>
+        <version>${drools.version}</version>
+      </dependency>
+      <!-- jbpm dependencies -->
+      <dependency>
         <groupId>org.jbpm</groupId>
         <artifactId>jbpm-flow</artifactId>
         <version>${jbpm.version}</version>
@@ -75,16 +86,6 @@
         <groupId>org.jbpm</groupId>
         <artifactId>jbpm-human-task</artifactId>
         <version>${jbpm.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.drools</groupId>
-        <artifactId>drools-spring</artifactId>
-        <version>${drools.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.drools</groupId>
-        <artifactId>drools-persistence-jpa</artifactId>
-        <version>${drools.version}</version>
       </dependency>
       <dependency>
         <groupId>org.jbpm</groupId>
