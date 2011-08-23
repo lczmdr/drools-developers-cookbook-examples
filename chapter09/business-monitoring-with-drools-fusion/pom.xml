@@ -6,8 +6,8 @@
     <artifactId>chapter09</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
-  <artifactId>business-monitoring</artifactId>
-  <name>Monitoring business process with Fusion</name>
+  <artifactId>business-monitoring-with-drools-fusion</artifactId>
+  <name>Monitoring business process with Drools Fusion</name>
 
   <dependencies>
     <dependency>
