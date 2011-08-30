@@ -33,8 +33,7 @@ public class BestTechnicianAvailableTest {
         solver.solve();
         TechniciansSolution finalSolution = (TechniciansSolution) solver.getBestSolution();
 
-        Assert.assertEquals(technicians.get(5), finalSolution.getServiceDeliveries().get(0).getTechnician());
-        System.out.println(finalSolution.getServiceDeliveries().get(0).getTechnician());
+        Assert.assertEquals(technicians.get(4), finalSolution.getServiceDeliveries().get(0).getTechnician());
     }
 
     private TechniciansSolution getInitialSolution(List<Technician> technicians, List<ServiceRequest> deliveries) {
@@ -48,7 +47,7 @@ public class BestTechnicianAvailableTest {
     private static List<ServiceRequest> createServiceDeliveries() {
         return Arrays.asList(new ServiceRequest[] { new ServiceRequest(Location.SAN_DIEGO, EnumSet.of(Skill.JAVA)) });
     }
-    
+
     private static List<Technician> createTechnicians() {
         return Arrays.asList(new Technician[] {
                 new Technician(Location.WASHINGTON_DC, TrainingLevel.JUNIOR, false, Collections.<Skill> emptySet()),

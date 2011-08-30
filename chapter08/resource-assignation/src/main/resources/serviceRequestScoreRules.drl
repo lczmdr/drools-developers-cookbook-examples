@@ -29,7 +29,7 @@ rule "skillMatch"
     then
         Set<Skill> tempSkills = EnumSet.copyOf($neededSkills);
         tempSkills.removeAll($tec.getSkills());
-        insertLogical(new IntConstraintOccurrence("skillMatch", tempSkills.size(), $sd));
+        insertLogical(new IntConstraintOccurrence("skillMatch", tempSkills.size() * 3, $sd));
 end
 
 rule "hardConstraintsBroken"
