@@ -15,10 +15,10 @@ public class ServiceRequest {
         this.neededSkills = neededSkills;
     }
 
-    public ServiceRequest(ServiceRequest serviceDelivery) {
-        this(serviceDelivery.location, EnumSet.copyOf(serviceDelivery.neededSkills));
-        if (serviceDelivery.technician != null) {
-            setTechnician(new Technician(serviceDelivery.technician));
+    public ServiceRequest(ServiceRequest serviceRequest) {
+        this(serviceRequest.location, EnumSet.copyOf(serviceRequest.neededSkills));
+        if (serviceRequest.technician != null) {
+            setTechnician(new Technician(serviceRequest.technician));
         }
     }
 

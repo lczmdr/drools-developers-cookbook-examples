@@ -34,7 +34,7 @@ public class Technician {
     @Override
     public String toString() {
         return "{" + location.name() + "(" + trainingLevel.getAbreviation() + ")" + " skills: "
-                + Arrays.toString(skills.toArray()) + " | " + (busy ? "busy" : "avail") + "}";
+                + Arrays.toString(skills.toArray()) + " | " + (busy ? "busy" : "available") + "}";
     }
 
     public boolean isBusy() {

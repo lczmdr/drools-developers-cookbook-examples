@@ -13,12 +13,12 @@ import drools.cookbook.chapter08.domain.Technician;
 public class TechniciansSolution implements Solution<SimpleScore> {
 
     private List<Technician> technicians;
-    private List<ServiceRequest> serviceDeliveries;
+    private List<ServiceRequest> serviceRequests;
     private SimpleScore score;
 
-    public TechniciansSolution(List<Technician> technicians, List<ServiceRequest> serviceDelivery) {
+    public TechniciansSolution(List<Technician> technicians, List<ServiceRequest> serviceRequests) {
         this.technicians = technicians;
-        this.serviceDeliveries = serviceDelivery;
+        this.serviceRequests = serviceRequests;
     }
 
     private TechniciansSolution() {
@@ -36,7 +36,7 @@ public class TechniciansSolution implements Solution<SimpleScore> {
 
     @Override
     public Collection<ServiceRequest> getFacts() {
-        return serviceDeliveries;
+        return serviceRequests;
     }
 
     @Override
@@ -44,11 +44,11 @@ public class TechniciansSolution implements Solution<SimpleScore> {
         TechniciansSolution solution = new TechniciansSolution();
         solution.score = score;
         solution.technicians = technicians;
-        List<ServiceRequest> clonedServices = new ArrayList<ServiceRequest>(serviceDeliveries.size());
-        for (ServiceRequest serviceDelivery : serviceDeliveries) {
-            clonedServices.add(new ServiceRequest(serviceDelivery));
+        List<ServiceRequest> clonedServices = new ArrayList<ServiceRequest>(serviceRequests.size());
+        for (ServiceRequest sr : serviceRequests) {
+            clonedServices.add(new ServiceRequest(sr));
         }
-        solution.serviceDeliveries = clonedServices;
+        solution.serviceRequests = clonedServices;
         return solution;
     }
 
@@ -56,8 +56,8 @@ public class TechniciansSolution implements Solution<SimpleScore> {
         return technicians;
     }
 
-    public List<ServiceRequest> getServiceDeliveries() {
-        return serviceDeliveries;
+    public List<ServiceRequest> getServiceRequests() {
+        return serviceRequests;
     }
 
 }

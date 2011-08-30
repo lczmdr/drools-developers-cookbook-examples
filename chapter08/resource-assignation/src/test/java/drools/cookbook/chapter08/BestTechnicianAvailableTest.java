@@ -23,28 +23,28 @@ public class BestTechnicianAvailableTest {
     @Test
     public void findBestTechnician() {
         List<Technician> technicians = createTechnicians();
-        List<ServiceRequest> deliveries = createServiceDeliveries();
+        List<ServiceRequest> requests = createServiceRequests();
 
         XmlSolverConfigurer configurer = new XmlSolverConfigurer();
         configurer.configure("/ServiceRequestSolverConfig.xml");
         Solver solver = configurer.buildSolver();
 
-        solver.setStartingSolution(getInitialSolution(technicians, deliveries));
+        solver.setStartingSolution(getInitialSolution(technicians, requests));
         solver.solve();
         TechniciansSolution finalSolution = (TechniciansSolution) solver.getBestSolution();
 
-        Assert.assertEquals(technicians.get(4), finalSolution.getServiceDeliveries().get(0).getTechnician());
+        Assert.assertEquals(technicians.get(4), finalSolution.getServiceRequests().get(0).getTechnician());
     }
 
-    private TechniciansSolution getInitialSolution(List<Technician> technicians, List<ServiceRequest> deliveries) {
-        for (ServiceRequest serviceDelivery : deliveries) {
-            serviceDelivery.setTechnician(technicians.get(0));
+    private TechniciansSolution getInitialSolution(List<Technician> technicians, List<ServiceRequest> requests) {
+        for (ServiceRequest serviceRequests : requests) {
+            serviceRequests.setTechnician(technicians.get(0));
         }
-        TechniciansSolution initialSolution = new TechniciansSolution(technicians, deliveries);
+        TechniciansSolution initialSolution = new TechniciansSolution(technicians, requests);
         return initialSolution;
     }
 
-    private static List<ServiceRequest> createServiceDeliveries() {
+    private static List<ServiceRequest> createServiceRequests() {
         return Arrays.asList(new ServiceRequest[] { new ServiceRequest(Location.SAN_DIEGO, EnumSet.of(Skill.JAVA)) });
     }
 

@@ -16,9 +16,9 @@ public class SelectNextTechnicians extends CachedMoveFactory {
     public List<Move> createCachedMoveList(Solution solution) {
         TechniciansSolution techSolution = (TechniciansSolution) solution;
         List<Move> moves = new ArrayList<Move>();
-        for (ServiceRequest serviceDelivery : techSolution.getServiceDeliveries()) {
+        for (ServiceRequest serviceRequest : techSolution.getServiceRequests()) {
             for (Technician technician : techSolution.getTechnicians()) {
-                moves.add(new TechnicianMove(serviceDelivery, technician));
+                moves.add(new TechnicianMove(serviceRequest, technician));
             }
         }
         return moves;
