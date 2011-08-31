@@ -14,7 +14,7 @@
     <moveFactoryClass>drools.cookbook.chapter08.planner.SelectNextTechnicians</moveFactoryClass>
   </selector>
   <acceptor>
-    <simulatedAnnealingStartingTemperature>10</simulatedAnnealingStartingTemperature>
+    <simulatedAnnealingStartingTemperature>5</simulatedAnnealingStartingTemperature>
   </acceptor>
   <forager>
     <minimalAcceptedSelection>4</minimalAcceptedSelection>

@@ -19,7 +19,7 @@ import drools.cookbook.chapter08.domain.TrainingLevel;
 import drools.cookbook.chapter08.planner.TechniciansSolution;
 
 public class SimulatedAnnealingTest {
-
+    
     @Test
     public void findBestTechnician() {
         List<Technician> technicians = createTechnicians();
@@ -34,6 +34,7 @@ public class SimulatedAnnealingTest {
         TechniciansSolution finalSolution = (TechniciansSolution) solver.getBestSolution();
 
         Assert.assertEquals(technicians.get(4), finalSolution.getServiceRequests().get(0).getTechnician());
+        System.out.println(finalSolution.getServiceRequests().get(0).getTechnician());
     }
 
     private TechniciansSolution getInitialSolution(List<Technician> technicians, List<ServiceRequest> requests) {
