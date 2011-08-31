@@ -27,6 +27,7 @@
 
   <modules>
     <module>resource-assignation</module>
+    <module>simulated-annealing</module>
   </modules>
 
   <dependencyManagement>

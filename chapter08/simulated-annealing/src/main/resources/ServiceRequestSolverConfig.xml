@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<localSearchSolver>
+  <environmentMode>DEBUG</environmentMode>
+  <scoreDrl>/serviceRequestScoreRules.drl</scoreDrl>
+  <scoreDefinition>
+    <scoreDefinitionType>SIMPLE</scoreDefinitionType>
+  </scoreDefinition>
+  <termination>
+    <terminationCompositionStyle>OR</terminationCompositionStyle>
+    <maximumStepCount>100</maximumStepCount>
+    <scoreAttained>0</scoreAttained>
+  </termination>
+  <selector>
+    <moveFactoryClass>drools.cookbook.chapter08.planner.SelectNextTechnicians</moveFactoryClass>
+  </selector>
+  <acceptor>
+    <simulatedAnnealingStartingTemperature>10</simulatedAnnealingStartingTemperature>
+  </acceptor>
+  <forager>
+    <minimalAcceptedSelection>4</minimalAcceptedSelection>
+  </forager>
+</localSearchSolver>
