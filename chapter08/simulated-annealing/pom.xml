@@ -8,7 +8,7 @@
     <version>1.0.0-SNAPSHOT</version>
   </parent>
   <artifactId>simulated-annealing</artifactId>
-  <name>Simulated Annealing</name>
+  <name>Using a simulated annealing acceptor</name>
 
   <dependencies>
     <dependency>
