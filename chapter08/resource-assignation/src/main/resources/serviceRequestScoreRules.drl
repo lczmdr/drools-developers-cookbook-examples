@@ -11,14 +11,14 @@ global SimpleScoreCalculator scoreCalculator;
 
 rule "sameCity"
     when
-        $sd : ServiceRequest($serviceLoc : location, technician.location != $serviceLoc)
+        $sd : ServiceRequest(technician.location != location)
     then
         insertLogical(new IntConstraintOccurrence("sameCity", 1, $sd));
 end
 
 rule "isBusy"
     when
-        $sd : ServiceRequest($serviceLoc : location, technician.busy == true)
+        $sd : ServiceRequest(technician.busy == true)
     then
         insertLogical(new IntConstraintOccurrence("isBusy", 6, $sd));
 end
