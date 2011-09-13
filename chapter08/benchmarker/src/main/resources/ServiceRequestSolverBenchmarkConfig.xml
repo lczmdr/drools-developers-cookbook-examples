@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<solverBenchmarkSuite>
+  <benchmarkDirectory>benchmark-results</benchmarkDirectory>
+  <solverStatisticType>BEST_SOLUTION_CHANGED</solverStatisticType>
+  <solverStatisticType>CALCULATE_COUNT_PER_SECOND</solverStatisticType>
+  <warmUpSecondsSpend>30</warmUpSecondsSpend>
+
+  <inheritedSolverBenchmark>
+    <unsolvedSolutionFile>src/main/resources/unsolvedTechnicianRequest.xml</unsolvedSolutionFile>
+    <solver>
+      <solutionClass>drools.cookbook.chapter08.planner.TechniciansSolution</solutionClass>
+      <planningEntityClass>drools.cookbook.chapter08.domain.ServiceRequest</planningEntityClass>
+      <scoreDrl>/serviceRequestScoreRules.drl</scoreDrl>
+      <scoreDefinition>
+        <scoreDefinitionType>SIMPLE</scoreDefinitionType>
+      </scoreDefinition>
+      <termination>
+        <maximumSecondsSpend>20</maximumSecondsSpend>
+      </termination>
+    </solver>
+  </inheritedSolverBenchmark>
+
+  <solverBenchmark>
+    <name>tabuSearch</name>
+    <solver>
+      <localSearch>
+        <selector>
+          <moveFactoryClass>drools.cookbook.chapter08.planner.SelectNextTechnicians</moveFactoryClass>
+        </selector>
+        <acceptor>
+          <completeSolutionTabuSize>1000</completeSolutionTabuSize>
+        </acceptor>
+        <forager>
+          <pickEarlyType>NEVER</pickEarlyType>
+        </forager>
+      </localSearch>
+    </solver>
+  </solverBenchmark>
+  <solverBenchmark>
+    <name>simulatedAnnealing</name>
+    <solver>
+      <localSearch>
+        <selector>
+          <moveFactoryClass>drools.cookbook.chapter08.planner.SelectNextTechnicians</moveFactoryClass>
+        </selector>
+        <acceptor>
+          <simulatedAnnealingStartingTemperature>5</simulatedAnnealingStartingTemperature>
+        </acceptor>
+        <forager>
+          <pickEarlyType>NEVER</pickEarlyType>
+        </forager>
+      </localSearch>
+    </solver>
+  </solverBenchmark>
+
+</solverBenchmarkSuite>

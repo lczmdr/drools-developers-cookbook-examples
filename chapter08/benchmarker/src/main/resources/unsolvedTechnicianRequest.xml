@@ -1,0 +1,52 @@
+<drools.cookbook.chapter08.planner.TechniciansSolution>
+  <technicians>
+    <drools.cookbook.chapter08.domain.Technician>
+      <location>WASHINGTON_DC</location>
+      <trainingLevel>JUNIOR</trainingLevel>
+      <busy>false</busy>
+      <skills class="java.util.Collections$EmptySet" />
+    </drools.cookbook.chapter08.domain.Technician>
+    <drools.cookbook.chapter08.domain.Technician>
+      <location>MONTANA</location>
+      <trainingLevel>SEMISENIOR</trainingLevel>
+      <busy>false</busy>
+      <skills class="enum-set" enum-type="drools.cookbook.chapter08.domain.Skill">HADOOP</skills>
+    </drools.cookbook.chapter08.domain.Technician>
+    <drools.cookbook.chapter08.domain.Technician>
+      <location>NY</location>
+      <trainingLevel>SENIOR</trainingLevel>
+      <busy>true</busy>
+      <skills class="enum-set" enum-type="drools.cookbook.chapter08.domain.Skill">JAVA,DROOLS</skills>
+    </drools.cookbook.chapter08.domain.Technician>
+    <drools.cookbook.chapter08.domain.Technician>
+      <location>NORTH_CAROLINA</location>
+      <trainingLevel>SENIOR</trainingLevel>
+      <busy>true</busy>
+      <skills class="enum-set" enum-type="drools.cookbook.chapter08.domain.Skill">JAVA</skills>
+    </drools.cookbook.chapter08.domain.Technician>
+    <drools.cookbook.chapter08.domain.Technician>
+      <location>NY</location>
+      <trainingLevel>SEMISENIOR</trainingLevel>
+      <busy>false</busy>
+      <skills class="enum-set" enum-type="drools.cookbook.chapter08.domain.Skill">JAVA,REST</skills>
+    </drools.cookbook.chapter08.domain.Technician>
+    <drools.cookbook.chapter08.domain.Technician>
+      <location>SAN_DIEGO</location>
+      <trainingLevel>SENIOR</trainingLevel>
+      <busy>false</busy>
+      <skills class="enum-set" enum-type="drools.cookbook.chapter08.domain.Skill">SCALA</skills>
+    </drools.cookbook.chapter08.domain.Technician>
+  </technicians>
+  <serviceRequests>
+    <drools.cookbook.chapter08.domain.ServiceRequest>
+      <location>SAN_DIEGO</location>
+      <neededSkills class="enum-set" enum-type="drools.cookbook.chapter08.domain.Skill">JAVA</neededSkills>
+      <technician>
+        <location>WASHINGTON_DC</location>
+        <trainingLevel>JUNIOR</trainingLevel>
+        <busy>false</busy>
+        <skills class="java.util.Collections$EmptySet" />
+      </technician>
+    </drools.cookbook.chapter08.domain.ServiceRequest>
+  </serviceRequests>
+</drools.cookbook.chapter08.planner.TechniciansSolution>

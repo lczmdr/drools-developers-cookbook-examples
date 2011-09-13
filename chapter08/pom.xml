@@ -28,6 +28,7 @@
   <modules>
     <module>resource-assignation</module>
     <module>simulated-annealing</module>
+    <module>benchmarker</module>
   </modules>
 
   <dependencyManagement>
