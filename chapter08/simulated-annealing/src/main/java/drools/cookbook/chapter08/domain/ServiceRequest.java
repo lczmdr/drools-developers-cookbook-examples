@@ -4,11 +4,19 @@ import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.Set;
 
+import org.drools.planner.api.domain.entity.PlanningEntity;
+import org.drools.planner.api.domain.variable.PlanningVariable;
+import org.drools.planner.api.domain.variable.ValueRangeFromSolutionProperty;
+
+@PlanningEntity
 public class ServiceRequest {
 
     private Location location;
     private Set<Skill> neededSkills;
     private Technician technician;
+
+    public ServiceRequest() {
+    }
 
     public ServiceRequest(Location location, Set<Skill> neededSkills) {
         this.location = location;
@@ -26,6 +34,8 @@ public class ServiceRequest {
         return this.location;
     }
 
+    @PlanningVariable
+    @ValueRangeFromSolutionProperty(propertyName = "serviceRequests")
     public Technician getTechnician() {
         return technician;
     }

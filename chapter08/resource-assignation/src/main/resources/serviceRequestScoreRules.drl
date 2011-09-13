@@ -10,6 +10,7 @@ import org.drools.planner.core.score.calculator.SimpleScoreCalculator;
 global SimpleScoreCalculator scoreCalculator;
 
 rule "sameCity"
+dialect "java"
     when
         $sd : ServiceRequest(technician.location != location)
     then
@@ -17,6 +18,7 @@ rule "sameCity"
 end
 
 rule "isBusy"
+dialect "java"
     when
         $sd : ServiceRequest(technician.busy == true)
     then
@@ -24,6 +26,7 @@ rule "isBusy"
 end
 
 rule "skillMatch"
+dialect "java"
     when
         $sd : ServiceRequest($neededSkills : neededSkills, $tec : technician)
     then
@@ -33,6 +36,7 @@ rule "skillMatch"
 end
 
 rule "hardConstraintsBroken"
+dialect "java"
 salience -1 // Do the other rules first (optional, for performance)
     when
         $hardTotal : Number() from accumulate(IntConstraintOccurrence($weight : weight),

@@ -11,6 +11,9 @@ public class Technician {
     private boolean busy;
     private Set<Skill> skills;
 
+    public Technician() {
+    }
+
     public Technician(Location location, TrainingLevel training, boolean busy, Set<Skill> skills) {
         this.location = location;
         this.trainingLevel = training;

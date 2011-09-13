@@ -16,14 +16,16 @@ import drools.cookbook.chapter08.domain.TrainingLevel;
 import drools.cookbook.chapter08.planner.TechniciansSolution;
 
 public class BestAvailableTechnician {
-    
+
     public static void main(String[] args) {
         List<Technician> technicians = new ArrayList<Technician>();
-        technicians.add(new Technician(Location.WASHINGTON_DC, TrainingLevel.JUNIOR, false, Collections.<Skill> emptySet()));
+        technicians.add(new Technician(Location.WASHINGTON_DC, TrainingLevel.JUNIOR, false, Collections
+                .<Skill> emptySet()));
         technicians.add(new Technician(Location.MONTANA, TrainingLevel.SEMISENIOR, false, EnumSet.of(Skill.HADOOP)));
         technicians.add(new Technician(Location.NY, TrainingLevel.SENIOR, true, EnumSet.of(Skill.JAVA, Skill.DROOLS)));
         technicians.add(new Technician(Location.NORTH_CAROLINA, TrainingLevel.SENIOR, true, EnumSet.of(Skill.JAVA)));
-        technicians.add(new Technician(Location.NY, TrainingLevel.SEMISENIOR, false, EnumSet.of(Skill.JAVA, Skill.REST)));
+        technicians
+                .add(new Technician(Location.NY, TrainingLevel.SEMISENIOR, false, EnumSet.of(Skill.JAVA, Skill.REST)));
         technicians.add(new Technician(Location.SAN_DIEGO, TrainingLevel.SENIOR, false, EnumSet.of(Skill.SCALA)));
         List<ServiceRequest> requests = new ArrayList<ServiceRequest>();
         requests.add(new ServiceRequest(Location.SAN_DIEGO, EnumSet.of(Skill.JAVA)));
@@ -36,8 +38,7 @@ public class BestAvailableTechnician {
             serviceRequest.setTechnician(technicians.get(0));
         }
         TechniciansSolution initialSolution = new TechniciansSolution(technicians, requests);
-
-        solver.setStartingSolution(initialSolution);
+        solver.setPlanningProblem(initialSolution);
         solver.solve();
 
         TechniciansSolution finalSolution = (TechniciansSolution) solver.getBestSolution();

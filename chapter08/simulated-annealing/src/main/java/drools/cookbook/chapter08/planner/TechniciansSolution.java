@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.drools.planner.api.domain.solution.PlanningEntityCollectionProperty;
 import org.drools.planner.core.score.SimpleScore;
 import org.drools.planner.core.solution.Solution;
 
@@ -35,8 +36,8 @@ public class TechniciansSolution implements Solution<SimpleScore> {
     }
 
     @Override
-    public Collection<ServiceRequest> getFacts() {
-        return serviceRequests;
+    public Collection<Technician> getProblemFacts() {
+        return technicians;
     }
 
     @Override
@@ -56,6 +57,7 @@ public class TechniciansSolution implements Solution<SimpleScore> {
         return technicians;
     }
 
+    @PlanningEntityCollectionProperty
     public List<ServiceRequest> getServiceRequests() {
         return serviceRequests;
     }
