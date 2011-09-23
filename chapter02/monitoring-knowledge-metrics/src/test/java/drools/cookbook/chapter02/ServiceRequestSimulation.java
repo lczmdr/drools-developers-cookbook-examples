@@ -1,15 +1,14 @@
 package drools.cookbook.chapter02;
 
 import org.drools.KnowledgeBase;
+import org.drools.KnowledgeBaseConfiguration;
+import org.drools.KnowledgeBaseFactory;
 import org.drools.builder.KnowledgeBuilder;
 import org.drools.builder.KnowledgeBuilderError;
 import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.builder.ResourceType;
-import org.drools.impl.KnowledgeBaseImpl;
-import org.drools.impl.StatefulKnowledgeSessionImpl;
+import org.drools.conf.MBeansOption;
 import org.drools.io.impl.ClassPathResource;
-import org.drools.management.DroolsManagementAgent;
-import org.drools.reteoo.ReteooRuleBase;
 import org.drools.runtime.StatefulKnowledgeSession;
 
 /**
@@ -33,15 +32,6 @@ public class ServiceRequestSimulation {
     }
 
     public void start() {
-
-        // initializing the monitoring feature
-        DroolsManagementAgent kmanagement = DroolsManagementAgent.getInstance();
-
-        // registering a Knowledge Base
-        kmanagement.registerKnowledgeBase((ReteooRuleBase) ((KnowledgeBaseImpl) kbase).getRuleBase());
-
-        // registering a Stateful Knowledge Session
-        kmanagement.registerKnowledgeSession(((StatefulKnowledgeSessionImpl) ksession).getInternalWorkingMemory());
 
         Server debianServer = new Server("debianServer", 8, 8192, 2048, 0);
         Virtualization server01 = new Virtualization("server01", debianServer.getName(), 2048, 1024);
@@ -89,7 +79,13 @@ public class ServiceRequestSimulation {
             }
         }
 
-        return kbuilder.newKnowledgeBase();
+        KnowledgeBaseConfiguration config = KnowledgeBaseFactory.newKnowledgeBaseConfiguration();
+        config.setOption(MBeansOption.ENABLED);
+
+        KnowledgeBase kbase = KnowledgeBaseFactory.newKnowledgeBase("kbase", config);
+        kbase.addKnowledgePackages(kbuilder.getKnowledgePackages());
+
+        return kbase;
     }
 
 }

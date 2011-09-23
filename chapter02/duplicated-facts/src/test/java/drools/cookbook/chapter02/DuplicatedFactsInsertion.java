@@ -9,6 +9,7 @@ import org.drools.builder.KnowledgeBuilder;
 import org.drools.builder.KnowledgeBuilderError;
 import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.builder.ResourceType;
+import org.drools.conf.AssertBehaviorOption;
 import org.drools.io.impl.ClassPathResource;
 import org.drools.runtime.StatefulKnowledgeSession;
 import org.junit.BeforeClass;
@@ -75,7 +76,7 @@ public class DuplicatedFactsInsertion {
         }
 
         KnowledgeBaseConfiguration kbaseConfig = KnowledgeBaseFactory.newKnowledgeBaseConfiguration();
-        kbaseConfig.setProperty("drools.assertBehaviour", "EQUALITY");
+        kbaseConfig.setOption(AssertBehaviorOption.EQUALITY);
         kbase = KnowledgeBaseFactory.newKnowledgeBase(kbaseConfig);
 
         kbase.addKnowledgePackages(kbuilder.getKnowledgePackages());
