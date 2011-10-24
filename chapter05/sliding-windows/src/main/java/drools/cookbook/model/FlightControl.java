@@ -3,6 +3,11 @@ package drools.cookbook.model;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 
+ * @author Lucas Amador
+ * 
+ */
 public class FlightControl {
 
     private String airport;

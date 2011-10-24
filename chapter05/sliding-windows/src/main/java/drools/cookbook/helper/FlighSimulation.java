@@ -4,6 +4,11 @@ import java.util.Random;
 
 import drools.cookbook.model.FlightStatus;
 
+/**
+ * 
+ * @author Lucas Amador
+ * 
+ */
 public class FlighSimulation {
 
     private static final int AIRPORT_AIR_SPACE = 50;

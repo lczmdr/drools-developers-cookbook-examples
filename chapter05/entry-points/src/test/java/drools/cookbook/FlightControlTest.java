@@ -3,13 +3,11 @@ package drools.cookbook;
 import java.util.concurrent.TimeUnit;
 
 import org.drools.KnowledgeBase;
-import org.drools.KnowledgeBaseConfiguration;
 import org.drools.KnowledgeBaseFactory;
 import org.drools.builder.KnowledgeBuilder;
 import org.drools.builder.KnowledgeBuilderError;
 import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.builder.ResourceType;
-import org.drools.conf.EventProcessingOption;
 import org.drools.io.impl.ClassPathResource;
 import org.drools.runtime.KnowledgeSessionConfiguration;
 import org.drools.runtime.StatefulKnowledgeSession;
@@ -24,6 +22,11 @@ import drools.cookbook.helper.FlighSimulation;
 import drools.cookbook.model.FlightControl;
 import drools.cookbook.model.FlightStatus;
 
+/**
+ * 
+ * @author Lucas Amador
+ * 
+ */
 public class FlightControlTest {
 
     private StatefulKnowledgeSession ksession;
@@ -40,10 +43,8 @@ public class FlightControlTest {
                 }
             }
         }
-        KnowledgeBaseConfiguration config = KnowledgeBaseFactory.newKnowledgeBaseConfiguration();
-        config.setOption(EventProcessingOption.STREAM);
 
-        KnowledgeBase kbase = KnowledgeBaseFactory.newKnowledgeBase(config);
+        KnowledgeBase kbase = kbuilder.newKnowledgeBase();
         kbase.addKnowledgePackages(kbuilder.getKnowledgePackages());
 
         KnowledgeSessionConfiguration conf = KnowledgeBaseFactory.newKnowledgeSessionConfiguration();

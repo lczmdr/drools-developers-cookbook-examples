@@ -25,6 +25,11 @@ import drools.cookbook.model.EmergencySignal;
 import drools.cookbook.model.FlightControl;
 import drools.cookbook.model.FlightStatus;
 
+/**
+ * 
+ * @author Lucas Amador
+ * 
+ */
 public class FlightControlTest {
 
     private static final int AIRPORT_AIR_SPACE_SCOPE = 50;
@@ -71,7 +76,7 @@ public class FlightControlTest {
 
         ksession.setGlobal("control", control);
 
-        final FlighSimulation flightAA001 = new FlighSimulation("AA001", "San Francisco", "Los Angeles", 270);
+        FlighSimulation flightAA001 = new FlighSimulation("AA001", "San Francisco", "Los Angeles", 270);
 
         do {
             FlightStatus flightStatus = flightAA001.update();

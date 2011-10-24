@@ -5,6 +5,11 @@ import java.util.List;
 
 import drools.cookbook.model.FlightStatus;
 
+/**
+ * 
+ * @author Lucas Amador
+ * 
+ */
 public class EmergencySystem {
 
     private List<FlightStatus> redirectedFligts = new ArrayList<FlightStatus>();

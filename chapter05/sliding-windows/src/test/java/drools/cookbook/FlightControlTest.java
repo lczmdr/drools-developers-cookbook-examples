@@ -24,6 +24,11 @@ import drools.cookbook.helper.FlighSimulation;
 import drools.cookbook.model.FlightControl;
 import drools.cookbook.model.FlightStatus;
 
+/**
+ * 
+ * @author Lucas Amador
+ * 
+ */
 public class FlightControlTest {
 
     private StatefulKnowledgeSession ksession;

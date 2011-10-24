@@ -4,8 +4,6 @@ import drools.cookbook.model.FlightStatus
 import drools.cookbook.model.FlightControl
 import drools.cookbook.model.EmergencySignal
 
-import drools.cookbook.model.EmergencyInCourse
-
 declare FlightStatus
     @role(event)
 end
@@ -28,7 +26,7 @@ end
 rule "flight arrival"
 when
     $flight : FlightStatus() from entry-point "flight-arrival"
-    $control : FlightControl();
+    $control : FlightControl()
     // Obtain resources to prepare the flight landing
 then
     System.out.println("Flight " + $flight.getFlight() + " arriving to " + $control.getAirport() + ". Sending instructions");
@@ -43,14 +41,4 @@ when
                                                           average($speed))
 then
     System.out.println($flight.getFlight() + " average speed: " + $averageSpeed);
-end
-
-rule "emergency system"
-when
-    $emergency : EmergencySignal() from entry-point "emergency-channel";
-    FlightStatus(flight==$emergency.flight, this before[0m, 10m] $emergency) from entry-point "flight-arrival";
-then
-    // Emergency in curse
-    System.out.println("Emergency in progress. Flight " + $emergency.getFlight());
-    insert (new EmergencyInCourse($emergency.flight));
 end

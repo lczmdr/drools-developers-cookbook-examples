@@ -1,5 +1,10 @@
 package drools.cookbook.helper;
 
+/**
+ * 
+ * @author Lucas Amador
+ * 
+ */
 public class EmergencySystem {
 
     public static void sendFireTrucks() {

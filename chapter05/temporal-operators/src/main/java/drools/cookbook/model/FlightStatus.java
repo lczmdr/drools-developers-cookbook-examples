@@ -2,6 +2,11 @@ package drools.cookbook.model;
 
 import java.util.Date;
 
+/**
+ * 
+ * @author Lucas Amador
+ * 
+ */
 public class FlightStatus {
 
     public enum STATUS {

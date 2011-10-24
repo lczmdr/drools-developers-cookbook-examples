@@ -38,8 +38,8 @@ end
 
 rule "emergency system"
 when
-    $emergency : EmergencySignal() from entry-point "emergency-channel";
-    FlightStatus(flight==$emergency.flight, this before[0m, 10m] $emergency) from entry-point "flight-arrival";
+    $emergency : EmergencySignal() from entry-point "emergency-channel"
+    FlightStatus(flight==$emergency.flight, this before[0m, 10m] $emergency) from entry-point "flight-arrival"
 then
     // Emergency in curse
     System.out.println("Emergency in progress. Flight " + $emergency.getFlight());

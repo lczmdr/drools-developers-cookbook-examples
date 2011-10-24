@@ -2,6 +2,11 @@ package drools.cookbook.model;
 
 import java.util.Date;
 
+/**
+ * 
+ * @author Lucas Amador
+ * 
+ */
 public class FlightStatus {
 
     private String flight;
@@ -67,5 +72,5 @@ public class FlightStatus {
     public boolean getProcessed() {
         return processed;
     }
-    
+
 }

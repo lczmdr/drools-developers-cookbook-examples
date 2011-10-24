@@ -2,6 +2,11 @@ package drools.cookbook.helper;
 
 import drools.cookbook.model.FlightStatus;
 
+/**
+ * 
+ * @author Lucas Amador
+ * 
+ */
 public class FlighSimulation {
 
     private static final int DISTANCE = 50;
