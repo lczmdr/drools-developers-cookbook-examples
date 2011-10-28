@@ -12,7 +12,7 @@
   <dependencies>
     <dependency>
       <groupId>org.drools</groupId>
-      <artifactId>drools-api</artifactId>
+      <artifactId>knowledge-api</artifactId>
     </dependency>
     <dependency>
       <groupId>org.drools</groupId>
@@ -21,6 +21,10 @@
     <dependency>
       <groupId>org.drools</groupId>
       <artifactId>drools-compiler</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.thoughtworks.xstream</groupId>
+      <artifactId>xstream</artifactId>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
