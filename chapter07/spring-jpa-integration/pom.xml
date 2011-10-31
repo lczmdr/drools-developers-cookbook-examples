@@ -12,7 +12,7 @@
   <dependencies>
     <dependency>
       <groupId>org.drools</groupId>
-      <artifactId>drools-api</artifactId>
+      <artifactId>knowledge-api</artifactId>
     </dependency>
     <dependency>
       <groupId>org.drools</groupId>
@@ -41,7 +41,7 @@
     <dependency>
       <groupId>org.jbpm</groupId>
       <artifactId>jbpm-persistence-jpa</artifactId>
-      <version>5.1-SNAPSHOT</version>
+      <version>5.1.0.Final</version>
     </dependency>
     <!-- test dependencies -->
     <dependency>

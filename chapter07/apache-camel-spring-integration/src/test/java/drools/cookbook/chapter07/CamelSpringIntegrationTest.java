@@ -6,8 +6,8 @@ import java.util.List;
 import org.apache.camel.CamelContext;
 import org.apache.camel.ProducerTemplate;
 import org.drools.command.BatchExecutionCommand;
+import org.drools.command.Command;
 import org.drools.command.CommandFactory;
-import org.drools.command.impl.GenericCommand;
 import org.drools.command.runtime.rule.FireAllRulesCommand;
 import org.drools.command.runtime.rule.InsertObjectCommand;
 import org.drools.runtime.ExecutionResults;
@@ -21,6 +21,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import drools.cookbook.chapter07.model.Server;
 import drools.cookbook.chapter07.model.Virtualization;
 
+/**
+ * 
+ * @author Lucas Amador
+ * 
+ */
 public class CamelSpringIntegrationTest {
 
     private static ClassPathXmlApplicationContext applicationContext;
@@ -39,25 +44,19 @@ public class CamelSpringIntegrationTest {
 
         Virtualization virtualization = new Virtualization("dev", "debian", 512, 30);
 
-        InsertObjectCommand insertServerCommand = new InsertObjectCommand();
-        insertServerCommand.setObject(debianServer);
-        insertServerCommand.setEntryPoint("DEFAULT");
-        insertServerCommand.setOutIdentifier("debian-server");
+        InsertObjectCommand insertServerCommand = (InsertObjectCommand) CommandFactory.newInsert(debianServer,
+                "debian-server", true, "DEFAULT");
 
-        InsertObjectCommand insertBadServerCommand = new InsertObjectCommand();
-        insertBadServerCommand.setObject(winServer);
-        insertBadServerCommand.setEntryPoint("DEFAULT");
-        insertBadServerCommand.setOutIdentifier("win-server");
+        InsertObjectCommand insertBadServerCommand = (InsertObjectCommand) CommandFactory.newInsert(winServer,
+                "win-server", true, "DEFAULT");
 
-        InsertObjectCommand insertVirtualizationCommand = new InsertObjectCommand();
-        insertVirtualizationCommand.setObject(virtualization);
-        insertVirtualizationCommand.setEntryPoint("DEFAULT");
-        insertVirtualizationCommand.setOutIdentifier("dev-virtualization");
+        InsertObjectCommand insertVirtualizationCommand = (InsertObjectCommand) CommandFactory.newInsert(
+                virtualization, "dev-virtualization", true, "DEFAULT");
 
-        FireAllRulesCommand fireAllRulesCommand = new FireAllRulesCommand();
-        fireAllRulesCommand.setOutIdentifier("executed-rules");
+        FireAllRulesCommand fireAllRulesCommand = (FireAllRulesCommand) CommandFactory
+                .newFireAllRules("executed-rules");
 
-        List<GenericCommand<?>> commands = new ArrayList<GenericCommand<?>>();
+        List<Command> commands = new ArrayList<Command>();
         commands.add(insertServerCommand);
         commands.add(insertBadServerCommand);
         commands.add(insertVirtualizationCommand);

@@ -19,8 +19,8 @@ import org.drools.builder.KnowledgeBuilderError;
 import org.drools.builder.KnowledgeBuilderFactory;
 import org.drools.builder.ResourceType;
 import org.drools.command.BatchExecutionCommand;
+import org.drools.command.Command;
 import org.drools.command.CommandFactory;
-import org.drools.command.impl.GenericCommand;
 import org.drools.command.runtime.rule.FireAllRulesCommand;
 import org.drools.command.runtime.rule.InsertObjectCommand;
 import org.drools.grid.GridNode;
@@ -35,6 +35,7 @@ import org.junit.Test;
 
 import drools.cookbook.chapter07.model.Server;
 import drools.cookbook.chapter07.model.Virtualization;
+
 /**
  * 
  * @author Lucas Amador
@@ -53,31 +54,25 @@ public class CamelIntegrationTest {
 
         Virtualization virtualization = new Virtualization("dev", "debian", 512, 30);
 
-        InsertObjectCommand insertServerCommand = new InsertObjectCommand();
-        insertServerCommand.setObject(debianServer);
-        insertServerCommand.setEntryPoint("DEFAULT");
-        insertServerCommand.setOutIdentifier("debian-server");
+        InsertObjectCommand insertServerCommand = (InsertObjectCommand) CommandFactory.newInsert(debianServer,
+                "debian-server");
 
-        InsertObjectCommand insertBadServerCommand = new InsertObjectCommand();
-        insertBadServerCommand.setObject(winServer);
-        insertBadServerCommand.setEntryPoint("DEFAULT");
-        insertBadServerCommand.setOutIdentifier("win-server");
+        InsertObjectCommand insertBadServerCommand = (InsertObjectCommand) CommandFactory.newInsert(winServer,
+                "win-server");
 
-        InsertObjectCommand insertVirtualizationCommand = new InsertObjectCommand();
-        insertVirtualizationCommand.setObject(virtualization);
-        insertVirtualizationCommand.setEntryPoint("DEFAULT");
-        insertVirtualizationCommand.setOutIdentifier("dev-virtualization");
+        InsertObjectCommand insertVirtualizationCommand = (InsertObjectCommand) CommandFactory.newInsert(
+                virtualization, "dev-virtualization");
 
-        FireAllRulesCommand fireAllRulesCommand = new FireAllRulesCommand();
-        fireAllRulesCommand.setOutIdentifier("executed-rules");
+        FireAllRulesCommand fireAllRulesCommand = (FireAllRulesCommand) CommandFactory
+                .newFireAllRules("executed-rules");
 
-        List<GenericCommand<?>> commands = new ArrayList<GenericCommand<?>>();
+        List<Command> commands = new ArrayList<Command>();
         commands.add(insertServerCommand);
         commands.add(insertBadServerCommand);
         commands.add(insertVirtualizationCommand);
         commands.add(fireAllRulesCommand);
         BatchExecutionCommand batchExecutionCommand = CommandFactory.newBatchExecution(commands, "ksession1");
-        
+
         ProducerTemplate template = camelContext.createProducerTemplate();
         ExecutionResults response = (ExecutionResults) template.requestBodyAndHeader("direct:test-with-session",
                 batchExecutionCommand, "priority", "low");
@@ -86,7 +81,7 @@ public class CamelIntegrationTest {
         Assert.assertNotNull(response.getFactHandle("debian-server"));
 
         Assert.assertEquals(2, response.getValue("executed-rules"));
-
+        camelContext.stop();
     }
 
     private CamelContext createCamelContext() throws Exception, NamingException {
@@ -112,9 +107,9 @@ public class CamelIntegrationTest {
         CamelContext camelContext = new DefaultCamelContext(context);
         RouteBuilder rb = new RouteBuilder() {
             public void configure() throws Exception {
-                from("direct:test-with-session")
-                .filter(or(header("priority").isEqualTo("low"), header("priority").isEqualTo("medium")))
-                .to("drools://node/ksession1");
+                from("direct:test-with-session").filter(
+                        or(header("priority").isEqualTo("low"), header("priority").isEqualTo("medium"))).to(
+                        "drools://node/ksession1");
             }
         };
         camelContext.addRoutes(rb);

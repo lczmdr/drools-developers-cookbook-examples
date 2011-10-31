@@ -37,7 +37,7 @@
       <!-- drools dependencies -->
       <dependency>
         <groupId>org.drools</groupId>
-        <artifactId>drools-api</artifactId>
+        <artifactId>knowledge-api</artifactId>
         <version>${drools.version}</version>
       </dependency>
       <dependency>
@@ -126,7 +126,7 @@
   </build>
 
   <properties>
-    <drools.version>5.2.0.M1</drools.version>
+    <drools.version>5.2.0.Final</drools.version>
     <springframework.version>2.5.6</springframework.version>
     <camel.version>2.4.0</camel.version>
     <amq.version>5.4.2</amq.version>

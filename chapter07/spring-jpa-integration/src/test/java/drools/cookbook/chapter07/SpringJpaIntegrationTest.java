@@ -67,7 +67,7 @@ public class SpringJpaIntegrationTest {
         ksession1.insert(virtualization);
         ksession1.fireAllRules();
 
-        Assert.assertEquals(2, ksession1.getObjects().size());
+        Assert.assertEquals(1, ksession1.getObjects().size());
 
         applicationContext.stop();
     }

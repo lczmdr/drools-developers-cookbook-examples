@@ -3,7 +3,7 @@ package drools.cookbook.chapter07.model;
 /**
  * 
  * @author Lucas Amador
- *
+ * 
  */
 public class Virtualization {
 
@@ -22,24 +22,31 @@ public class Virtualization {
     public void setName(String name) {
         this.name = name;
     }
+
     public String getName() {
         return name;
     }
+
     public void setServerName(String serverName) {
         this.serverName = serverName;
     }
+
     public String getServerName() {
         return serverName;
     }
+
     public void setMemory(int memory) {
         this.memory = memory;
     }
+
     public int getMemory() {
         return memory;
     }
+
     public void setDiskSpace(int diskSpace) {
         this.diskSpace = diskSpace;
     }
+
     public int getDiskSpace() {
         return diskSpace;
     }

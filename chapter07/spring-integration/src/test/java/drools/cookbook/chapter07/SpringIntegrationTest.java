@@ -16,22 +16,15 @@ import drools.cookbook.chapter07.model.Server;
 public class SpringIntegrationTest {
 
     @Test
-    public void integration() {
-
+    public void simpleSpringIntegration() {
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         applicationContext.start();
-
         StatefulKnowledgeSession ksession1 = (StatefulKnowledgeSession) applicationContext.getBean("ksession1");
-
         Assert.assertNotNull(ksession1);
-
         Server debianServer = new Server("debian-1", 4, 2048, 250, 0);
-
         ksession1.insert(debianServer);
-
-        Assert.assertEquals(1, ksession1.getFactCount());
-
+        ksession1.fireAllRules();
+        Assert.assertEquals(0, ksession1.getFactCount());
         applicationContext.stop();
     }
-
 }
