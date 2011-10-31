@@ -6,6 +6,11 @@ import java.net.URL;
 
 import javax.ws.rs.core.MediaType;
 
+/**
+ * 
+ * @author Lucas Amador
+ *
+ */
 public class GuvnorRestApi {
 
     private String guvnorURI;
