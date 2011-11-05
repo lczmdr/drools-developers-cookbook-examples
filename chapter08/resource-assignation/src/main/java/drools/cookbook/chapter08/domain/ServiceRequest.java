@@ -8,6 +8,11 @@ import org.drools.planner.api.domain.entity.PlanningEntity;
 import org.drools.planner.api.domain.variable.PlanningVariable;
 import org.drools.planner.api.domain.variable.ValueRangeFromSolutionProperty;
 
+/**
+ * 
+ * @author Lucas Amador
+ * 
+ */
 @PlanningEntity
 public class ServiceRequest {
 

@@ -11,6 +11,11 @@ import org.drools.planner.core.solution.Solution;
 import drools.cookbook.chapter08.domain.ServiceRequest;
 import drools.cookbook.chapter08.domain.Technician;
 
+/**
+ * 
+ * @author Lucas Amador
+ * 
+ */
 public class TechniciansSolution implements Solution<SimpleScore> {
 
     private List<Technician> technicians;

@@ -4,6 +4,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Set;
 
+/**
+ * 
+ * @author Lucas Amador
+ * 
+ */
 public class Technician {
 
     private Location location;

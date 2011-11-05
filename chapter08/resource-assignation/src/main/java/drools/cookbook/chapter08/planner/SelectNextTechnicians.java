@@ -10,6 +10,11 @@ import org.drools.planner.core.solution.Solution;
 import drools.cookbook.chapter08.domain.ServiceRequest;
 import drools.cookbook.chapter08.domain.Technician;
 
+/**
+ * 
+ * @author Lucas Amador
+ * 
+ */
 public class SelectNextTechnicians extends CachedMoveFactory {
 
     @Override

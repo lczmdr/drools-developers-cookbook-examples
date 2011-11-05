@@ -9,6 +9,11 @@ import org.drools.planner.core.move.Move;
 import drools.cookbook.chapter08.domain.ServiceRequest;
 import drools.cookbook.chapter08.domain.Technician;
 
+/**
+ * 
+ * @author Lucas Amador
+ * 
+ */
 public class TechnicianMove implements Move {
 
     private ServiceRequest serviceRequest;

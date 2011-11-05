@@ -15,6 +15,11 @@ import drools.cookbook.chapter08.domain.Technician;
 import drools.cookbook.chapter08.domain.TrainingLevel;
 import drools.cookbook.chapter08.planner.TechniciansSolution;
 
+/**
+ * 
+ * @author Lucas Amador
+ * 
+ */
 public class BestAvailableTechnician {
 
     public static void main(String[] args) {

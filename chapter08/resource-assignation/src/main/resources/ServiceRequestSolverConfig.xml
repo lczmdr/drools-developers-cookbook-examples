@@ -7,6 +7,9 @@
   <scoreDefinition>
     <scoreDefinitionType>SIMPLE</scoreDefinitionType>
   </scoreDefinition>
+  <constructionHeuristic>
+    <constructionHeuristicType>FIRST_FIT</constructionHeuristicType>
+  </constructionHeuristic>
   <localSearch>
     <termination>
       <terminationCompositionStyle>OR</terminationCompositionStyle>

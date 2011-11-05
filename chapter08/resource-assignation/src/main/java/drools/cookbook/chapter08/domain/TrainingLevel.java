@@ -1,5 +1,10 @@
 package drools.cookbook.chapter08.domain;
 
+/**
+ * 
+ * @author Lucas Amador
+ * 
+ */
 public enum TrainingLevel {
 
     SENIOR("sr"), SEMISENIOR("ssr"), JUNIOR("jr"), TRAINEE("tr");
