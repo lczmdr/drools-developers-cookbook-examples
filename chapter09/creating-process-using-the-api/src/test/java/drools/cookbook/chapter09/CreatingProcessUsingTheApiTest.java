@@ -81,7 +81,8 @@ public class CreatingProcessUsingTheApiTest {
 
         ActionNode actionNode = new ActionNode();
         actionNode.setId(2);
-        DroolsConsequenceAction insertAction = new DroolsConsequenceAction("java", null);
+        DroolsConsequenceAction insertAction = new DroolsConsequenceAction();
+        insertAction.setDialect("java");
         insertAction.setMetaData("Action", new Action() {
 
             public void execute(ProcessContext context) {
