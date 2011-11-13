@@ -17,7 +17,7 @@ public class SimpleProcessTest extends JbpmJUnitTestCase {
     }
 
     public void testProcessWithSignalEvent() throws Exception {
-        KnowledgeBase kbase = createKnowledgeBase("processWithSignalEvent.bpmn2");
+        KnowledgeBase kbase = createKnowledgeBase("processWithSignalEvent.bpmn");
         StatefulKnowledgeSession ksession = createKnowledgeSession(kbase);
         ProcessInstance processInstance = ksession.startProcess("processWithSignalEvent");
         Assert.assertNotNull(processInstance);
@@ -28,7 +28,7 @@ public class SimpleProcessTest extends JbpmJUnitTestCase {
     }
 
     public void testProcessWithScriptTask() throws Exception {
-        KnowledgeBase kbase = createKnowledgeBase("processWithScriptTask.bpmn2");
+        KnowledgeBase kbase = createKnowledgeBase("processWithScriptTask.bpmn");
         StatefulKnowledgeSession ksession = createKnowledgeSession(kbase);
         ProcessInstance processInstance = ksession.startProcess("processWithScriptTask");
         Assert.assertNotNull(processInstance);
