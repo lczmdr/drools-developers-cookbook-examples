@@ -12,12 +12,12 @@
              xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
              xmlns:tns="http://www.jboss.org/drools">
 
-  <process processType="Private" isExecutable="true" id="processWithScriptTask" name="processWithScriptTask" tns:packageName="drools.cookbook.chapter9" >
+  <process processType="Private" isExecutable="true" id="withdrawalProcess" name="withdrawalProcess" tns:packageName="drools.cookbook.chapter9" >
 
     <!-- nodes -->
     <startEvent id="_1" name="Start" />
-    <scriptTask id="_2" name="Script Task" scriptFormat="http://www.java.com/java" >
-      <script>System.out.println("Hello world");</script>
+    <scriptTask id="_2" name="Withdrawal system" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("discounting funds from the account");</script>
     </scriptTask>
     <endEvent id="_3" name="End" >
         <terminateEventDefinition/>
@@ -30,23 +30,23 @@
   </process>
 
   <bpmndi:BPMNDiagram>
-    <bpmndi:BPMNPlane bpmnElement="processWithScriptTask" >
+    <bpmndi:BPMNPlane bpmnElement="withdrawalProcess" >
       <bpmndi:BPMNShape bpmnElement="_1" >
-        <dc:Bounds x="84" y="51" width="48" height="48" />
+        <dc:Bounds x="96" y="96" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_2" >
-        <dc:Bounds x="196" y="51" width="88" height="48" />
+        <dc:Bounds x="180" y="96" width="156" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_3" >
-        <dc:Bounds x="360" y="51" width="48" height="48" />
+        <dc:Bounds x="372" y="96" width="48" height="48" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="_1-_2" >
-        <di:waypoint x="108" y="75" />
-        <di:waypoint x="240" y="75" />
+        <di:waypoint x="120" y="120" />
+        <di:waypoint x="258" y="120" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_2-_3" >
-        <di:waypoint x="240" y="75" />
-        <di:waypoint x="384" y="75" />
+        <di:waypoint x="258" y="120" />
+        <di:waypoint x="396" y="120" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

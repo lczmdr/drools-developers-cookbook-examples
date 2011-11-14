@@ -46,7 +46,7 @@ public class BusinessMonitoring {
 
     private static KnowledgeBase createKnowledgeBase() throws Exception {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-        kbuilder.add(ResourceFactory.newClassPathResource("withdrawalProcess.bpmn2"), ResourceType.BPMN2);
+        kbuilder.add(ResourceFactory.newClassPathResource("withdrawalProcess.bpmn"), ResourceType.BPMN2);
         kbuilder.add(ResourceFactory.newClassPathResource("withdrawalRules.drl"), ResourceType.DRL);
         if (kbuilder.hasErrors()) {
             for (KnowledgeBuilderError error : kbuilder.getErrors()) {
