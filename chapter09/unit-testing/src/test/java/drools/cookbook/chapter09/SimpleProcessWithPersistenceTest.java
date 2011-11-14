@@ -13,7 +13,7 @@ import org.junit.Assert;
 public class SimpleProcessWithPersistenceTest extends JbpmJUnitTestCase {
 
     public void testProcessWithSignalEventUsingPersistence() throws Exception {
-        KnowledgeBase kbase = createKnowledgeBase("processWithSignalEvent.bpmn2");
+        KnowledgeBase kbase = createKnowledgeBase("processWithSignalEvent.bpmn");
         StatefulKnowledgeSession ksession = createKnowledgeSession(kbase);
         ProcessInstance processInstance = ksession.startProcess("processWithSignalEvent");
         Assert.assertNotNull(processInstance);
