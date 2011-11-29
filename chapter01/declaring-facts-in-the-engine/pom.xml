@@ -6,8 +6,8 @@
     <artifactId>chapter01</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
-  <artifactId>modeling-facts-inside-your-rules</artifactId>
-  <name>Modeling Facts Inside Your Rules</name>
+  <artifactId>declaring-facts-in-the-engine</artifactId>
+  <name>Declaring facts directly in the engine</name>
 
   <dependencies>
     <dependency>

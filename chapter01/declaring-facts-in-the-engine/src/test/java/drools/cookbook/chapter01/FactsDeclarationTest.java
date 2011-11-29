@@ -20,7 +20,7 @@ import org.junit.Test;
 /**
  * 
  * @author Lucas Amador
- *
+ * 
  */
 public class FactsDeclarationTest {
 
@@ -154,7 +154,6 @@ public class FactsDeclarationTest {
             Integer freeDiskSpace = (Integer) serverStatusType.get(server, "freeDiskSpace");
             System.out.println("Server \"" + name + "\" has " + freeDiskSpace + " MB of free disk space");
         }
-
     }
 
     @Before
@@ -169,9 +168,7 @@ public class FactsDeclarationTest {
                 }
             }
         }
-
         kbase = kbuilder.newKnowledgeBase();
-
     }
 
 }

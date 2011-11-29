@@ -31,7 +31,6 @@ end
 
 rule "check minimum server configuration"
 dialect "mvel"
-salience 100
 when
 	$server : Server(processors < 2 || memory<=1024 || diskSpace<=250)
 then
