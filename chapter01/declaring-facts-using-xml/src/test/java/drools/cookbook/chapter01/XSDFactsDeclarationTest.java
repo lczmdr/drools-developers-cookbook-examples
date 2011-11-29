@@ -3,8 +3,6 @@ package drools.cookbook.chapter01;
 import java.lang.reflect.Method;
 import java.math.BigInteger;
 
-import junit.framework.Assert;
-
 import org.drools.KnowledgeBase;
 import org.drools.builder.JaxbConfiguration;
 import org.drools.builder.KnowledgeBuilder;
@@ -14,8 +12,9 @@ import org.drools.builder.ResourceType;
 import org.drools.common.InternalRuleBase;
 import org.drools.impl.KnowledgeBaseImpl;
 import org.drools.io.impl.ClassPathResource;
-import org.drools.rule.DroolsCompositeClassLoader;
 import org.drools.runtime.StatefulKnowledgeSession;
+import org.drools.util.CompositeClassLoader;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,7 +24,7 @@ import com.sun.tools.xjc.Options;
 /**
  * 
  * @author Lucas Amador
- *
+ * 
  */
 public class XSDFactsDeclarationTest {
 
@@ -36,7 +35,8 @@ public class XSDFactsDeclarationTest {
 
         StatefulKnowledgeSession ksession = kbase.newStatefulKnowledgeSession();
 
-        DroolsCompositeClassLoader classLoader = ((InternalRuleBase) ((KnowledgeBaseImpl) kbase).getRuleBase()).getRootClassLoader();
+        CompositeClassLoader classLoader = ((InternalRuleBase) ((KnowledgeBaseImpl) kbase).getRuleBase())
+                .getRootClassLoader();
 
         Class<?> serverClass = classLoader.loadClass("drools.cookbook.chapter01.Server");
         Assert.assertNotNull(serverClass);

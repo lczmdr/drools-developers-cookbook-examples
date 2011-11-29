@@ -25,8 +25,8 @@
  </repositories>
 
   <modules>
-    <module>modeling-facts-with-xml</module>
     <module>declaring-facts-in-the-engine</module>
+    <module>declaring-facts-using-xml</module>
     <module>adding-logging-to-view-rules-execution-behaviour</module>
     <module>custom-date-format-inside-rules</module>
     <module>timer-based-rules</module>

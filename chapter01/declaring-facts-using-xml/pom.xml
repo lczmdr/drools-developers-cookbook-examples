@@ -6,8 +6,8 @@
     <artifactId>chapter01</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
-  <artifactId>modeling-facts-with-xml</artifactId>
-  <name>Modeling Facts with XML</name>
+  <artifactId>declaring-facts-using-xml</artifactId>
+  <name>Declaring facts using XML</name>
 
   <dependencies>
     <dependency>
