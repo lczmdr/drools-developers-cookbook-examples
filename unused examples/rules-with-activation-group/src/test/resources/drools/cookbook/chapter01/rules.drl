@@ -1,0 +1,53 @@
+package drools.cookbook.chapter01
+
+import drools.cookbook.chapter01.Server
+import drools.cookbook.chapter01.Virtualization
+import drools.cookbook.chapter01.VirtualizationRequest
+
+import function drools.cookbook.chapter01.helper.ServerConfigurationReader.loadServerConfiguration
+
+rule "Server previously configured"
+agenda-group "server-configuration-loaded"
+salience 10
+when
+	$request : VirtualizationRequest($serverName : serverName)
+	$server : Server(name == $serverName)
+then
+	kcontext.getKnowledgeRuntime().getAgenda().getAgendaGroup("check-server-configuration").setFocus();
+	System.out.println("The server is on the WorkingMemory. The next step is check the configuration");
+end
+
+rule "Load server configuration from file"
+agenda-group "server-configuration-loaded"
+when
+	$request : VirtualizationRequest($serverName : serverName)
+then
+	kcontext.getKnowledgeRuntime().getAgenda().getAgendaGroup("check-server-configuration").setFocus();
+	Server server = loadServerConfiguration($serverName);
+	System.out.println("The server is loaded into the WorkingMemory. The next step is check the configuration");
+	insert(server);
+end
+
+rule "Check the required server configuration"
+salience 10
+agenda-group "check-server-configuration"
+dialect "mvel"
+when
+	$request : VirtualizationRequest($serverName : serverName)
+	$server : Server(name==$serverName, processors >= 2 && memory>1024 && diskSpace>250)
+then
+	System.out.println("The server configuration is approved");
+	retract($request);
+end
+
+rule "Check the minimum server configuration"
+agenda-group "check-server-configuration"
+dialect "mvel"
+when
+	$request : VirtualizationRequest($serverName : serverName)
+	$server : Server(name==$serverName, processors < 2 || memory<=1024 || diskSpace<=250)
+then
+	System.out.println("Server \"" + $server.name + "\" was rejected by don't apply the minimum configuration.");
+	retract($server);
+	retract($request);
+end

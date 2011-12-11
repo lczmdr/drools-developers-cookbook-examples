@@ -1,0 +1,20 @@
+<servers>
+  <server>
+    <name>debianServer</name>
+    <processors>8</processors>
+    <memory>8192</memory>
+    <diskSpace>2048</diskSpace>
+    <virtualizations/>
+    <cpuUsage>0</cpuUsage>
+    <online>false</online>
+  </server>
+  <server>
+    <name>centOSServer</name>
+    <processors>4</processors>
+    <memory>8192</memory>
+    <diskSpace>6144</diskSpace>
+    <virtualizations/>
+    <cpuUsage>0</cpuUsage>
+    <online>false</online>
+  </server>
+</servers>

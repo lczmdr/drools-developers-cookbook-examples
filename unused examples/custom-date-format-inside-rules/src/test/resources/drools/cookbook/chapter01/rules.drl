@@ -1,0 +1,23 @@
+package drools.cookbook.chapter01
+
+import java.util.List
+import drools.cookbook.chapter01.HistoricalCpuUsage
+import drools.cookbook.chapter01.HistoricalCpuUsageQuery
+
+
+rule "Query historical CPU usage values"
+dialect "mvel"
+when
+	$query : HistoricalCpuUsageQuery($serverName : serverName!=null, $fromDate : fromDate!=null, $toDate : toDate!=null)
+	$results : List(size > 0) from collect (HistoricalCpuUsage(serverName==$serverName, time > "10-Sep-2010 22:15:01", time >= $fromDate, time <= $toDate))
+	$minValue : Number () from accumulate (HistoricalCpuUsage($value : value) from $results,
+										min($value))
+	$maxValue : Number () from accumulate (HistoricalCpuUsage($value : value) from $results,
+										max($value))
+	$avgValue : Number () from accumulate (HistoricalCpuUsage($value : value) from $results,
+										average($value))
+then
+	$query.minValue = $minValue;
+	$query.maxValue = $maxValue;
+	$query.averageValue = $avgValue;
+end
