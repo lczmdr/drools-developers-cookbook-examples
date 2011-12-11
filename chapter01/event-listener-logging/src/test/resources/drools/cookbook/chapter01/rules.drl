@@ -1,0 +1,22 @@
+package drools.cookbook.chapter01
+
+import java.util.Date
+import java.util.List
+
+declare Server
+   name : String
+   processors : int
+   memory : int // megabytes
+   diskSpace : int // gigabytes
+   virtualizations : List // list of Virtualization objects
+   cpuUsage : int // percentage
+end
+
+rule "check minimum server configuration"
+dialect "mvel"
+when
+	$server : Server(processors < 2 || memory<=1024 || diskSpace<=250)
+then
+	System.out.println("Server \"" + $server.name + "\" was rejected by don't apply the minimum configuration.");
+	retract($server);
+end

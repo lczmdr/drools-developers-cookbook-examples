@@ -157,7 +157,7 @@ public class FactsDeclarationTest {
     }
 
     @Before
-    public void createKnowledgeSession() {
+    public void createKnowledgeBase() {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
         kbuilder.add(new ClassPathResource("rules.drl", getClass()), ResourceType.DRL);
 

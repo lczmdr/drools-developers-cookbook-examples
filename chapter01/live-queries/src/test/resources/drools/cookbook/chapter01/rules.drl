@@ -1,0 +1,14 @@
+package drools.cookbook.chapter01
+
+query serverCpuUsage(int maxValue)
+	$server : Server($serverName : name, cpuUsage <= maxValue)
+end
+
+rule "Check the minimum server configuration"
+dialect "mvel"
+when
+	$server : Server(processors < 2 || memory<=1024 || diskSpace<=250)
+then
+	System.out.println("Server \"" + $server.name + "\" was rejected by don't apply the minimum configuration.");
+	retract($server);
+end

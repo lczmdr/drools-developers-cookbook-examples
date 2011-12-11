@@ -1,5 +1,7 @@
 package drools.cookbook.chapter01;
 
+import java.util.Date;
+
 import org.drools.KnowledgeBase;
 import org.drools.builder.KnowledgeBuilder;
 import org.drools.builder.KnowledgeBuilderError;
@@ -13,7 +15,7 @@ import org.junit.Test;
 /**
  * 
  * @author Lucas Amador
- *
+ * 
  */
 public class TimerBasedRulesTest {
 
@@ -26,7 +28,7 @@ public class TimerBasedRulesTest {
 
         ksession.setGlobal("alerts", new ServerAlert());
 
-        final Server debianServer = new Server("debianServer", 4, 2048, 2048, 4);
+        final Server debianServer = new Server("debianServer", new Date(), 4, 2048, 2048, 4);
         debianServer.setOnline(true);
 
         new Thread(new Runnable() {
@@ -45,6 +47,7 @@ public class TimerBasedRulesTest {
                     ksession.update(debianServerFactHandle, debianServer);
                     Thread.sleep(16000);
                     debianServer.setOnline(true);
+                    debianServer.setLastTimeOnline(new Date());
                     ksession.update(debianServerFactHandle, debianServer);
                 } catch (InterruptedException e) {
                     System.err.println("An error ocurrs in the simulation thread");
@@ -63,7 +66,7 @@ public class TimerBasedRulesTest {
 
     private StatefulKnowledgeSession createKnowledgeSession() {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-        kbuilder.add(new ClassPathResource("rules.drl", getClass()), ResourceType.DRL); 
+        kbuilder.add(new ClassPathResource("rules.drl", getClass()), ResourceType.DRL);
 
         if (kbuilder.hasErrors()) {
             if (kbuilder.getErrors().size() > 0) {

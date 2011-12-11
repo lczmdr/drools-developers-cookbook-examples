@@ -2,9 +2,6 @@ package drools.cookbook.chapter01
 
 import java.util.Date
 import java.util.List
-import drools.cookbook.chapter01.Server
-import drools.cookbook.chapter01.Virtualization
-import drools.cookbook.chapter01.VirtualizationRequest
 
 rule "New virtualization request"
 calendars "only-weekdays"

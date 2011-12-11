@@ -6,8 +6,8 @@
     <artifactId>chapter01</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
-  <artifactId>timer-based-rules</artifactId>
-  <name>Timer based rules</name>
+  <artifactId>live-queries</artifactId>
+  <name>Monitoring queries in real time</name>
 
   <dependencies>
     <dependency>
@@ -21,6 +21,11 @@
     <dependency>
       <groupId>org.drools</groupId>
       <artifactId>drools-compiler</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>net.java.dev.glazedlists</groupId>
+      <artifactId>glazedlists_java15</artifactId>
+      <version>1.8.0</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

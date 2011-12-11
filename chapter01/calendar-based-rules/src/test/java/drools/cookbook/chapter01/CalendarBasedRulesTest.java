@@ -19,7 +19,7 @@ import org.quartz.impl.calendar.WeeklyCalendar;
 /**
  * 
  * @author Lucas Amador
- *
+ * 
  */
 public class CalendarBasedRulesTest {
 
@@ -48,8 +48,7 @@ public class CalendarBasedRulesTest {
         if (isWeekday()) {
             Assert.assertEquals(true, virtualizationRequest.isSuccessful());
             System.out.println("The virtualization request was accepted on server: " + rhel.getServerName());
-        }
-        else {
+        } else {
             Assert.assertEquals(false, virtualizationRequest.isSuccessful());
             System.out.println("The virtualization request was rejected because is weekend.");
         }
@@ -59,12 +58,12 @@ public class CalendarBasedRulesTest {
     private boolean isWeekday() {
         Calendar calendar = Calendar.getInstance();
         int currentDay = calendar.get(Calendar.DAY_OF_WEEK);
-        return !(currentDay==Calendar.SATURDAY || currentDay==Calendar.SUNDAY);
+        return !(currentDay == Calendar.SATURDAY || currentDay == Calendar.SUNDAY);
     }
 
     private StatefulKnowledgeSession createKnowledgeSession() {
         KnowledgeBuilder kbuilder = KnowledgeBuilderFactory.newKnowledgeBuilder();
-        kbuilder.add(new ClassPathResource("rules.drl", getClass()), ResourceType.DRL); 
+        kbuilder.add(new ClassPathResource("rules.drl", getClass()), ResourceType.DRL);
 
         if (kbuilder.hasErrors()) {
             if (kbuilder.getErrors().size() > 0) {

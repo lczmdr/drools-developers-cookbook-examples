@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>drools.cookbook</groupId>
   <artifactId>chapter01</artifactId>
-  <name>Drools Expert :: Rules Modeling</name>
+  <name>Drools Expert :: The rule engine</name>
   <packaging>pom</packaging>
   <version>1.0.0-SNAPSHOT</version>
 
@@ -27,13 +27,10 @@
   <modules>
     <module>declaring-facts-in-the-engine</module>
     <module>declaring-facts-using-xml</module>
-    <module>adding-logging-to-view-rules-execution-behaviour</module>
-    <module>custom-date-format-inside-rules</module>
+    <module>event-listener-logging</module>
     <module>timer-based-rules</module>
     <module>calendar-based-rules</module>
-    <module>rules-execution-priorities</module>
-    <module>rules-with-activation-group</module>
-    <module>live-querries</module>
+    <module>live-queries</module>
   </modules>
 
   <dependencyManagement>

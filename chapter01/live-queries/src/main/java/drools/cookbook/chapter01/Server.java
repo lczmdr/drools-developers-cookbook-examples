@@ -88,4 +88,10 @@ public class Server {
         return online;
     }
 
+    @Override
+    public String toString() {
+        return "name=" + name + " processors=" + processors + " memory=" + memory + " diskSpace=" + diskSpace
+                + " virtualizations=" + virtualizations.size() + " cpuUsage=" + cpuUsage;
+    }
+
 }
