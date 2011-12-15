@@ -4,7 +4,7 @@
   <parent>
     <groupId>drools.cookbook</groupId>
     <artifactId>chapter07</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
   <artifactId>apache-camel-jms</artifactId>
   <name>Apache Camel + Drools + ActiveMQ JMS</name>

@@ -4,7 +4,7 @@
   <parent>
     <groupId>drools.cookbook</groupId>
     <artifactId>chapter02</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
   <artifactId>duplicated-facts</artifactId>
   <name>How discard duplicated facts</name>
